@@ -32,10 +32,10 @@ $( document ).ready(function() {
 		signUpPromise.then(function(user) {
 			user.sendEmailVerification().then(function() {
 				// On success redirect user to home page
-			 	outPutMessage('register', failiure, 'success', 'Verification Email Sent.');
+			 	outPutMessage('register', 'error', 'success', 'Verification Email Sent.');
 			 	window.location = "home.html";
 			}, function(error) {
-				outPutMessage('register', failiure, 'success', 'Account created, however verification email not sent.');
+				outPutMessage('register', 'error', 'success', 'Account created, however verification email not sent.');
 			});
 		}).catch(function(error) {
 			outPutMessage('register', 'success', 'error', error.message);
