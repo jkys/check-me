@@ -168,11 +168,10 @@ $( document ).ready(function() {
 				});
 			}
 		}).catch(function(error) {
-			console.log(error.code;);
+			console.log(error.code);
 			console.log(errorCode);
 		});
 	});
-
 
 
 	$('#CheckMeLogo').click(function() {
