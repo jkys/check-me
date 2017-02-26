@@ -94,7 +94,7 @@ $( document ).ready(function() {
 	});
 
 	$('#forgotPassword').click(function() {
-		var emailText = email.val();
+		var emailText = $('#email').val();
 		if(emailText == '') {
 			outPutMessage('login', 'success', 'error', 'Please enter an email above.');
 		} else {
