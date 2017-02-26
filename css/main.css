@@ -1,0 +1,314 @@
+body {
+  background: #fff;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+#logOut {
+  background: none !important;
+  border: none; 
+  font: inherit;
+  cursor: pointer;
+  color: #A8A6A5;
+  font-family: inherit;
+  font-size: 1.5em;
+}
+
+#forgotPassword {
+  background: none !important;
+  border: none; 
+  font: inherit;
+  cursor: pointer;
+  color: rgb(0, 177, 235);
+  font-family: inherit;
+  font-size: 1em;
+}
+
+#deleteAccount {
+  background: #FC3832;
+}
+
+.avatar {
+  height: 200px;
+  width: 200px;
+  margin-left: 10%;
+  border: 3px solid rgb(0, 177, 235);
+}
+
+.about-container {
+  margin-top: 4%;
+
+}
+
+#firebaseui-auth-container{
+  margin-top: 30px;
+}
+
+.firebaseui-container {
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+.firebaseui-card-content {
+  padding: 0 !important;
+}
+
+.firebaseui-list-item {
+  width: 50% !important;
+  display: inline-block;
+}
+
+.avatar-container h2, .avatar-container h4, .media{
+  margin-left: 10%;
+}
+
+.media a{
+  display: inline-block;
+}
+
+.avatar-container a img {
+  height: 20px;
+  width: 20px;
+  margin-right: 15px;
+  background-color: #fff;
+  border-radius: 15%;
+}
+
+.checkMe-information {
+  margin-top: 1%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom: 2%;
+}
+
+.checkMe-information div{
+  width: 50%;
+}
+
+#CheckMeLogo {
+  background: none !important;
+  border: none; 
+  cursor: pointer;
+}
+
+#homeButton {
+  background: none !important;
+  border: none; 
+  cursor: pointer;
+  text-decoration: none;
+  color: #A8A6A5;
+  font-size: 1.5em;
+}
+
+.person-container {
+  color: #fff;
+  background: rgba(19, 35, 47, 0.9);
+  border-radius: 20px;
+  margin-top: 1%;
+  margin-left: 15%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height: 400px;
+  padding: 1%;
+  border: 3px solid rgb(0, 177, 235);
+  width: 70%;
+}
+
+.avatar-container {
+  width: 40%;
+}
+
+.information-container {
+  width: 50%;
+  margin-bottom: 15%;
+}
+
+.avatar-container {
+  float: left;
+}
+
+.avatar-container h2 {
+  /*color: rgb(0, 177, 235);*/
+}
+
+.information-container {
+  float: right;
+}
+
+.information-container h4 {
+  color: rgb(0, 177, 235);
+}
+
+.login .logo-header #logo-login {
+  height: 10em;
+  width: auto;
+  transition: width 1s, height 1s;
+}
+
+.login .logo-header #logo-login:hover {
+  height: 10.5em;
+  width: auto;
+
+}
+
+.login .logo-header {
+  margin-top: 2%;
+  text-align: center;
+}
+
+.login .links-footer {
+  padding: 1%;
+  float: right;
+  word-spacing: 2em;
+}
+
+.login .links-footer a {
+  text-decoration: none;
+  color: #A8A6A5;
+  font-size: 1.5em;
+}
+
+.terms-container {
+  padding: 3% 5% 3% 5%;
+}
+
+.terms-container p, .terms-container li{
+  margin-left: 2%;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+li a{
+  text-decoration: none;
+  color: #000
+}
+
+footer {
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-end;
+  padding: 1%;
+}
+
+.loggedIn {
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-end;
+  padding: 0% 1% 0% 0%;
+}
+
+.loggedIn .links-loggedIn {
+  float: right;
+  word-spacing: 2em;
+}
+
+.loggedIn .links-loggedIn a {
+  text-decoration: none;
+  color: #A8A6A5;
+  font-size: 1.5em;
+}
+
+.errorMessage {
+  margin-top: 20px;
+  color: #FC3832;
+}
+
+.successMessage {
+  margin-top: 20px;
+  color: #5CDC48;
+}
+
+#scanDiv, #scanningDiv {
+  margin-top: 10%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#scanLink {
+  text-decoration: none;
+}
+
+.settingsPageLabel label {
+  margin-left: 15%;
+}
+
+.settingsPageInput {
+  width: 70% !important;
+  margin-left: 15% !important;
+}
+
+.settingsPageMessage {
+  margin-left: 15%;
+}
+
+.settingsPageButton {
+  font-weight: none !important;
+  font-size: 1.5rem !important;
+  width: 70% !important;
+  margin-left: 15% !important;
+  cursor: pointer !important;
+}
+
+
+#scanButton {
+    width: 200px;
+    height: 200px;
+    transition: width 1s, height 1s, border 1s;
+    background: rgba(19, 35, 47, 0.9);
+    border: 5px solid rgb(0, 177, 235);
+    border-radius: 50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#scanningDiv h1 {
+  font-family: 'Titillium Web', sans-serif;
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 2em;
+}
+
+#scanningButton {
+    width: 500px;
+    height: 100px;
+    transition: width 1s, height 1s, border 1s;
+    background: rgba(19, 35, 47, 0.9);
+    border: 5px solid rgb(0, 177, 235);
+    border-radius: 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#scanningButton:hover {
+    border: 10px solid rgb(0, 127, 185);
+    background: rgba(19, 35, 47, 0.94);
+}
+
+#scanButton h1 {
+  font-family: 'Titillium Web', sans-serif;
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 2em;
+}
+
+#scanButton:hover {
+    width: 250px;
+    height: 250px;
+    border: 10px solid rgb(0, 127, 185);
+    background: rgba(19, 35, 47, 0.94);
+}
