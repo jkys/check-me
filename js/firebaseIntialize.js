@@ -129,40 +129,51 @@ $( document ).ready(function() {
 	});
 
 	$('#authorizeFacebook').click(function() {
-		console.log("click");
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		console.log(provider);
 		firebase.auth().signInWithRedirect(provider).then(function(result) {
-			// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-			var token = result.credential.accessToken;
-			// The signed-in user info.
-			var user = result.user;
-			// ...
+			if (result.credential) {
+				var token = result.credential.accessToken;
+				var user = result.user;
 
-			console.log(result);
-			console.log(token);
-			console.log(user);
-
-			FB.api('/' + user + '/feed', function (response) {
-				if (response && !response.error) {
-					/* handle the result */
-					console.log(response);
-				}
-			});
+				FB.api('/' + user + '/feed', function (response) {
+					if (response && !response.error) {
+						console.log(response);
+					}
+				});
+			}
 		}).catch(function(error) {
-			// Handle Errors here.
-			var errorCode = error.code;
-			var errorMessage = error.message;
-			// The email of the user's account used.
-			var email = error.email;
-			// The firebase.auth.AuthCredential type that was used.
-			var credential = error.credential;
-			console.log(errorMessage);
+			console.log(error.code;);
 			console.log(errorCode);
-			// ...
 		});
 	});
+
+	$('#authorizeTwitter').click(function() {
+		var provider = new  firebase.auth.TwitterAuthProvider();
+		provider.addScope('user_posts');
+		firebase.auth().signInWithRedirect(provider).then(function(result) {
+			if (result.credential) {
+				var token = result.credential.accessToken;
+				var user = result.user;
+
+				console.log(user);
+				console.log(token);
+				
+				$.ajax({
+					url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames',
+					dataType: 'jsonp',
+					success: function(response) {
+						console.log(response)
+					}
+				});
+			}
+		}).catch(function(error) {
+			console.log(error.code;);
+			console.log(errorCode);
+		});
+	});
+
+
 
 	$('#CheckMeLogo').click(function() {
 		if(auth.currentUser) {
