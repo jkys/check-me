@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+	$('#loggedInBar').hide();
 	// Fire base config
 	var config = {
 		apiKey: "AIzaSyBXpn2g6SLj4CB_4hkvLs4N4P4D7yTZf_k",
@@ -16,9 +17,9 @@ $( document ).ready(function() {
 
 	auth.onAuthStateChanged(function(user) {
         if (user) {
-        	$('#loggedInBar').css('display', 'inline');
+        	$('#loggedInBar').show();
         } else {
-        	$('#loggedInBar').css('display', 'none');
+        	$('#loggedInBar').hide();
         }
     });
 
