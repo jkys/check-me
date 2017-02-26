@@ -202,10 +202,6 @@ footer {
   padding: 1%;
 }
 
-#loggedInBar {
-  display: none;
-}
-
 .loggedIn {
   display:flex;
   justify-content:flex-end;
