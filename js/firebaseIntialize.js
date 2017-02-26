@@ -132,28 +132,27 @@ $( document ).ready(function() {
 	$('#authorizeFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		firebase.auth().linkWithPopup(provider).then(function(result) {
+		var result = linkAccounts(auth.currentUser, provider);
+	});
+
+	function linkAccounts(user, provider) {
+		user.linkWithPopup(provider).then(function(result) {
 			var user = result.user;
 			var cred = result.credential;
 
 			console.log(result);
 			console.log(user);
+
+			return result;
 		}).catch(function(error) {
 			console.log(error.code);
+			return error;
 		});
-	});
+	}
 
 	$('#authorizeTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		firebase.auth().linkWithPopup(provider).then(function(result) {
-			var user = result.user;
-			var cred = result.credential;
-
-			console.log(result);
-			console.log(user);
-		}).catch(function(error) {
-			console.log(error.code);
-		});
+		var result = linkAccounts(auth.currentUser, provider);
 	});
 
 
