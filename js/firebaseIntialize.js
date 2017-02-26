@@ -132,61 +132,27 @@ $( document ).ready(function() {
 	$('#authorizeFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		firebase.auth().signInWithPopup(provider).then(function(result) {
+		firebase.auth().linkWithPopup(provider).then(function(result) {
 			var user = result.user;
 			var cred = result.credential;
-			var token = cred.accessToken;
 
 			console.log(result);
-			console.log(token);
 			console.log(user);
-
-			auth.currentUser.link(cred).then(function() {
-				console.log("Linked accounts.");
-			}).catch(function(error) {
-				console.log(error.message);
-			});	
-
-			// FB.api('/' + user + '/feed', function (response) {
-			// 	if (response && !response.error) {
-			// 		console.log(response);
-			// 	}
-			// });
 		}).catch(function(error) {
 			console.log(error.code);
-			console.log(errorCode);
 		});
 	});
 
 	$('#authorizeTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		firebase.auth().signInWithPopup(provider).then(function(result) {
-			if (result.credential) {
-				var user = result.user;
-				var cred = result.credential;
-				var token = cred.accessToken;
+		firebase.auth().linkWithPopup(provider).then(function(result) {
+			var user = result.user;
+			var cred = result.credential;
 
-				console.log(result);
-				console.log(token);
-				console.log(user);
-
-				auth.currentUser.link(cred).then(function() {
-					console.log("Linked accounts.");
-				}).catch(function(error) {
-					console.log(error.message);
-				});	
-				
-				// $.ajax({
-				// 	url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames',
-				// 	dataType: 'jsonp',
-				// 	success: function(response) {
-				// 		console.log(response)
-				// 	}
-				// });
-			}
+			console.log(result);
+			console.log(user);
 		}).catch(function(error) {
 			console.log(error.code);
-			console.log(errorCode);
 		});
 	});
 
