@@ -181,10 +181,10 @@ $( document ).ready(function() {
 	});
 
 
-	function outPutMessage(object, removeClass, addClass, message) {
+	function outPutMessage(object, removeClass, addClass, errorMessage) {
 		var message = 'Message'
 		$('#' + object + message).removeClass(removeClass + message);
 		$('#' + object + message).addClass(addClass + message);
-		$('#' + object + message).html(message);
+		$('#' + object + message).html(errorMessage);
 	}
 });
