@@ -132,20 +132,26 @@ $( document ).ready(function() {
 	$('#authorizeFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		firebase.auth().signInWithRedirect(provider).then(function(result) {
-			if (result.credential) {
-				var token = result.credential.accessToken;
-				var user = result.user;
-				console.log(result);
-				console.log(token);
-				console.log(user);
+		firebase.auth().signInWithPopup(provider).then(function(result) {
+			var user = result.user;
+			var cred = result.credential;
+			var token = cred.accessToken;
 
-				FB.api('/' + user + '/feed', function (response) {
-					if (response && !response.error) {
-						console.log(response);
-					}
-				});
-			}
+			console.log(result);
+			console.log(token);
+			console.log(user);
+
+			auth.currentUser.link(cred).then(function() {
+				console.log("Linked accounts.");
+			}).catch(function(error) {
+				console.log(error.message);
+			});	
+
+			// FB.api('/' + user + '/feed', function (response) {
+			// 	if (response && !response.error) {
+			// 		console.log(response);
+			// 	}
+			// });
 		}).catch(function(error) {
 			console.log(error.code);
 			console.log(errorCode);
@@ -154,22 +160,29 @@ $( document ).ready(function() {
 
 	$('#authorizeTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		firebase.auth().signInWithRedirect(provider).then(function(result) {
+		firebase.auth().signInWithPopup(provider).then(function(result) {
 			if (result.credential) {
-				var token = result.credential.accessToken;
 				var user = result.user;
+				var cred = result.credential;
+				var token = cred.accessToken;
 
 				console.log(result);
 				console.log(token);
 				console.log(user);
+
+				auth.currentUser.link(cred).then(function() {
+					console.log("Linked accounts.");
+				}).catch(function(error) {
+					console.log(error.message);
+				});	
 				
-				$.ajax({
-					url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames',
-					dataType: 'jsonp',
-					success: function(response) {
-						console.log(response)
-					}
-				});
+				// $.ajax({
+				// 	url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames',
+				// 	dataType: 'jsonp',
+				// 	success: function(response) {
+				// 		console.log(response)
+				// 	}
+				// });
 			}
 		}).catch(function(error) {
 			console.log(error.code);
