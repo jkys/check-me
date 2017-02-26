@@ -135,6 +135,9 @@ $( document ).ready(function() {
 			if (result.credential) {
 				var token = result.credential.accessToken;
 				var user = result.user;
+				console.log(result);
+				console.log(token);
+				console.log(user);
 
 				FB.api('/' + user + '/feed', function (response) {
 					if (response && !response.error) {
@@ -156,8 +159,9 @@ $( document ).ready(function() {
 				var token = result.credential.accessToken;
 				var user = result.user;
 
-				console.log(user);
+				console.log(result);
 				console.log(token);
+				console.log(user);
 				
 				$.ajax({
 					url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames',
