@@ -16,9 +16,9 @@ $( document ).ready(function() {
 
 	auth.onAuthStateChanged(function(user) {
         if (user) {
-        	$('#loggedInBar').show();
+        	$('#loggedInBar').css('display', 'inline');
         } else {
-        	$('#loggedInBar').hide();
+        	$('#loggedInBar').css('display', 'none');
         }
     });
 
