@@ -154,7 +154,6 @@ $( document ).ready(function() {
 
 	$('#authorizeTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		provider.addScope('user_posts');
 		firebase.auth().signInWithRedirect(provider).then(function(result) {
 			if (result.credential) {
 				var token = result.credential.accessToken;
