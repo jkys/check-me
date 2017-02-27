@@ -228,6 +228,8 @@ $( document ).ready(function() {
 					console.log(url);
 					console.log(message);
 					console.log(date);
+
+					$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 				}
 				return response;
 			} else {
@@ -237,16 +239,20 @@ $( document ).ready(function() {
 	}
 
 	function convertIso(iso) {
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 		var date = new Date(iso);
 		var day = date.getDate();
 		var year = date.getFullYear();
 		var month = date.getMonth()+1;
-		var dateString = month + ' ' + day + ', ' + year + '.';
+		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
 		return dateString;
 	}
 
 	function getFaceBookPostUrl(id) {
-		var index = id.indexOf('-');
+		//1675375856095891_1675505002749643
+		var index = id.indexOf('_');
 		var prefix = id.substring(0, index);
 		var postfix = id.indexOf((index + 1));
 
@@ -313,6 +319,8 @@ $( document ).ready(function() {
 
 	    	if (interval >= arrayLength) {
 				clearInterval(scanLoop);
+				$('#scanningDiv').hide();
+				$('#scanResults').show();
 			}
 	    	interval += 1;
 		}, 7000);
