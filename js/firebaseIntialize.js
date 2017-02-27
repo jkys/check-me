@@ -17,7 +17,7 @@ $( document ).ready(function() {
         	$('#loggedInBar').show();
         	var currentPage = window.location.pathname;
         	if (~currentPage.indexOf("index.html")) {
-        		signOutAndRedirect();
+        		window.location = "home.html";
         	}
         } else {
         	$('#loggedInBar').hide();
@@ -139,7 +139,6 @@ $( document ).ready(function() {
 		var result = linkAccounts(auth.currentUser, provider);
 	});
 
-	// Check for user clicking the logout button
 	$('#logOut').click(function() { signOutAndRedirect(); });
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
