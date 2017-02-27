@@ -1,6 +1,10 @@
 body {
   background: #fff;
-  font-family: 'Titillium Web', sans-serif;
+  /*font-family: 'Titillium Web', sans-serif;*/
+}
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #logOut {
@@ -9,7 +13,7 @@ body {
   font: inherit;
   cursor: pointer;
   color: #A8A6A5;
-  font-family: inherit;
+  /*font-family: inherit;*/
   font-size: 1.5em;
 }
 
@@ -19,7 +23,7 @@ body {
   font: inherit;
   cursor: pointer;
   color: rgb(0, 177, 235);
-  font-family: inherit;
+  /*font-family: inherit;*/
   font-size: 1em;
 }
 
@@ -27,10 +31,14 @@ body {
   display: inline-block;
 }
 
+.thirdPartyLink {
+  color: #3B7FFF;
+  text-decoration: none;
+}
+
 .results {
   display: inline-block;
   margin-top: 100px;
-  border: 1px solid black;
   width: 35%;
   margin-left: 7%;
   height: 800px;
@@ -42,9 +50,14 @@ body {
   margin: 3%;
 }
 
+.time {
+  color: #3B7FFF;
+}
+
 .post {
   margin: 3%;
-  border: 1px solid black;
+  border: 3px solid #3B7FFF;
+  border-radius: 15px;
   height: auto;
   padding: 3%;
 }
@@ -335,7 +348,7 @@ footer {
 }
 
 #scanningDiv h1 {
-  font-family: 'Titillium Web', sans-serif;
+  /*font-family: 'Titillium Web', sans-serif;*/
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
@@ -359,7 +372,7 @@ footer {
 }
 
 #scanButton h1 {
-  font-family: 'Titillium Web', sans-serif;
+  /*font-family: 'Titillium Web', sans-serif;*/
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
