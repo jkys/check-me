@@ -23,6 +23,32 @@ body {
   font-size: 1em;
 }
 
+.resultsContainer {
+  display: inline-block;
+}
+
+.results {
+  display: inline-block;
+  margin-top: 100px;
+  border: 1px solid black;
+  width: 35%;
+  margin-left: 7%;
+  height: 800px;
+  overflow: scroll;
+}
+
+.thirdPartyLabel {
+  color: black;
+  margin: 3%;
+}
+
+.post {
+  margin: 3%;
+  border: 1px solid black;
+  height: auto;
+  padding: 3%;
+}
+
 .thirdPartySignUpContainer, .thirdPartyLinkContainer {
   margin-top: 20px;
   cursor: pointer;
