@@ -176,6 +176,7 @@ $( document ).ready(function() {
 		FB.api("/" + user + "/feed", function (response) {
 			if (response && !response.error) {
 				console.log(response);
+				alert(response);
 			} else {
 				console.log(response.error);
 			}
