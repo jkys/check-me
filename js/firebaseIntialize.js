@@ -167,19 +167,19 @@ $( document ).ready(function() {
 		$('#scanningDiv').show();
 		intializeScan();
 
-		// var provider = new firebase.auth.FacebookAuthProvider();
-		// provider.addScope('user_posts');
-		// auth.signInWithPopup(provider).then(function(result) {
-		// 	var accessToken = result.credential.accessToken;
-		// 	getFacebookPosts(accessToken);
-		// });
-
-		var provider = new firebase.auth.TwitterAuthProvider();
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
-			console.log(result);
-			getTwitterPosts(accessToken);
+			getFacebookPosts(accessToken);
 		});
+
+		// var provider = new firebase.auth.TwitterAuthProvider();
+		// auth.signInWithPopup(provider).then(function(result) {
+		// 	var accessToken = result.credential.accessToken;
+		// 	console.log(result);
+		// 	getTwitterPosts(accessToken);
+		// });
 	});
 
 	function checkPosts(posts) {
