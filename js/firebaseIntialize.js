@@ -16,6 +16,7 @@ $( document ).ready(function() {
 		js.src = "//connect.facebook.net/en_US/sdk.js";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+
   
 	$('#loggedInBar').hide();
 	
@@ -228,8 +229,7 @@ $( document ).ready(function() {
 					console.log(message);
 					console.log(date);
 
-					var embed = '<div class="fb-post" data-href="' + url + '"></div>';
-					$("#fb-root").append(embed);
+					$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 				}
 				return response;
 			} else {
