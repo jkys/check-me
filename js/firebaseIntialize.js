@@ -176,8 +176,11 @@ $( document ).ready(function() {
 		});
 	});
 
-	function getFacebookPosts(user) {
-		FB.api("/me/feed", function (response) {
+	function getFacebookPosts(token) {
+		FB.api("/me", {
+	        'fields'       : 'feed',
+	        'access_token' : token
+     	}, function (response) {
 			if (response && !response.error) {
 				console.log(response);
 				alert(response);
