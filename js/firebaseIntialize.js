@@ -169,6 +169,7 @@ $( document ).ready(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
+			console.log(result);
 		  var accessToken = result.credential.accessToken;
 		  var posts = getFacebookPosts(accessToken);
 		  console.log(posts);
@@ -176,7 +177,6 @@ $( document ).ready(function() {
 	});
 
 	function getFacebookPosts(user) {
-		user = '' + user;
 		FB.api("/" + user + "/feed", function (response) {
 			if (response && !response.error) {
 				console.log(response);
