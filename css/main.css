@@ -23,6 +23,18 @@ body {
   font-size: 1em;
 }
 
+.thirdPartySignUpContainer{
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.thirdPartySignUpImage {
+  height: 5%;
+  width: 40%;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
 #deleteAccount {
   background: #FC3832;
 }
