@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 	$('#loggedInBar').hide();
-	// Fire base config
+	
 	var config = {
 		apiKey: "AIzaSyBXpn2g6SLj4CB_4hkvLs4N4P4D7yTZf_k",
 	    authDomain: "checkme-8f276.firebaseapp.com",
@@ -9,11 +9,8 @@ $( document ).ready(function() {
 	    messagingSenderId: "410954694898"
 	};
 
-	// Intialize firebase
-	firebase.initializeApp(config);
-
-	// Create constant on firebase authenticated
-	const auth = firebase.auth();
+	firebase.initializeApp(config); // Intialize firebase
+	const auth = firebase.auth(); // Create constant on firebase authenticated
 
 	auth.onAuthStateChanged(function(user) {
         if (user) {
@@ -23,19 +20,16 @@ $( document ).ready(function() {
         }
     });
 
-	// Check for user clicking the sign up button
 	$('#signUp').click(function() {
-		// Retreive values from sign up fields
 		var registerEmailText = $('#registerEmail').val();
 		var setPasswordText = $('#setPassword').val();
 
 		const signUpPromise = auth.createUserWithEmailAndPassword(registerEmailText, setPasswordText);
 		signUpPromise.then(function(user) {
 			user.sendEmailVerification().then(function() {
-				// On success redirect user to home page
 			 	outPutMessage('register', true, 'Verification Email Sent.');
 			 	window.location = "home.html";
-			}, function(error) {
+			}).catch(function(error) {
 				outPutMessage('register', true, 'Account created, however verification email not sent.');
 			});
 		}).catch(function(error) {
@@ -43,18 +37,14 @@ $( document ).ready(function() {
 		});
 	});
 
-	// Check for user clikcing the log in button
 	$('#signIn').click(function() {
-		// Retrieve tvalues from login fields
 		var emailText = $('#email').val();
 		var passwordText = $('#password').val();
 		
 		const signInPromise = auth.signInWithEmailAndPassword(emailText, passwordText);
 		signInPromise.then(function() {
-			// On success redirect user to home page
 			window.location = "home.html";
 		}).catch(function(error) {
-			// On failure, output message to home screen
 			outPutMessage('login', false, error.message);
 		});
 	});
@@ -123,13 +113,7 @@ $( document ).ready(function() {
 		});
 	});
 
-	// Check for user clicking the logout button
-	$('#logOut').click(function() {
-		auth.signOut();
-		window.location = "index.html";
-	});
-
-	$('#authorizeFacebook').click(function() {
+	$('#linkFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		var result = linkAccounts(auth.currentUser, provider);
@@ -137,24 +121,45 @@ $( document ).ready(function() {
 
 	$('#facebookSignUp').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
-        provider.addScope('user_posts');
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-        	window.location = "home.html";
-        }).catch(function(error) {
-			outPutMessage('register', false, error.message);
-			return error;
-		});
+		provider.addScope('user_posts');
+		var result = signInToAccount(auth.currentUser, provider);
 	});
 
 	$('#twitterSignUp').click(function() {
 		var provider = new firebase.auth.TwitterAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        var result = signInToAccount(provider);
+	});
+
+	$('#linkTwitter').click(function() {
+		var provider = new  firebase.auth.TwitterAuthProvider();
+		var result = linkAccounts(auth.currentUser, provider);
+	});
+
+	// Check for user clicking the logout button
+	$('#logOut').click(function() {
+		auth.signOut();
+		window.location = "index.html";
+	});
+
+	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
+
+	function redirectUser() {
+		if(auth.currentUser) {
+			window.location = "home.html";
+		} else {
+			window.location = "index.html";
+		}
+	}
+
+	function signInToAccount(provider) {
+        auth.signInWithPopup(provider).then(function(result) {
         	window.location = "home.html";
+        	return result;
         }).catch(function(error) {
 			outPutMessage('register', false, error.message);
 			return error;
 		});
-	});
+	}
 
 	function linkAccounts(user, provider) {
 		user.linkWithPopup(provider).then(function(result) {
@@ -175,32 +180,8 @@ $( document ).ready(function() {
 		});
 	}
 
-	$('#authorizeTwitter').click(function() {
-		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = linkAccounts(auth.currentUser, provider);
-	});
-
-
-	$('#CheckMeLogo').click(function() {
-		if(auth.currentUser) {
-			window.location = "home.html";
-		} else {
-			window.location = "index.html";
-		}
-	});
-
-	$('#homeButton').click(function() {
-		if(auth.currentUser) {
-			window.location = "home.html";
-		} else {
-			window.location = "index.html";
-		}
-	});
-
-
-	function outPutMessage(object, success, error) {
-		var message = 'Message'
-		var object = $('#' + object + message);
+	function outPutMessage(object, success, errorMessage) {
+		var object = $('#' + object + 'Message');
 		if(success) {
 			object.removeClass('error');
 			object.addClass('success');

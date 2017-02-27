@@ -23,14 +23,35 @@ body {
   font-size: 1em;
 }
 
-.thirdPartySignUpContainer{
+.thirdPartySignUpContainer, .thirdPartyLinkContainer {
   margin-top: 20px;
   cursor: pointer;
+}
+
+.linkedStatus {
+  font-size: 2em;
+  margin-left: 20%;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  padding-bottom: 20%;
 }
 
 .thirdPartySignUpImage {
   height: 5%;
   width: 40%;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.thirdParyContainer {
+  height: auto;
+}
+
+.thirdPartyLinkImage {
+  height: 20%;
+  width: 20%;
+  margin-top: 50px;
   margin-left: 5%;
   cursor: pointer;
 }
