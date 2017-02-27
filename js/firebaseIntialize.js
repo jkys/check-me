@@ -198,7 +198,7 @@ $( document ).ready(function() {
 	});
 
 
-	function outPutMessage(object, success, error) {
+	function outPutMessage(object, success, errorMessage) {
 		var message = 'Message'
 		var object = $('#' + object + message);
 		if(success) {
