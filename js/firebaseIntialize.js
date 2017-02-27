@@ -122,7 +122,7 @@ $( document ).ready(function() {
 	$('#facebookSignUp').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		var result = signInToAccount(auth.currentUser, provider);
+		var result = signInToAccount(provider);
 	});
 
 	$('#twitterSignUp').click(function() {
@@ -183,11 +183,11 @@ $( document ).ready(function() {
 	function outPutMessage(object, success, errorMessage) {
 		var object = $('#' + object + 'Message');
 		if(success) {
-			object.removeClass('error');
-			object.addClass('success');
+			object.removeClass('errorMessage');
+			object.addClass('successMessage');
 		} else {
-			object.removeClass('success');
-			object.addClass('error');
+			object.removeClass('successMessage');
+			object.addClass('errorMessage');
 		}
 		object.html(errorMessage);
 	}
