@@ -39,7 +39,7 @@ $( document ).ready(function() {
 				outPutMessage('register', 'error', 'success', 'Account created, however verification email not sent.');
 			});
 		}).catch(function(error) {
-			outPutMessage('register', 'success', 'error', error.message);
+			outPutMessage('register', 'success', 'error', error);
 		});
 	});
 
@@ -55,7 +55,7 @@ $( document ).ready(function() {
 			window.location = "home.html";
 		}).catch(function(error) {
 			// On failure, output message to home screen
-			outPutMessage('login', 'success', 'error', error.message);
+			outPutMessage('login', 'success', 'error', error);
 		});
 	});
 
@@ -69,10 +69,10 @@ $( document ).ready(function() {
 	  		user.updateEmail(newEmailText).then(function() {
 				outPutMessage('updateEmail', 'error', 'success', 'Email Updated to ' + newEmailText + '.');
 			}).catch(function(error) {
-			 	outPutMessage('updateEmail', 'success', 'error', error.message);
+			 	outPutMessage('updateEmail', 'success', 'error', error);
 			});
   		}).catch(function(error) {
-		 	outPutMessage('updateEmail', 'success', 'error', error.message);
+		 	outPutMessage('updateEmail', 'success', 'error', error);
 		});
 	});
 
@@ -86,10 +86,10 @@ $( document ).ready(function() {
 	  		user.updatePassword(newPasswordText).then(function() {
 				outPutMessage('updatePassword', 'error', 'success', 'Password Successfully Updated.');
 			}).catch(function(error) {
-			 	outPutMessage('updatePassword', 'success', 'error', error.message);
+			 	outPutMessage('updatePassword', 'success', 'error', error);
 			});
   		}).catch(function(error) {
-		 	outPutMessage('updatePassword', 'success', 'error', error.message);
+		 	outPutMessage('updatePassword', 'success', 'error', error);
 		});
 	});
 
@@ -102,7 +102,7 @@ $( document ).ready(function() {
 			forgotPasswordPromise.then(function() {
 				outPutMessage('login', 'error', 'success', 'Password resent email sent to ' + emailText + '.');
 			}).catch(function(error) {
-				outPutMessage('login', 'success', 'error', error.message);
+				outPutMessage('login', 'success', 'error', error);
 			});
 		}
 	});
@@ -116,10 +116,10 @@ $( document ).ready(function() {
 	  		user.delete().then(function() {
 				window.location = 'index.html';
 			}).catch(function(error) {
-			 	outPutMessage('deleteAccount', 'successMessage', 'errorMessage', error.message);
+			 	outPutMessage('deleteAccount', 'success', 'error', error);
 			});
   		}).catch(function(error) {
-		 	outPutMessage('deleteAccount', 'successMessage', 'errorMessage', error.message);
+		 	outPutMessage('deleteAccount', 'success', 'error', error);
 		});
 	});
 
@@ -135,17 +135,42 @@ $( document ).ready(function() {
 		var result = linkAccounts(auth.currentUser, provider);
 	});
 
+	$('#facebookSignUp').click(function() {
+		var provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('user_posts');
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+        	window.location = "home.html";
+        }).catch(function(error) {
+			outPutMessage('register', 'error', 'success', error);
+			return error;
+		});
+	});
+
+	$('#twitterSignUp').click(function() {
+		var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+        	window.location = "home.html";
+        }).catch(function(error) {
+			outPutMessage('register', 'error', 'success', error);
+			return error;
+		});
+	});
+
 	function linkAccounts(user, provider) {
 		user.linkWithPopup(provider).then(function(result) {
-			var user = result.user;
-			var cred = result.credential;
-
-			console.log(result);
-			console.log(user);
-
+			outPutMessage('linkAccount', 'success', 'error', 'Account Linked!');
 			return result;
 		}).catch(function(error) {
-			console.log(error.code);
+			outPutMessage('linkAccount', 'error', 'success', error);
+			return error;
+		});
+	}
+
+	function unlinkAccounts(user, provider) {
+		user.unlink(provider).then(function() {
+			outPutMessage('linkAccount', 'success', 'error', 'Account Unlinked!');
+		}).catch(function(error) {
+			outPutMessage('linkAccount', 'error', 'success', error);
 			return error;
 		});
 	}
@@ -173,10 +198,10 @@ $( document ).ready(function() {
 	});
 
 
-	function outPutMessage(object, removeClass, addClass, errorMessage) {
+	function outPutMessage(object, removeClass, addClass, error) {
 		var message = 'Message'
 		$('#' + object + message).removeClass(removeClass + message);
 		$('#' + object + message).addClass(addClass + message);
-		$('#' + object + message).html(errorMessage);
+		$('#' + object + message).html(error.message);
 	}
 });
