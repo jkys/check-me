@@ -252,10 +252,10 @@ $( document ).ready(function() {
 
 	function getFaceBookPostUrl(id) {
 		//1675375856095891_1675505002749643
-		var lastIndex = (id.length - 1);
+		//var lastIndex = (id.length - 1);
 		var index = id.indexOf('_');
 		var prefix = id.substring(0, index);
-		var postfix = id.indexOf((index + 1), lastIndex);
+		var postfix = id.substring((index + 1));
 
 		var urlPrefix = 'http://www.facebook.com/';
 		var urlPostfix = '/posts/';
