@@ -195,6 +195,10 @@ $( document ).ready(function() {
 				var arrayLength = (response.feed.data.length - 1);
 
 				for (var i = 0; i < arrayLength; i++) {
+					var date = response.feed.data[i].created_time;
+					var message = response.feed.data[i].message;
+					var id = response.feed.data[i].id;
+
 				    console.log(response.feed.data[i].message);
 				}
 				return response;
@@ -214,13 +218,42 @@ $( document ).ready(function() {
 				var arrayLength = (response.feed.data.length - 1);
 
 				for (var i = 0; i < arrayLength; i++) {
-				    console.log(response.feed.data[i].message);
+					var iso = response.feed.data[i].created_time;
+					var id = response.feed.data[i].id;
+					
+					var url = getFaceBookPostUrl(id);
+					var message = response.feed.data[i].message;
+					var date = convertIso(iso);
+
+					console.log(url);
+					console.log(message);
+					console.log(date);
 				}
 				return response;
 			} else {
 				return response;
 			}
 		});
+	}
+
+	function convertIso(iso) {
+		var date = new Date(iso);
+		var day = date.getDate();
+		var year = date.getFullYear();
+		var month = date.getMonth()+1;
+		var dateString = month + ' ' + day ', ' + year '.';
+		return dateString;
+	}
+
+	function getFaceBookPostUrl(id) {
+		var index = id.indexOf('-');
+		var prefixId = id.substring(0, index);
+		var postfixId = str.indexOf((index + 1));
+
+		var url = 'http://www.facebook.com/{prefix}/posts/{postfix}';
+		url = url.format(prefix, "{prefix}");
+		url = url.format(postfix, "{postfix}");
+		return url;
 	}
 
 	function signOutAndRedirect() {
