@@ -33,13 +33,13 @@ $( document ).ready(function() {
 		signUpPromise.then(function(user) {
 			user.sendEmailVerification().then(function() {
 				// On success redirect user to home page
-			 	outPutMessage('register', 'error', 'success', 'Verification Email Sent.');
+			 	outPutMessage('register', true, 'Verification Email Sent.');
 			 	window.location = "home.html";
 			}, function(error) {
-				outPutMessage('register', 'error', 'success', 'Account created, however verification email not sent.');
+				outPutMessage('register', true, 'Account created, however verification email not sent.');
 			});
 		}).catch(function(error) {
-			outPutMessage('register', 'success', 'error', error);
+			outPutMessage('register', false, error.message);
 		});
 	});
 
@@ -55,7 +55,7 @@ $( document ).ready(function() {
 			window.location = "home.html";
 		}).catch(function(error) {
 			// On failure, output message to home screen
-			outPutMessage('login', 'success', 'error', error);
+			outPutMessage('login', false, error.message);
 		});
 	});
 
@@ -67,12 +67,12 @@ $( document ).ready(function() {
 
 		user.reauthenticate(cred).then(function() {
 	  		user.updateEmail(newEmailText).then(function() {
-				outPutMessage('updateEmail', 'error', 'success', 'Email Updated to ' + newEmailText + '.');
+				outPutMessage('updateEmail', true, 'Email Updated to ' + newEmailText + '.');
 			}).catch(function(error) {
-			 	outPutMessage('updateEmail', 'success', 'error', error);
+			 	outPutMessage('updateEmail', false, error.message);
 			});
   		}).catch(function(error) {
-		 	outPutMessage('updateEmail', 'success', 'error', error);
+		 	outPutMessage('updateEmail', false, error.message);
 		});
 	});
 
@@ -84,25 +84,25 @@ $( document ).ready(function() {
 
 		user.reauthenticate(cred).then(function() {
 	  		user.updatePassword(newPasswordText).then(function() {
-				outPutMessage('updatePassword', 'error', 'success', 'Password Successfully Updated.');
+				outPutMessage('updatePassword', true, 'Password Successfully Updated.');
 			}).catch(function(error) {
-			 	outPutMessage('updatePassword', 'success', 'error', error);
+			 	outPutMessage('updatePassword', false, error.message);
 			});
   		}).catch(function(error) {
-		 	outPutMessage('updatePassword', 'success', 'error', error);
+		 	outPutMessage('updatePassword', false, error.message);
 		});
 	});
 
 	$('#forgotPassword').click(function() {
 		var emailText = $('#email').val();
 		if(emailText == '') {
-			outPutMessage('login', 'success', 'error', 'Please enter an email above.');
+			outPutMessage('login', false, 'Please enter an email above.');
 		} else {
 			var forgotPasswordPromise = auth.sendPasswordResetEmail(emailText);
 			forgotPasswordPromise.then(function() {
-				outPutMessage('login', 'error', 'success', 'Password resent email sent to ' + emailText + '.');
+				outPutMessage('login', true, 'Password resent email sent to ' + emailText + '.');
 			}).catch(function(error) {
-				outPutMessage('login', 'success', 'error', error);
+				outPutMessage('login', false, error.message);
 			});
 		}
 	});
@@ -116,10 +116,10 @@ $( document ).ready(function() {
 	  		user.delete().then(function() {
 				window.location = 'index.html';
 			}).catch(function(error) {
-			 	outPutMessage('deleteAccount', 'success', 'error', error);
+			 	outPutMessage('deleteAccount', false, error.message);
 			});
   		}).catch(function(error) {
-		 	outPutMessage('deleteAccount', 'success', 'error', error);
+		 	outPutMessage('deleteAccount', false, error.message);
 		});
 	});
 
@@ -141,7 +141,7 @@ $( document ).ready(function() {
         firebase.auth().signInWithPopup(provider).then(function(result) {
         	window.location = "home.html";
         }).catch(function(error) {
-			outPutMessage('register', 'error', 'success', error);
+			outPutMessage('register', false, error.message);
 			return error;
 		});
 	});
@@ -151,26 +151,26 @@ $( document ).ready(function() {
         firebase.auth().signInWithPopup(provider).then(function(result) {
         	window.location = "home.html";
         }).catch(function(error) {
-			outPutMessage('register', 'error', 'success', error);
+			outPutMessage('register', false, error.message);
 			return error;
 		});
 	});
 
 	function linkAccounts(user, provider) {
 		user.linkWithPopup(provider).then(function(result) {
-			outPutMessage('linkAccount', 'success', 'error', 'Account Linked!');
+			outPutMessage('linkAccount', true, 'Account Linked!');
 			return result;
 		}).catch(function(error) {
-			outPutMessage('linkAccount', 'error', 'success', error);
+			outPutMessage('linkAccount', false, error.message);
 			return error;
 		});
 	}
 
 	function unlinkAccounts(user, provider) {
 		user.unlink(provider).then(function() {
-			outPutMessage('linkAccount', 'success', 'error', 'Account Unlinked!');
+			outPutMessage('linkAccount', true, 'Account Unlinked!');
 		}).catch(function(error) {
-			outPutMessage('linkAccount', 'error', 'success', error);
+			outPutMessage('linkAccount', false, error.message);
 			return error;
 		});
 	}
@@ -198,10 +198,16 @@ $( document ).ready(function() {
 	});
 
 
-	function outPutMessage(object, removeClass, addClass, error) {
+	function outPutMessage(object, success, error) {
 		var message = 'Message'
-		$('#' + object + message).removeClass(removeClass + message);
-		$('#' + object + message).addClass(addClass + message);
-		$('#' + object + message).html(error.message);
+		var object = $('#' + object + message);
+		if(success) {
+			object.removeClass('error');
+			object.addClass('success');
+		} else {
+			object.removeClass('success');
+			object.addClass('error');
+		}
+		object.html(errorMessage);
 	}
 });
