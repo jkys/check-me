@@ -1,4 +1,23 @@
 $( document ).ready(function() {
+
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '1229742877063233',
+			xfbml      : true,
+			version    : 'v2.8'
+		});
+		FB.AppEvents.logPageView();
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+  
 	$('#loggedInBar').hide();
 	
 	var config = {
@@ -146,15 +165,11 @@ $( document ).ready(function() {
 	$('#scanButton').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		var result = linkAccounts(auth.currentUser, provider);
-
-		console.log(result);
-		var user = result.user;
-
-		console.log(user);
-
-
-		var posts = getFacebookPosts(user);
+		auth.signInWithPopup(provider).then(function(result) {
+		  var accessToken = result.credential.accessToken;
+		  var posts = getFacebookPosts(accessToken);
+		  console.log(posts);
+		});
 	});
 
 	function getFacebookPosts(user) {
