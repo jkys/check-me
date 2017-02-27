@@ -1,10 +1,29 @@
 body {
   background: #fff;
-  /*font-family: 'Titillium Web', sans-serif;*/
 }
 
 * {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.thirdPartyButton {
+  width: 250px;
+  height: 50px;
+  /*border: 1px solid black;*/
+  border-radius: 10px;
+  padding: 1%;
+  color: white;
+  text-align: right;
+  line-height: 25px;
+  /*vertical-align: middle;*/
+}
+
+.thirdPartyButtonFacebook {
+  background-color: rgb(59, 89, 152);
+}
+
+.thirdPartyButtonTwitter {
+  background-color: rgb(85, 172, 238);
 }
 
 #logOut {
@@ -13,7 +32,6 @@ body {
   font: inherit;
   cursor: pointer;
   color: #A8A6A5;
-  /*font-family: inherit;*/
   font-size: 1.5em;
 }
 
@@ -23,7 +41,6 @@ body {
   font: inherit;
   cursor: pointer;
   color: rgb(0, 177, 235);
-  /*font-family: inherit;*/
   font-size: 1em;
 }
 
@@ -235,6 +252,10 @@ body {
   word-spacing: 2em;
 }
 
+.secondLink {
+  float: right;
+}
+
 .login .links-footer a {
   text-decoration: none;
   color: #A8A6A5;
@@ -264,7 +285,7 @@ h3 {
 
 li a{
   text-decoration: none;
-  color: #000
+  color: #000;
 }
 
 footer {
@@ -334,27 +355,14 @@ footer {
   cursor: pointer !important;
 }
 
-
-#scanButton {
-    width: 200px;
-    height: 200px;
-    transition: width 1s, height 1s, border 1s;
-    background: rgba(19, 35, 47, 0.9);
-    border: 5px solid rgb(0, 177, 235);
-    border-radius: 50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
 #scanningDiv h1 {
-  /*font-family: 'Titillium Web', sans-serif;*/
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
+  padding-top: 45%;
 }
 
-#scanningButton {
+#scanButton, #scanningButton {
     width: 500px;
     height: 100px;
     transition: width 1s, height 1s, border 1s;
@@ -366,21 +374,14 @@ footer {
     align-items:center;
 }
 
-#scanningButton:hover {
-    border: 10px solid rgb(0, 127, 185);
-    background: rgba(19, 35, 47, 0.94);
+#scanningButton:hover, #scanButton:hover {
+    cursor: pointer;
+    border: 2px solid rgb(0, 127, 185);
+    /*background: rgba(19, 35, 47, 0.94);*/
 }
 
 #scanButton h1 {
-  /*font-family: 'Titillium Web', sans-serif;*/
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
-}
-
-#scanButton:hover {
-    width: 250px;
-    height: 250px;
-    border: 10px solid rgb(0, 127, 185);
-    background: rgba(19, 35, 47, 0.94);
 }
