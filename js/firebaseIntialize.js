@@ -143,6 +143,28 @@ $( document ).ready(function() {
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
+	$('#scanButton').click(function() {
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_posts');
+		var result = signInToAccount(provider);
+		var user = result.user;
+
+		console.log(user);
+
+
+		var posts = getFacebookPosts(user);
+	});
+
+	function getFacebookPosts(user) {
+		FB.api("/" + user + "/feed", function (response) {
+			if (response && !response.error) {
+				console.log(response);
+			} else {
+				console.log(response.error);
+			}
+		});
+	}
+
 	function signOutAndRedirect() {
 		auth.signOut();
 		window.location = "index.html";
