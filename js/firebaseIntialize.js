@@ -250,9 +250,9 @@ $( document ).ready(function() {
 		var prefix = id.substring(0, index);
 		var postfix = id.indexOf((index + 1));
 
-		var url = 'http://www.facebook.com/{prefix}/posts/{postfix}';
-		url = url.format(prefix, "{prefix}");
-		url = url.format(postfix, "{postfix}");
+		var urlPrefix = 'http://www.facebook.com/';
+		var urlPostfix = '/posts/';
+		var url = urlPrefix + prefix + urlPostfix + postfix;
 		return url;
 	}
 
