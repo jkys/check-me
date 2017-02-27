@@ -177,7 +177,7 @@ $( document ).ready(function() {
 	});
 
 	function getFacebookPosts(user) {
-		FB.api("/" + user + "/feed", function (response) {
+		FB.api("/me/feed", function (response) {
 			if (response && !response.error) {
 				console.log(response);
 				alert(response);
