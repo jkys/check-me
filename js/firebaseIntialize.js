@@ -146,7 +146,9 @@ $( document ).ready(function() {
 	$('#scanButton').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		var result = signInToAccount(provider);
+		var result = linkAccounts(auth.currentUser, provider);
+
+		console.log(result);
 		var user = result.user;
 
 		console.log(user);
