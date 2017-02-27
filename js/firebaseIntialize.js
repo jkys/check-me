@@ -171,24 +171,12 @@ $( document ).ready(function() {
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
-			var json = getFacebookPosts(accessToken);
-			console.log(json);
-			var arrayLength = json.feed.data.length;
-
-			for (var i = 0; i < arrayLength; i++) {
-			    console.log(json.feed.data[i].message);
-			}
+			getFacebookPosts(accessToken);
 		}).then(function() {
 			var provider = new firebase.auth.TwitterAuthProvider();
 			auth.signInWithPopup(provider).then(function(result) {
 				var accessToken = result.credential.accessToken;
-				var json = getTwitterPosts(accessToken);
-				console.log(json);
-				var arrayLength = json.feed.data.length;
-
-				for (var i = 0; i < arrayLength; i++) {
-				    console.log(json.feed.data[i].message);
-				}
+				getTwitterPosts(accessToken);
 			});
 		});
 	});
@@ -198,6 +186,12 @@ $( document ).ready(function() {
 	        'access_token' : token
 		}, function (response) {
 			if (response && !response.error) {
+				console.log(response);
+				var arrayLength = response.feed.data.length;
+
+				for (var i = 0; i < arrayLength; i++) {
+				    console.log(response.feed.data[i].message);
+				}
 				return response;
 			} else {
 				return response;
@@ -211,6 +205,12 @@ $( document ).ready(function() {
 	        'access_token' : token
      	}, function (response) {
 			if (response && !response.error) {
+				console.log(response);
+				var arrayLength = response.feed.data.length;
+
+				for (var i = 0; i < arrayLength; i++) {
+				    console.log(response.feed.data[i].message);
+				}
 				return response;
 			} else {
 				return response;
