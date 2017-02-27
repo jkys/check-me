@@ -217,7 +217,7 @@ $( document ).ready(function() {
 				console.log(response);
 				var arrayLength = (response.feed.data.length - 1);
 
-				for (var i = 0; i < arrayLength; i++) {
+				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
 					
@@ -245,16 +245,17 @@ $( document ).ready(function() {
 		var date = new Date(iso);
 		var day = date.getDate();
 		var year = date.getFullYear();
-		var month = date.getMonth()+1;
+		var month = date.getMonth();
 		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
 		return dateString;
 	}
 
 	function getFaceBookPostUrl(id) {
 		//1675375856095891_1675505002749643
+		var lastIndex = (id.length - 1);
 		var index = id.indexOf('_');
 		var prefix = id.substring(0, index);
-		var postfix = id.indexOf((index + 1));
+		var postfix = id.indexOf((index + 1), lastIndex);
 
 		var urlPrefix = 'http://www.facebook.com/';
 		var urlPostfix = '/posts/';
