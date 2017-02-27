@@ -15,6 +15,10 @@ $( document ).ready(function() {
 	auth.onAuthStateChanged(function(user) {
         if (user) {
         	$('#loggedInBar').show();
+        	var currentPage = window.location.pathname;
+        	if (~currentPage.indexOf("index.html")) {
+        		signOutAndRedirect();
+        	}
         } else {
         	$('#loggedInBar').hide();
         }
@@ -136,12 +140,14 @@ $( document ).ready(function() {
 	});
 
 	// Check for user clicking the logout button
-	$('#logOut').click(function() {
-		auth.signOut();
-		window.location = "index.html";
-	});
+	$('#logOut').click(function() { signOutAndRedirect(); });
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
+
+	function signOutAndRedirect() {
+		auth.signOut();
+		window.location = "index.html";
+	}
 
 	function redirectUser() {
 		if(auth.currentUser) {
