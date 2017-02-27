@@ -166,6 +166,7 @@ $( document ).ready(function() {
 		$('#scanDiv').hide();
 		$('#scanningDiv').show();
 		intializeScan();
+
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
@@ -177,25 +178,23 @@ $( document ).ready(function() {
 			for (var i = 0; i < arrayLength; i++) {
 			    console.log(json.feed.data[i].message);
 			}
-		});
+		}).then(function() {
+			var provider = new firebase.auth.TwitterAuthProvider();
+			auth.signInWithPopup(provider).then(function(result) {
+				var accessToken = result.credential.accessToken;
+				var json = getTwitterPosts(accessToken);
+				console.log(json);
+				var arrayLength = json.feed.data.length;
 
-		var provider = new firebase.auth.TwitterAuthProvider();
-		auth.signInWithPopup(provider).then(function(result) {
-			console.log(result);
-			// var accessToken = result.credential.accessToken;
-			// var json = getFacebookPosts(accessToken);
-			// console.log(json);
-			// var arrayLength = json.feed.data.length;
-
-			// for (var i = 0; i < arrayLength; i++) {
-			//     console.log(json.feed.data[i].message);
-			// }
+				for (var i = 0; i < arrayLength; i++) {
+				    console.log(json.feed.data[i].message);
+				}
+			});
 		});
 	});
 
 	function getTwitterPosts(token) {
 		$.get( "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterapi", {
-			'fields'       : 'feed',
 	        'access_token' : token
 		}, function (response) {
 			if (response && !response.error) {
