@@ -247,8 +247,8 @@ $( document ).ready(function() {
 
 	function getFaceBookPostUrl(id) {
 		var index = id.indexOf('-');
-		var prefixId = id.substring(0, index);
-		var postfixId = id.indexOf((index + 1));
+		var prefix = id.substring(0, index);
+		var postfix = id.indexOf((index + 1));
 
 		var url = 'http://www.facebook.com/{prefix}/posts/{postfix}';
 		url = url.format(prefix, "{prefix}");
