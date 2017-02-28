@@ -186,27 +186,87 @@ $( document ).ready(function() {
 		var postCount = posts.length;
 	}
 
-	function getTwitterPosts(token) {
-		$.get( "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=checkmetest", {
-	        'access_token' : token
-		}, function (response) {
-			if (response && !response.error) {
+function getTwitterPosts() {
+
+		var provider = new firebase.auth.TwitterAuthProvider();
+		console.log("after sleep");
+		firebase.auth().signInWithPopup(provider).then(function(result) {
+  			// For accessing the Twitter API.
+  		var token = result.credential.accessToken;
+  		var secret = result.credential.secret;
+  			// The signed-in user info.
+  		var user = result.user;
+
+  		var twitterUserID = user.uid;
+
+  		console.log(token);
+  		console.log(user.uid);
+  		console.log("USer id: " + user.uid);
+
+  		$(function(){
+
+	$.ajax({
+		dataType: 'json',
+		type: 'GET',
+		url: 'get_tweets.php',
+		success: function(response) {
+
+			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+				
+				var $tweets = $('<ul></ul>');
 				console.log(response);
-				var arrayLength = (response.feed.data.length - 1);
+				$.each(response, function(i, obj) {
+					$tweets.append('<li>' + obj.text + '</li>');
+				});
 
-				for (var i = 0; i < arrayLength; i++) {
-					var date = response.feed.data[i].created_time;
-					var message = response.feed.data[i].message;
-					var id = response.feed.data[i].id;
+				$('.tweets-container').html($tweets);
 
-				    console.log(response.feed.data[i].message);
-				}
-				return response;
 			} else {
-				return response;
+				$('.tweets-container p:first').text('Response error');
 			}
-		});
+		},
+		error: function(errors) {
+			console.log(errors);
+			$('.tweets-container p:first').text('Request error');
+		}
+	});
+});
+
+  		//console.log(tweets);
+});
+
 	}
+
+	function getTwitterPosts1(twitterUserID){
+		var configList = {
+		  "list": {"listSlug": 'inspiration', "screenName": 'ColbyDaly'},
+		  "domId": 'exampleList',
+		  "maxTweets": 5,
+		  "enableLinks": true, 
+		  "showUser": true,
+		  "showTime": true,
+		  "showImages": true,
+		  "lang": 'en'
+		};
+		twitterFetcher.fetch(configList);
+				var config1 = {
+		  "id": twitterUserID,
+		  "domId": 'example3',
+		  "maxTweets": 5,
+		  "enableLinks": true
+		};
+		twitterFetcher.fetch(config1);
+
+			}
+
+	function populateTpl(tweets){
+ 		alert("in callback");
+  		for (var i = 0, lgth = tweets.length; i < lgth ; i++) {
+    		var tweetObject = tweets[i];
+    		console.log(tweets[i]);
+    		
+	  }
+}
 
 	function getFacebookPosts(token) {
 		FB.api("/me", {
@@ -236,6 +296,8 @@ $( document ).ready(function() {
 				return response;
 			}
 		});
+
+		getTwitterPosts();
 	}
 
 	function convertIso(iso) {
