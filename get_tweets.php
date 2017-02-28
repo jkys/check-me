@@ -10,7 +10,7 @@ $settings = array(
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-$url = 'https://api.twitter.com/1.1/statuses/home_timeline.json';
+$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 $getfield = '?screen_name=ColbyDaly';
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
@@ -21,6 +21,7 @@ $response = $twitter->setGetfield($getfield)
 //var_dump(json_decode($response));
 
 //header('Content-Type: text/html; charset=utf-8');
+
 
 
 echo json_encode($response);

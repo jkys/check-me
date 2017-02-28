@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public"
+    "public": "~cdaly/Documents/checkMeWeb"
   },
   "database": {
     "rules": "database.rules.json"

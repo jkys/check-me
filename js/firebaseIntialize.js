@@ -213,7 +213,7 @@ $( document ).ready(function() {
 							
 							var $tweets = $('<ul></ul>');
 							console.log(response);
-							$.each(response, function(i, obj) {
+							$.each(JSON.parse(response), function(i, obj) {
 								$tweets.append('<li>' + obj.text + '</li>');
 							});
 
@@ -229,36 +229,6 @@ $( document ).ready(function() {
 				});
 			});
 		});
-	}
-
-	function getTwitterPosts1(twitterUserID){
-		var configList = {
-		  "list": {"listSlug": 'inspiration', "screenName": 'ColbyDaly'},
-		  "domId": 'exampleList',
-		  "maxTweets": 5,
-		  "enableLinks": true, 
-		  "showUser": true,
-		  "showTime": true,
-		  "showImages": true,
-		  "lang": 'en'
-		};
-		twitterFetcher.fetch(configList);
-				var config1 = {
-		  "id": twitterUserID,
-		  "domId": 'example3',
-		  "maxTweets": 5,
-		  "enableLinks": true
-		};
-		twitterFetcher.fetch(config1);
-
-			}
-
-	function populateTpl(tweets){
- 		alert("in callback");
-  		for (var i = 0, lgth = tweets.length; i < lgth ; i++) {
-    		var tweetObject = tweets[i];
-    		console.log(tweets[i]);
-		  }
 	}
 
 	function getFacebookPosts(token) {
