@@ -186,55 +186,49 @@ $( document ).ready(function() {
 		var postCount = posts.length;
 	}
 
-function getTwitterPosts() {
-
+	function getTwitterPosts() {
 		var provider = new firebase.auth.TwitterAuthProvider();
 		console.log("after sleep");
 		firebase.auth().signInWithPopup(provider).then(function(result) {
-  			// For accessing the Twitter API.
-  		var token = result.credential.accessToken;
-  		var secret = result.credential.secret;
-  			// The signed-in user info.
-  		var user = result.user;
+				// For accessing the Twitter API.
+			var token = result.credential.accessToken;
+			var secret = result.credential.secret;
+				// The signed-in user info.
+			var user = result.user;
 
-  		var twitterUserID = user.uid;
+			var twitterUserID = user.uid;
 
-  		console.log(token);
-  		console.log(user.uid);
-  		console.log("USer id: " + user.uid);
+			console.log(token);
+			console.log(user.uid);
+			console.log("USer id: " + user.uid);
 
-  		$(function(){
+			$(function(){
+				$.ajax({
+					dataType: 'json',
+					type: 'GET',
+					url: 'get_tweets.php',
+					success: function(response) {
 
-	$.ajax({
-		dataType: 'json',
-		type: 'GET',
-		url: 'get_tweets.php',
-		success: function(response) {
+						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+							
+							var $tweets = $('<ul></ul>');
+							console.log(response);
+							$.each(response, function(i, obj) {
+								$tweets.append('<li>' + obj.text + '</li>');
+							});
 
-			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-				
-				var $tweets = $('<ul></ul>');
-				console.log(response);
-				$.each(response, function(i, obj) {
-					$tweets.append('<li>' + obj.text + '</li>');
+							$('.tweets-container').html($tweets);
+
+						} else {
+							$('.tweets-container p:first').text('Response error');
+						}
+					}, error: function(errors) {
+						console.log(errors);
+						$('.tweets-container p:first').text('Request error');
+					}
 				});
-
-				$('.tweets-container').html($tweets);
-
-			} else {
-				$('.tweets-container p:first').text('Response error');
-			}
-		},
-		error: function(errors) {
-			console.log(errors);
-			$('.tweets-container p:first').text('Request error');
-		}
-	});
-});
-
-  		//console.log(tweets);
-});
-
+			});
+		});
 	}
 
 	function getTwitterPosts1(twitterUserID){
@@ -264,9 +258,8 @@ function getTwitterPosts() {
   		for (var i = 0, lgth = tweets.length; i < lgth ; i++) {
     		var tweetObject = tweets[i];
     		console.log(tweets[i]);
-    		
-	  }
-}
+		  }
+	}
 
 	function getFacebookPosts(token) {
 		FB.api("/me", {
@@ -297,14 +290,14 @@ function getTwitterPosts() {
 				return response;
 			}
 		});
-
 		getTwitterPosts();
 	}
 
 	function convertIso(iso) {
-		var monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+		var monthNames = 
+			["January", "February", "March", "April", 
+			"May", "June", "July", "August", "September", 
+			"October", "November", "December"];
 		var date = new Date(iso);
 		var day = date.getDate();
 		var year = date.getFullYear();
