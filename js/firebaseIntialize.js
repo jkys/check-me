@@ -30,6 +30,8 @@ $( document ).ready(function() {
 
 	firebase.initializeApp(config); // Intialize firebase
 	const auth = firebase.auth(); // Create constant on firebase authenticated
+	const database = firebase.database(); // Create constant on firebase database
+
 
 	auth.onAuthStateChanged(function(user) {
         if (user) {
@@ -163,8 +165,6 @@ $( document ).ready(function() {
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
 	$('#scanButton').click(function() {
-		$('#scanDiv').hide();
-		$('#scanningDiv').show();
 		intializeScan();
 
 		var provider = new firebase.auth.FacebookAuthProvider();
@@ -288,8 +288,9 @@ function getTwitterPosts() {
 					console.log(url);
 					console.log(message);
 					console.log(date);
-
-					$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+					if(displayPost(message)){
+						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+					}
 				}
 				return response;
 			} else {
@@ -312,9 +313,15 @@ function getTwitterPosts() {
 		return dateString;
 	}
 
+	function displayPost(message) {
+		if(message == ''){
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	function getFaceBookPostUrl(id) {
-		//1675375856095891_1675505002749643
-		//var lastIndex = (id.length - 1);
 		var index = id.indexOf('_');
 		var prefix = id.substring(0, index);
 		var postfix = id.substring((index + 1));
@@ -368,32 +375,28 @@ function getTwitterPosts() {
 	}
 
 	function intializeScan() {
-		var interval = 0;
-		var text = ["Connecting To Twitter", "Searching through tweets", "Connecting to Facebook", "Searching through posts", "Compiling data", "Organizizing Tweets and Posts", "Setting up For Display", "Done."];
-		var arrayLength = text.length;
-
 		var scanText = $('#scanText');
 		var elipsesText = $('#elipses');
-		var scanningBox = $('#scanningButton');
 
-	    var scanLoop = setInterval(function(){
-	    	scanText.html(text[interval]);
-	    	elipsesText.html('');
+		scanText.html('Scanning');
 
-	    	if (interval >= arrayLength) {
-				clearInterval(scanLoop);
-				$('#scanningDiv').hide();
-				$('#scanResults').show();
-			}
-	    	interval += 1;
-		}, 7000);
+		interval = 0;
+		maxInterval = 12;
 
-		var elipsesLoop = setInterval(function(){
-	    	if(scanText.text() != 'Done.' & elipsesText.text() != '...'){
+		var loop = setInterval(function(){
+	    	if(elipsesText.text() != '...'){
 	    		elipsesText.append('.');
 	    	} else {
 	    		elipsesText.html('');
 	    	}
+
+	    	if (interval >= maxInterval) {
+				clearInterval(loop);
+				$('#scanningDiv').hide();
+				$('#scanResults').show();
+			}
+
+			interval += 1;
 		}, 500);
 	}
 
