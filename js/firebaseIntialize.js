@@ -214,7 +214,7 @@ $( document ).ready(function() {
 							var $tweets = $('<ul></ul>');
 							console.log(response);
 							$.each(JSON.parse(response), function(i, obj) {
-								$tweets.append('<li>' + obj.text + '</li>');
+								$tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
 							});
 
 							$('.tweets-container').html($tweets);
