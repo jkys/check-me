@@ -216,6 +216,7 @@ $( document ).ready(function() {
 							$.each(JSON.parse(response), function(i, obj) {
 								// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
 								// //https://twitter.com/ColbyDaly/status/617291552436715520
+								
 								$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
 							});
 
