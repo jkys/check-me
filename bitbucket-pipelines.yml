@@ -1,9 +1,9 @@
 image: phpunit/phpunit:5.0.3
-
 pipelines:
-  default:
-    - step:
-        script:
-          - apt-get update
-          - apt-get -qq install git-ftp
-          - git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD $FTP_SERVER
+  branches:
+    master:
+      - step:
+          script:
+            - apt-get update
+            - apt-get -qq install git-ftp
+            - git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD $FTP_SERVER
