@@ -219,7 +219,7 @@ $( document ).ready(function() {
 			var formData = "screenName=" + screenName + "&token=" + token + "&secret=" + secret; 
 
 			console.log(formData);
-
+/*
 						$(function(){
 				$.ajax({
 					
@@ -236,7 +236,7 @@ $( document ).ready(function() {
 					}
 				});
 			});
-
+*/
 			$(function(){
 				$.ajax({
 					dataType: 'json',
