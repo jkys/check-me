@@ -223,36 +223,35 @@ $( document ).ready(function() {
 			});
 		});
 
-			$(function(){
-				$.ajax({
-					dataType: 'json',
-					type: 'GET',
-					url: 'get_tweets.php',
-					success: function(response) {
+		$(function(){
+			$.ajax({
+				dataType: 'json',
+				type: 'GET',
+				url: 'get_tweets.php',
+				success: function(response) {
 
-						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+					if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+						
+						var $tweets = $('<ul></ul>');
+						console.log(response);
+						$.each(JSON.parse(response), function(i, obj) {
+							// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
+							// //https://twitter.com/ColbyDaly/status/617291552436715520
 							
-							var $tweets = $('<ul></ul>');
-							console.log(response);
-							$.each(JSON.parse(response), function(i, obj) {
-								// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
-								// //https://twitter.com/ColbyDaly/status/617291552436715520
-								
-								$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
-							});
+							$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
+						});
 
-							$('.tweets-container').html($tweets);
+						$('.tweets-container').html($tweets);
 
-						} else {
-							$('.tweets-container p:first').text('Response error');
-						}
-					}, error: function(errors) {
-						console.log(errors);
-						$('.tweets-container p:first').text('Request error');
+					} else {
+						$('.tweets-container p:first').text('Response error');
 					}
-				});
+				}, error: function(errors) {
+					console.log(errors);
+					$('.tweets-container p:first').text('Request error');
+				}
 			});
-		};
+		});
 	}
 
 	function getFacebookPosts(token) {
