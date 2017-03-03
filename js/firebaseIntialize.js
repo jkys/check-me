@@ -192,9 +192,12 @@ $( document ).ready(function() {
 		firebase.auth().signInWithPopup(provider).then(function(result) {
 				// For accessing the Twitter API.
 
-			console.log(result);
 			var token = result.credential.accessToken;
+
 			var secret = result.credential.secret;
+
+			console.log("token:" + token);
+			console.log("secret:" + secret);
 				// The signed-in user info.
 			var screenName = result.user;
 
