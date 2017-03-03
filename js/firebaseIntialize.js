@@ -196,31 +196,14 @@ $( document ).ready(function() {
 				// The signed-in user info.
 			var screenName = result.user;
 
-			var twitterUserID = user.uid;
+			var userID = user.uid;
 
-			//FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-/*
-			if (user != null) {
-			    for (UserInfo profile : user.getProviderData()) {
-			        if (profile.getProviderId().equals(TwitterAuthProvider.PROVIDER_ID)) {
-			            // UID specific to the provider
-			            String uid = profile.getUid();
-
-			            // Name, email address, and profile photo Url
-			            String name = profile.getDisplayName();
-			            String email = profile.getEmail();
-			            Uri photoUrl = profile.getPhotoUrl();
-			            Log.i("DEBUG", String.format("uid=%s name=%s email=%s url=%s",
-			                    uid, name, email, photoUrl));
-			        }
-			    }
-			}
-*/
-			var formData = "screenName=" + screenName + "&token=" + token + "&secret=" + secret; 
+			var formData = "userID=" + userID + "&token=" + token + "&secret=" + secret; 
 
 			console.log(formData);
 
 			$(function(){
+				
 				$.ajax({
 					
 					type: 'POST',
