@@ -198,7 +198,7 @@ $( document ).ready(function() {
 
 			var twitterUserID = user.uid;
 
-			FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+			//FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 			if (user != null) {
 			    for (UserInfo profile : user.getProviderData()) {
