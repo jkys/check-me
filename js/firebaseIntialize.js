@@ -225,6 +225,7 @@ $( document ).ready(function() {
 					
 					type: 'POST',
 					url: 'get_tweets.php',
+					data: formData,
 					success: function(response) {
 
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
