@@ -1,6 +1,8 @@
 <?php
 ini_set('display_errors', 1);
 require_once('TwitterAPIExchange.php');
+
+
 $settings = array(
     'oauth_access_token' => "602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO",
     'oauth_access_token_secret' => "26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef",
