@@ -252,7 +252,7 @@ $( document ).ready(function() {
 					}
 				});
 			});
-		});
+		};
 	}
 
 	function getFacebookPosts(token) {
