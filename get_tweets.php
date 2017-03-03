@@ -22,7 +22,7 @@ $response1 = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest();
 
-$screen_name = $response1.screen_name;
+#$screen_name = $response1.screen_name;
 
 
 
@@ -40,7 +40,7 @@ $response = $twitter->setGetfield($getfield)
 
 
 
-echo json_encode($response);
+echo json_encode($response1);
 
 
 
