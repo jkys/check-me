@@ -24,6 +24,7 @@ $settings = array(
 
 #$screen_name = $response1.screen_name;
 
+$screen_name = "ColbyDaly";
 
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
@@ -40,7 +41,7 @@ $response = $twitter->setGetfield($getfield)
 
 
 
-echo json_encode($response1);
+echo json_encode($response);
 
 
 
