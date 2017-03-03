@@ -203,7 +203,7 @@ $( document ).ready(function() {
 			console.log(formData);
 
 			$(function(){
-				
+
 				$.ajax({
 					
 					type: 'POST',
@@ -214,6 +214,7 @@ $( document ).ready(function() {
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							
 							console.log("success");
+						}
 					}, error: function(errors) {
 						console.log(errors);
 						
