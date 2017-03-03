@@ -40,7 +40,7 @@ $response = $twitter->setGetfield($getfield)
 
 
 
-echo json_encode($response1);
+echo json_encode($response);
 
 
 

@@ -239,7 +239,7 @@ $( document ).ready(function() {
 					if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 						
 						var $tweets = $('<ul></ul>');
-						console.log(response);
+					//	console.log(response);
 						$.each(JSON.parse(response), function(i, obj) {
 							// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
 							// //https://twitter.com/ColbyDaly/status/617291552436715520
