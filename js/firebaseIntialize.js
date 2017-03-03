@@ -220,7 +220,7 @@ $( document ).ready(function() {
 
 			console.log(formData);
 
-						$(function(){
+			$(function(){
 				$.ajax({
 					
 					type: 'POST',
@@ -236,6 +236,7 @@ $( document ).ready(function() {
 					}
 				});
 			});
+		});
 
 			$(function(){
 				$.ajax({
