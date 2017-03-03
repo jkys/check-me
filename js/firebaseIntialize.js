@@ -188,9 +188,11 @@ $( document ).ready(function() {
 
 	function getTwitterPosts() {
 		var provider = new firebase.auth.TwitterAuthProvider();
-		console.log("after sleep");
+		
 		firebase.auth().signInWithPopup(provider).then(function(result) {
 				// For accessing the Twitter API.
+
+			console.log(result);
 			var token = result.credential.accessToken;
 			var secret = result.credential.secret;
 				// The signed-in user info.
@@ -200,7 +202,7 @@ $( document ).ready(function() {
 
 			var formData = "userID=" + userID + "&token=" + token + "&secret=" + secret; 
 
-			console.log(formData);
+			console.log(formData.toString());
 
 			$(function(){
 
