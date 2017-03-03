@@ -199,7 +199,7 @@ $( document ).ready(function() {
 			var twitterUserID = user.uid;
 
 			//FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+/*
 			if (user != null) {
 			    for (UserInfo profile : user.getProviderData()) {
 			        if (profile.getProviderId().equals(TwitterAuthProvider.PROVIDER_ID)) {
@@ -215,7 +215,7 @@ $( document ).ready(function() {
 			        }
 			    }
 			}
-
+*/
 			var formData = "screenName=" + screenName + "&token=" + token + "&secret=" + secret; 
 
 			console.log(formData);
