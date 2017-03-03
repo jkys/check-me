@@ -14,13 +14,13 @@ $settings = array(
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-$url = 'https://api.twitter.com/1.1/users/lookup.json';
-$getfield = '?user_id=' . $user_id;
-$requestMethod = 'POST';
-$twitter = new TwitterAPIExchange($settings);
-$response1 = $twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
-    ->performRequest();
+#$url = 'https://api.twitter.com/1.1/users/lookup.json';
+#$getfield = '?user_id=' . $user_id;
+#$requestMethod = 'POST';
+#$twitter = new TwitterAPIExchange($settings);
+#$response1 = $twitter->setGetfield($getfield)
+#    ->buildOauth($url, $requestMethod)
+#    ->performRequest();
 
 #$screen_name = $response1.screen_name;
 
