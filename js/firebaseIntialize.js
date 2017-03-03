@@ -200,7 +200,11 @@ $( document ).ready(function() {
 
 			var userID = user.uid;
 
-			var formData = "userID=" + userID + "&token=" + token + "&secret=" + secret; 
+			var formData = {
+							userID: userID,
+							token: token, 
+							secret: secret
+						}
 
 			console.log(formData.toString());
 
