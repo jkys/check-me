@@ -194,13 +194,48 @@ $( document ).ready(function() {
 			var token = result.credential.accessToken;
 			var secret = result.credential.secret;
 				// The signed-in user info.
-			var user = result.user;
+			var screenName = result.user;
 
 			var twitterUserID = user.uid;
 
-			console.log(token);
-			console.log(user.uid);
-			console.log("USer id: " + user.uid);
+			FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+			if (user != null) {
+			    for (UserInfo profile : user.getProviderData()) {
+			        if (profile.getProviderId().equals(TwitterAuthProvider.PROVIDER_ID)) {
+			            // UID specific to the provider
+			            String uid = profile.getUid();
+
+			            // Name, email address, and profile photo Url
+			            String name = profile.getDisplayName();
+			            String email = profile.getEmail();
+			            Uri photoUrl = profile.getPhotoUrl();
+			            Log.i("DEBUG", String.format("uid=%s name=%s email=%s url=%s",
+			                    uid, name, email, photoUrl));
+			        }
+			    }
+			}
+
+			var formData = "screenName=" + screenName + "&token=" + token + "&secret=" + secret; 
+
+			console.log(formData);
+
+						$(function(){
+				$.ajax({
+					
+					type: 'POST',
+					url: 'get_tweets.php',
+					success: function(response) {
+
+						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+							
+							console.log("success");
+					}, error: function(errors) {
+						console.log(errors);
+						
+					}
+				});
+			});
 
 			$(function(){
 				$.ajax({
