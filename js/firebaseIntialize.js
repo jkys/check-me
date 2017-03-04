@@ -292,7 +292,10 @@ $( document ).ready(function() {
 										var "profanityObj" + i = {word: obj.Word,
 																category: obj.category,
 																scale: obj.scale
-																}
+																};
+
+										i++;
+
 										console.log(profanityObj2);
 
 
