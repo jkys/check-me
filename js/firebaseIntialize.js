@@ -284,19 +284,16 @@ $( document ).ready(function() {
 
 								if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 									
-									var profanityObj = {word: null,
-														category: null,
-														scale: 0};
 
 									console.log(response);
 									i = 0; 
 									$.each(JSON.parse(response), function(i, obj) {
 
-										var profanityObj .= i = {word: obj.Word,
+										var "profanityObj" + i = {word: obj.Word,
 																category: obj.category,
 																scale: obj.scale
 																}
-										console.log(profanityObj . i);
+										console.log(profanityObj2);
 
 
 										// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
