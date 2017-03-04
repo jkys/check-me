@@ -275,7 +275,9 @@ $( document ).ready(function() {
 				console.log(response);
 				var arrayLength = (response.feed.data.length - 1);
 				var rootRef = firebase.database().ref();
-					$(function(){
+
+				console.log(rootRef(Profanity));
+				/*	$(function(){
 						$.ajax({
 							dataType: 'json',
 							type: 'GET',
@@ -316,7 +318,7 @@ $( document ).ready(function() {
 						});
 					});
 
-
+*/
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
