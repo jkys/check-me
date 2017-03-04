@@ -201,7 +201,9 @@ $( document ).ready(function() {
 				// The signed-in user info.
 			var screenName = result.user;
 
-			var userID = user.uid;
+			var userID = result.user.uid;
+
+			console.log(userID);
 
 			var formData = {
 							userID: userID,
@@ -219,6 +221,7 @@ $( document ).ready(function() {
 					url: 'get_tweets.php',
 					data: formData,
 					success: function(response) {
+
 
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							
