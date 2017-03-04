@@ -24,9 +24,9 @@ $response1 = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest();
 
-$screen_name = $response1.screen_name;
+//$screen_name = $response1.screen_name;
 
-echo $screen_name;
+//echo $screen_name;
 
 $screen_name = "ColbyDaly";
 
