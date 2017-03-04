@@ -278,7 +278,7 @@ $( document ).ready(function() {
 				var arrayLength = (response.feed.data.length - 1);
 				var rootRef = firebase.database().ref("Profanity");
 
-				console.(rootRef);
+				console.dir(rootRef);
 				/*	$(function(){
 						$.ajax({
 							dataType: 'json',
