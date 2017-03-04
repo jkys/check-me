@@ -274,6 +274,33 @@ $( document ).ready(function() {
 			if (response && !response.error) {
 				console.log(response);
 				var arrayLength = (response.feed.data.length - 1);
+				var rootRef = firebase.database().ref();
+					$(function(){
+						$.ajax({
+							dataType: 'json',
+							type: 'GET',
+							url: 'https://checkme-8f276.firebaseio.com/Profanity.json',
+							success: function(response) {
+
+								if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+									
+	
+									console.log(response);
+									$.each(JSON.parse(response), function(i, obj) {
+										// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
+										// //https://twitter.com/ColbyDaly/status/617291552436715520
+										
+										
+									})
+
+								
+								
+							}, error: function(errors) {
+								console.log(errors);
+							}
+						});
+					});
+
 
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
@@ -286,7 +313,7 @@ $( document ).ready(function() {
 					console.log(url);
 					console.log(message);
 					console.log(date);
-					if(displayPost(message)){
+					if(displayPost(message.length > 3)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
