@@ -278,7 +278,7 @@ $( document ).ready(function() {
 				var arrayLength = (response.feed.data.length - 1);
 				var rootRef = firebase.database().ref("Profanity");
 
-				console.dir(rootRef);
+				console.(rootRef);
 				/*	$(function(){
 						$.ajax({
 							dataType: 'json',
@@ -332,7 +332,7 @@ $( document ).ready(function() {
 					console.log(url);
 					console.log(message);
 					console.log(date);
-					if(displayPost(message.toString().length > 3)){
+					if(displayPost(message)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
@@ -358,7 +358,7 @@ $( document ).ready(function() {
 	}
 
 	function displayPost(message) {
-		if(message == ''){
+		if(message == '' || message == undefined){
 			return false;
 		} else {
 			return true;
