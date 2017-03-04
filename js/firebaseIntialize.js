@@ -274,9 +274,13 @@ $( document ).ready(function() {
 
 		var refChild = ref.child("Word");
 
+		var test = "Shit fuck ass shit";
+
 		for each(var word in refChild){
 
-			if(message.contains(word)){
+			if(test.contains(word)){
+
+				alert("contains word");
 
 				return true; 
 			}
