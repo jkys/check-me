@@ -268,6 +268,24 @@ $( document ).ready(function() {
 		});
 	}
 
+	function findProfanity(ref, message){
+
+		var length = ref.child("Word").length;
+
+		var refChild = ref.child("Word");
+
+		for each(var word in refChild){
+
+			if(message.contains(word)){
+
+				return true; 
+			}
+
+		}
+
+		return false; 
+	}
+
 	function getFacebookPosts(token) {
 		FB.api("/me", {
 	        'fields'       : 'feed',
@@ -278,49 +296,10 @@ $( document ).ready(function() {
 				var arrayLength = (response.feed.data.length - 1);
 				var rootRef = firebase.database().ref("Profanity");
 
+
 				console.dir(rootRef);
-				/*	$(function(){
-						$.ajax({
-							dataType: 'json',
-							type: 'GET',
-							url: 'https://checkme-8f276.firebaseio.com/Profanity.json',
-							success: function(response) {
+				
 
-								if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-									
-
-									console.log(response);
-									i = 0; 
-									$.each(JSON.parse(response), function(i, obj) {
-
-										var str = "profanityObj" + i;
-
-										var this[str] = {word: obj.Word,
-																category: obj.category,
-																scale: obj.scale
-																};
-
-										i++;
-
-										console.log(this[str]);
-
-
-										// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
-										// //https://twitter.com/ColbyDaly/status/617291552436715520
-										
-										
-									});
-
-								}
-								
-								
-							}, error: function(errors) {
-								console.log(errors);
-							}
-						});
-					});
-
-*/
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
@@ -332,7 +311,7 @@ $( document ).ready(function() {
 					console.log(url);
 					console.log(message);
 					console.log(date);
-					if(displayPost(message)){
+					if(displayPost(message) && findProfanity(rootRef, message)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
