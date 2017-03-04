@@ -16,7 +16,7 @@ $settings = array(
 
 $url = 'https://api.twitter.com/1.1/users/lookup.json';
 $getfield = '?user_id=' . $user_id;
-$requestMethod = 'POST';
+$requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
 $response1 = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
@@ -41,7 +41,7 @@ $response = $twitter->setGetfield($getfield)
 //header('Content-Type: text/html; charset=utf-8');
 
 
-
+// echo json_encode($response);
 echo json_encode($response1);
 
 
