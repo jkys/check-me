@@ -203,7 +203,7 @@ $( document ).ready(function() {
 
 			var userID = result.user.uid;
 
-			console.log(userID);
+			console.log("user id: " +userID);
 
 			var formData = {
 							userID: userID,

@@ -8,10 +8,10 @@ $oauth_access_token = (isset($_GET['token']) ? $_GET['token'] : null);
 $oauth_access_token_secret = (isset($_GET['secret']) ? $_GET['secret'] : null);
 
 $settings = array(
-   // 'oauth_access_token' => $oauth_access_token,
-	'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
-    //'oauth_access_token_secret' => $oauth_access_token_secret,
-    'oauth_access_token_secret' => '26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef',
+    'oauth_access_token' => $oauth_access_token,
+	//'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
+    'oauth_access_token_secret' => $oauth_access_token_secret,
+    //'oauth_access_token_secret' => '26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef',
     'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
