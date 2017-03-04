@@ -196,6 +196,8 @@ $( document ).ready(function() {
 
 			var secret = result.credential.secret;
 
+			console.log(result);
+
 			console.log("token:" + token);
 			console.log("secret:" + secret);
 				// The signed-in user info.
@@ -274,9 +276,9 @@ $( document ).ready(function() {
 			if (response && !response.error) {
 				console.log(response);
 				var arrayLength = (response.feed.data.length - 1);
-				var rootRef = firebase.database().ref();
+				var rootRef = firebase.database().ref("Profanity");
 
-				console.log(rootRef(Profanity));
+				console.log(rootRef);
 				/*	$(function(){
 						$.ajax({
 							dataType: 'json',
