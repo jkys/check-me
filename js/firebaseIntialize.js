@@ -274,11 +274,13 @@ $( document ).ready(function() {
 
 		var refChild = ref.child("Word");
 
+		console.dir(refChild);
+
 		var test = "Shit fuck ass shit";
 
 		for each(var word in refChild){
 
-			if(test.includes(word)){
+			if(test.includes(word.toString())){
 
 				alert("contains word");
 
