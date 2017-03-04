@@ -278,7 +278,7 @@ $( document ).ready(function() {
 
 		for each(var word in refChild){
 
-			if(test.contains(word)){
+			if(test.includes(word)){
 
 				alert("contains word");
 
