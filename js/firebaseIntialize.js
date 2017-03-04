@@ -292,10 +292,11 @@ $( document ).ready(function() {
 									i = 0; 
 									$.each(JSON.parse(response), function(i, obj) {
 
-										var profanityObj . i = {word: obj.Word,
+										var profanityObj .= i = {word: obj.Word,
 																category: obj.category,
 																scale: obj.scale
 																}
+										console.log(profanityObj . i);
 
 
 										// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
