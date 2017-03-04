@@ -289,14 +289,16 @@ $( document ).ready(function() {
 									i = 0; 
 									$.each(JSON.parse(response), function(i, obj) {
 
-										var "profanityObj" + i = {word: obj.Word,
+										var str = "profanityObj" + i;
+
+										var this[str] = {word: obj.Word,
 																category: obj.category,
 																scale: obj.scale
 																};
 
 										i++;
 
-										console.log(profanityObj2);
+										console.log(this[str]);
 
 
 										// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
