@@ -278,16 +278,16 @@ $( document ).ready(function() {
 
 		var test = "Shit fuck ass shit";
 
-		for each(var word in refChild){
+		//for each(var word in refChild){
 
-			if(test.includes(word.toString())){
+		//	if(test.includes(word.toString())){
+//
+			//	alert("contains word");
 
-				alert("contains word");
+			//	return true; 
+		//	}
 
-				return true; 
-			}
-
-		}
+	//	}
 
 		return false; 
 	}
