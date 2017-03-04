@@ -171,6 +171,7 @@ $( document ).ready(function() {
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
+			console.log("fb access token: " + accessToken)
 			getFacebookPosts(accessToken);
 		});
 
