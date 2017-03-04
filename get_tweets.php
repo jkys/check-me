@@ -28,9 +28,8 @@ echo $screen_name;
 
 $screen_name = "ColbyDaly";
 
-
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=ColbyDaly&trim_user=true&count=199&exclude_replies=true';
+$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
 $response = $twitter->setGetfield($getfield)
