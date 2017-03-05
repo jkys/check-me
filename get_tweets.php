@@ -6,6 +6,8 @@ require_once('TwitterAPIExchange.php');
 $user_id = $_POST['userID'];
 $oauth_access_token = $_POST['token'];
 $oauth_access_token_secret = $_POST['secret'];
+echo $user_id . '-' .$oauth_access_token;
+echo ' | ' . $oauth_access_token_secret;
 
 $settings = array(
     'oauth_access_token' => $user_id . '-' .$oauth_access_token,
