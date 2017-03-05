@@ -213,6 +213,7 @@ $( document ).ready(function() {
 							$.each(JSON.parse(response), function(i, obj) {
 								$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
 							});
+
 						}
 					}, error: function(errors) {
 						console.log(errors);

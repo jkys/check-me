@@ -35,6 +35,5 @@ $tweets =
     ->buildOauth($url, 'GET')
     ->performRequest();
 
-//$json_tweets = json_decode($tweets, true);
-echo $tweets;
+echo json_encode($json_tweets);
 ?>
