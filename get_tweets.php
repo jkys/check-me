@@ -28,10 +28,10 @@ $result = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest();
 
-$result = json_decode($result, true);
-echo $result;
-$result = $result.['screen_name'];
-echo $result;
+$json = json_decode($result, true);
+echo $json;
+$screenName = $json.['screen_name'];
+echo $screenName;
 
 
 
