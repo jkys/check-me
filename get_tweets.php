@@ -7,12 +7,8 @@ $user_id = $_POST['userID'];
 $oauth_access_token = $_POST['token'];
 $oauth_access_token_secret = $_POST['secret'];
 
-echo $user_id;
-echo $oauth_access_token;
-echo $oauth_access_token_secret;
-
 $settings = array(
-    'oauth_access_token' => $oauth_access_token,
+    'oauth_access_token' => $user_id . '-' .$oauth_access_token,
 	//'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
     'oauth_access_token_secret' => $oauth_access_token_secret,
     //'oauth_access_token_secret' => '26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef',
