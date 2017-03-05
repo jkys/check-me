@@ -7,6 +7,10 @@ $user_id = (isset($_GET['userID']) ? $_GET['userID'] : null);
 $oauth_access_token = (isset($_GET['token']) ? $_GET['token'] : null);
 $oauth_access_token_secret = (isset($_GET['secret']) ? $_GET['secret'] : null);
 
+echo '<script>console.log("user_id: " + '. $user_id . ');';
+echo 'console.log("oauth_access_token: " + '. $oauth_access_token . ');';
+echo 'console.log("oauth_access_token_secret: " + '. $oauth_access_token_secret . ');</script>';
+
 $settings = array(
     'oauth_access_token' => $oauth_access_token,
 	//'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
