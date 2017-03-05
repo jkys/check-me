@@ -20,11 +20,26 @@ $settings = array(
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+$url = 'https://api.twitter.com/1.1/users/show.json';
 $getfield = '?user_id=' . $user_id;
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
-$response1 = $twitter->setGetfield($getfield)
+$result = $twitter->setGetfield($getfield)
+    ->buildOauth($url, $requestMethod)
+    ->performRequest();
+
+$result = json_decode($response1);
+echo $result;
+$result.screen_name;
+echo $result;
+
+
+
+$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
+$requestMethod = 'GET';
+$twitter = new TwitterAPIExchange($settings);
+$tweets = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest();
 
@@ -34,23 +49,23 @@ $response1 = $twitter->setGetfield($getfield)
 //$screen_name = $response1.screen_name;
 
 //echo $screen_name;
-$screen_name = "ColbyDaly";
+// $screen_name = "ColbyDaly";
 
 
-$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
-$requestMethod = 'GET';
-$twitter = new TwitterAPIExchange($settings);
-$response = $twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
-    ->performRequest();
+// $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+// $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
+// $requestMethod = 'GET';
+// $twitter = new TwitterAPIExchange($settings);
+// $response = $twitter->setGetfield($getfield)
+//     ->buildOauth($url, $requestMethod)
+//     ->performRequest();
 
 //var_dump(json_decode($response));
 
 //header('Content-Type: text/html; charset=utf-8');
 
 
-echo json_encode($response1);
+echo json_encode($tweets);
 //echo json_encode($response1);
 
 
