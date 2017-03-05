@@ -39,37 +39,36 @@ $twitter = new TwitterAPIExchange($settings);
 $response1 =    $twitter->setGetfield($getfield)
                     ->buildOauth($url, $requestMethod)
                     ->performRequest();
-
 echo json_encode($response1);
-
-$response1 = json_decode($response1, true);
-var_dump($response1);
-
-$screen_name = $response1['screen_name'];
-
-echo ' | screen Name: ' . $screen_name;
-//$screen_name = "CheckMeTest";
+// $response1 = json_decode($response1, true);
 
 
-$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
-$requestMethod = 'GET';
-$twitter = new TwitterAPIExchange($settings);
-$response = $twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
-    ->performRequest();
+// //var_dump($response1);
 
-//var_dump(json_decode($response));
+// $screen_name = $response1['screen_name'];
 
-//header('Content-Type: text/html; charset=utf-8');
+// //$screen_name = "CheckMeTest";
 
 
-// echo json_encode($response);
-//echo json_encode($response1);
+// $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+// $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
+// $requestMethod = 'GET';
+// $twitter = new TwitterAPIExchange($settings);
+// $response = $twitter->setGetfield($getfield)
+//     ->buildOauth($url, $requestMethod)
+//     ->performRequest();
+
+// //var_dump(json_decode($response));
+
+// //header('Content-Type: text/html; charset=utf-8');
+
+
+// echo json_encode($response1);
+// //echo json_encode($response1);
 
 
 
 
-//echo $repsonse; 
+// //echo $repsonse; 
 
 ?>
