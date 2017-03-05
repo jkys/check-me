@@ -190,39 +190,24 @@ $( document ).ready(function() {
 
 	function getTwitterPosts() {
 		var provider = new firebase.auth.TwitterAuthProvider();
-		
 		auth.signInWithPopup(provider).then(function(result) {
-				// For accessing the Twitter API.
-			console.log('Twiitter Sign-In Result: ');
-			console.log(result);
-
 			var accessToken = result.credential.accessToken;
 			var secret = result.credential.secret;
 			var token = getTwitterToken(accessToken);
 			var user = getTwitterUser(accessToken);
 
-			console.log('Twitter Secret: ' + secret);
-			console.log('Twitter Token: ' + token);
-			console.log('Twitter User: ' + user);
-
-			var formData = {
+			$(function(){
+				$.ajax({
+					type: 'POST',
+					url: 'get_tweets.php',
+					data: {
 							userID: user,
 							token: token, 
 							secret: secret
-						}
-
-			$(function(){
-
-				$.ajax({
-					
-					type: 'POST',
-					url: 'get_tweets.php',
-					data: formData,
+					},
 					dataType : 'json',
 					success: function(response) {
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-							
-							console.log("Success, response coming...");
 							console.log(response);
 
 							$.each(JSON.parse(response), function(i, obj) {
@@ -231,7 +216,6 @@ $( document ).ready(function() {
 						}
 					}, error: function(errors) {
 						console.log(errors);
-						
 					}
 				});
 			});
