@@ -26,10 +26,10 @@ $response1 = $twitter->setGetfield($getfield)
 
 $response1 = json_decode($response1);
 
-//$screen_name = $response1.screen_name;
+$screen_name = $response1['screen_name'];
 
-//echo $screen_name;
-$screen_name = "ColbyDaly";
+echo $screen_name;
+//$screen_name = "CheckMeTest";
 
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
