@@ -47,7 +47,7 @@ var_dump($response1);
 
 $screen_name = $response1['screen_name'];
 
-echo ' | screen Name: '$screen_name;
+echo ' | screen Name: ' . $screen_name;
 //$screen_name = "CheckMeTest";
 
 
