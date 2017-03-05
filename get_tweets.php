@@ -18,7 +18,7 @@ $settings = array(
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-$url = 'https://api.twitter.com/1.1/users/lookup.json';
+$url = 'https://api.twitter.com/1.1/users/show.json';
 $getfield = '?user_id=' . $user_id;
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
@@ -28,8 +28,6 @@ $response1 = $twitter->setGetfield($getfield)
 
 var_dump($response1);
 $response1 = json_decode($response1, true);
-var_dump($response1);
-
 $screen_name = $response1['screen_name'];
 
 echo $screen_name;
