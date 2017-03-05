@@ -171,7 +171,7 @@ $( document ).ready(function() {
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
-			console.log('Facebook SingIn Result: ');
+			console.log('Facebook Sign-In Result: ');
 			console.log(result);
 			getFacebookPosts(accessToken);
 		});
@@ -193,31 +193,23 @@ $( document ).ready(function() {
 		
 		firebase.auth().signInWithPopup(provider).then(function(result) {
 				// For accessing the Twitter API.
-			console.log('Twiitter SingIn Result: ');
+			console.log('Twiitter Sign-In Result: ');
 			console.log(result);
 
-			var token = result.credential.accessToken;
-
+			var accessToken = result.credential.accessToken;
 			var secret = result.credential.secret;
+			var token = getTwitterToken(accessToken);
+			var user = getTwitterUser(accessToken);
 
-			// console.log(result);
-
-			// console.log("token:" + token);
-			// console.log("secret:" + secret);
-				// The signed-in user info.
-			var screenName = result.user;
-
-			var userID = result.user.uid;
-
-			// console.log("user id: " +userID);
+			console.log('Twitter Secret: ' + secret);
+			console.log('Twitter Token: ' + token);
+			console.log('Twitter User: ' + user);
 
 			var formData = {
-							userID: userID,
+							userID: user,
 							token: token, 
 							secret: secret
 						}
-
-			// console.log(formData.toString());
 
 			$(function(){
 
@@ -231,7 +223,8 @@ $( document ).ready(function() {
 
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							
-							console.log("success");
+							console.log("Success, response coming...");
+							console.log(response);
 						}
 					}, error: function(errors) {
 						console.log(errors);
@@ -332,6 +325,20 @@ $( document ).ready(function() {
 			}
 		});
 		getTwitterPosts();
+	}
+
+	function getTwitterUser(accessToken) {
+		var index = accessToken.indexOf('-');
+		var user = accessToken.substring(0, index);
+
+		return user;
+	}
+
+	function getTwitterToken(accessToken) {
+		var index = accessToken.indexOf('-');
+		var token = accessToken.substring((index + 1));
+
+		return token;
 	}
 
 	function convertIso(iso) {
