@@ -171,7 +171,8 @@ $( document ).ready(function() {
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
-			console.log("fb access token: " + accessToken)
+			console.log('Facebook SingIn Result: ');
+			console.log(result);
 			getFacebookPosts(accessToken);
 		});
 
@@ -192,21 +193,23 @@ $( document ).ready(function() {
 		
 		firebase.auth().signInWithPopup(provider).then(function(result) {
 				// For accessing the Twitter API.
+			console.log('Twiitter SingIn Result: ');
+			console.log(result);
 
 			var token = result.credential.accessToken;
 
 			var secret = result.credential.secret;
 
-			console.log(result);
+			// console.log(result);
 
-			console.log("token:" + token);
-			console.log("secret:" + secret);
+			// console.log("token:" + token);
+			// console.log("secret:" + secret);
 				// The signed-in user info.
 			var screenName = result.user;
 
 			var userID = result.user.uid;
 
-			console.log("user id: " +userID);
+			// console.log("user id: " +userID);
 
 			var formData = {
 							userID: userID,
@@ -214,7 +217,7 @@ $( document ).ready(function() {
 							secret: secret
 						}
 
-			console.log(formData.toString());
+			// console.log(formData.toString());
 
 			$(function(){
 
@@ -248,6 +251,7 @@ $( document ).ready(function() {
 					if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 						
 						var $tweets = $('<ul></ul>');
+						console.log('Response 2: ');
 						console.log(response);
 						$.each(JSON.parse(response), function(i, obj) {
 							// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
@@ -301,10 +305,10 @@ $( document ).ready(function() {
 			if (response && !response.error) {
 				console.log(response);
 				var arrayLength = (response.feed.data.length - 1);
-				var rootRef = firebase.database().ref("Profanity");
+				// var rootRef = firebase.database().ref("Profanity");
 
 
-				console.dir(rootRef);
+				// console.dir(rootRef);
 				
 
 				for (var i = 1; i < arrayLength; i++) {
@@ -318,9 +322,9 @@ $( document ).ready(function() {
 					console.log(url);
 					console.log(message);
 					console.log(date);
-					if(displayPost(message) && findProfanity(rootRef, message)){
+					//if(displayPost(message) && findProfanity(rootRef, message)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
-					}
+					//}
 				}
 				return response;
 			} else {
