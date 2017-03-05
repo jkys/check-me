@@ -191,7 +191,7 @@ $( document ).ready(function() {
 	function getTwitterPosts() {
 		var provider = new firebase.auth.TwitterAuthProvider();
 		
-		firebase.auth().signInWithPopup(provider).then(function(result) {
+		auth.signInWithPopup(provider).then(function(result) {
 				// For accessing the Twitter API.
 			console.log('Twiitter Sign-In Result: ');
 			console.log(result);

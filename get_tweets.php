@@ -29,6 +29,7 @@ $response1 = $twitter->setGetfield($getfield)
     ->performRequest();
 
 $response1 = json_decode($response1);
+echo $response1;
 
 //$screen_name = $response1.screen_name;
 
@@ -49,7 +50,7 @@ $response = $twitter->setGetfield($getfield)
 //header('Content-Type: text/html; charset=utf-8');
 
 
-echo json_encode($response);
+echo json_encode($response1);
 //echo json_encode($response1);
 
 
