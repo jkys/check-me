@@ -6,8 +6,6 @@ require_once('TwitterAPIExchange.php');
 $user_id = $_POST['userID'];
 $oauth_access_token = $_POST['token'];
 $oauth_access_token_secret = $_POST['secret'];
-echo $user_id . '-' .$oauth_access_token;
-echo ' | ' . $oauth_access_token_secret;
 
 $settings = array(
     'oauth_access_token' => $user_id . '-' .$oauth_access_token,
@@ -42,6 +40,8 @@ $response1 =    $twitter->setGetfield($getfield)
                     ->buildOauth($url, $requestMethod)
                     ->performRequest();
 
+echo json_encode($response1);
+
 $response1 = json_decode($response1, true);
 var_dump($response1);
 
@@ -64,7 +64,7 @@ $response = $twitter->setGetfield($getfield)
 //header('Content-Type: text/html; charset=utf-8');
 
 
-echo json_encode($response);
+// echo json_encode($response);
 //echo json_encode($response1);
 
 
