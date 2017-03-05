@@ -11,30 +11,43 @@ echo ' | ' . $oauth_access_token_secret;
 
 $settings = array(
     'oauth_access_token' => $user_id . '-' .$oauth_access_token,
-    //'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
     'oauth_access_token_secret' => $oauth_access_token_secret,
-    //'oauth_access_token_secret' => '26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef',
     'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-$url = 'https://api.twitter.com/1.1/users/lookup.json';
-$getfield = '?user_id=' . $user_id;
-$requestMethod = 'GET';
-$twitter = new TwitterAPIExchange($settings);
-$response1 = $twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
-    ->performRequest();
+// $settings = array(
+//     'oauth_access_token' => $user_id . '-' .$oauth_access_token,
+//     //'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
+//     'oauth_access_token_secret' => $oauth_access_token_secret,
+//     //'oauth_access_token_secret' => '26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef',
+//     'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
+//     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
+// );
 
-echo " | Var Dump1: ";
-var_dump($response1);
+//old key : qZRhHGisBP0vNd5WMdaJCxWSY
+// old secret: nRKkTheFXywOgJpmWTFBcqqVNOodEOvDxUl2GON0pUwM1IabrP
+
+//old callback: https://checkme-8f276.firebaseapp.com/__/auth/handler
+
+
+$url = 'https://api.twitter.com/1.1/users/lookup.json';
+ 
+$requestMethod = "GET";
+ 
+$getfield = '?user_id=' . $user_id;
+ 
+$twitter = new TwitterAPIExchange($settings);
+$response1 =    $twitter->setGetfield($getfield)
+                    ->buildOauth($url, $requestMethod)
+                    ->performRequest();
+
 $response1 = json_decode($response1, true);
-echo " | Var Dump2: ";
 var_dump($response1);
 
 $screen_name = $response1['screen_name'];
 
-echo $screen_name;
+echo ' | screen Name: '$screen_name;
 //$screen_name = "CheckMeTest";
 
 
