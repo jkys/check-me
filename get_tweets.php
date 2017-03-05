@@ -3,9 +3,9 @@
 ini_set('display_errors', 1);
 require_once('TwitterAPIExchange.php');
 
-$user_id = (isset($_GET['userID']) ? $_GET['userID'] : null);
-$oauth_access_token = (isset($_GET['token']) ? $_GET['token'] : null);
-$oauth_access_token_secret = (isset($_GET['secret']) ? $_GET['secret'] : null);
+$user_id = $_POST['userID'];
+$oauth_access_token = $_POST['token'];
+$oauth_access_token_secret = $_POST['secret'];
 
 echo $user_id;
 echo $oauth_access_token;
