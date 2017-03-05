@@ -225,7 +225,7 @@ $( document ).ready(function() {
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							
 							console.log("Success, response coming...");
-							console.log(JSON.stringify(response));
+							console.log(response);
 						}
 					}, error: function(errors) {
 						console.log(errors);
