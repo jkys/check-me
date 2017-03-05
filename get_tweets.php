@@ -39,7 +39,7 @@ $twitter = new TwitterAPIExchange($settings);
 $response1 =    $twitter->setGetfield($getfield)
                     ->buildOauth($url, $requestMethod)
                     ->performRequest();
-json_encode($response1);
+echo json_encode($response1);
 // $response1 = json_decode($response1, true);
 
 
