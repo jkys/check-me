@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 require_once('TwitterAPIExchange.php');
 
@@ -14,43 +13,28 @@ $settings = array(
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-// $settings = array(
-//     'oauth_access_token' => $user_id . '-' .$oauth_access_token,
-//     //'oauth_access_token' => '602086335-wiQPEmB5JFLrGKYtB48wywuGGkDjOdoRXg7Nn8gO',
-//     'oauth_access_token_secret' => $oauth_access_token_secret,
-//     //'oauth_access_token_secret' => '26cOcASxxED31GmzrlELBfnJBKbEBQDwJTxYPb02aOjef',
-//     'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
-//     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
-// );
-
-//old key : qZRhHGisBP0vNd5WMdaJCxWSY
-// old secret: nRKkTheFXywOgJpmWTFBcqqVNOodEOvDxUl2GON0pUwM1IabrP
-
-//old callback: https://checkme-8f276.firebaseapp.com/__/auth/handler
-
+$twitter = new TwitterAPIExchange($settings);
 
 $url = 'https://api.twitter.com/1.1/users/lookup.json';
- 
-$requestMethod = "GET";
- 
 $getfield = '?user_id=' . $user_id;
- 
-$twitter = new TwitterAPIExchange($settings);
-$user =    $twitter->setGetfield($getfield)
-                    ->buildOauth($url, $requestMethod)
-                    ->performRequest();
+$user = 
+    $twitter
+    ->setGetfield($getfield)
+    ->buildOauth($url, 'GET')
+    ->performRequest();
+
 $json_user = json_decode($user, true);
 $screen_name = $json_user[0]['screen_name'];
 
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
-$requestMethod = 'GET';
-$twitter = new TwitterAPIExchange($settings);
-$tweets = $twitter->setGetfield($getfield)
-    ->buildOauth($url, $requestMethod)
+$tweets = 
+    $twitter
+    ->setGetfield($getfield)
+    ->buildOauth($url, 'GET')
     ->performRequest();
-$json_user = json_decode($tweets, true);
-echo json_encode($json_user);
 
+$json_tweets = json_decode($tweets, true);
+echo json_encode($json_tweets);
 ?>
