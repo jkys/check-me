@@ -218,6 +218,7 @@ $( document ).ready(function() {
 					type: 'POST',
 					url: 'get_tweets.php',
 					data: formData,
+					dataType : 'json',
 					success: function(response) {
 
 
