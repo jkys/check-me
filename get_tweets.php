@@ -20,7 +20,7 @@ $settings = array(
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
 
-$url = 'https://api.twitter.com/1.1/users/lookup.json';
+$url = 'https://api.twitter.com/1.1/statuses/user_time.json';
 $getfield = '?user_id=' . $user_id;
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
