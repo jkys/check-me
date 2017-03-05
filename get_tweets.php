@@ -26,8 +26,12 @@ $response1 = $twitter->setGetfield($getfield)
     ->buildOauth($url, $requestMethod)
     ->performRequest();
 
+echo " | Var Dump1: ";
 var_dump($response1);
 $response1 = json_decode($response1, true);
+echo " | Var Dump2: ";
+var_dump($response1);
+
 $screen_name = $response1['screen_name'];
 
 echo $screen_name;
