@@ -177,8 +177,8 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					console.log(user);
-					user.providerData.forEach(function(array) {
+					console.log(auth);
+					auth.user.providerData.forEach(function(array) {
 						if(array.providerId.includes(platform)){
 							imgUrl = array.providerId.photoURL;
 						}
