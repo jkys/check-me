@@ -169,8 +169,12 @@ $( document ).ready(function() {
 					var scale = profaceInnerJson.scale;
 
 					if(message.includes(word)) {
-						flaggedWords = flaggedWords + word + ', ';
-						score += scale;
+						if(message.indexOf(word) != 0) {
+							if(message.includes(' ' + word)) {
+								flaggedWords = flaggedWords + word + ', ';
+								score += scale;
+							}
+						}
 					}
 				});
 
