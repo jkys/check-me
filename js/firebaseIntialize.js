@@ -182,12 +182,13 @@ $( document ).ready(function() {
 	}
 
 	function containsProfanity(message, word) {
+		var profane = false;
 		message.split(' ').forEach(function(messageWord) {
-			if(messageWord.replace(/(.)\1{1,}/g, '$1') == word.replace(/(.)\1{1,}/g, '$1')){
-				return true;
+			if(messageWord.replace(/(.)\1{1,}/g, '$1') == word.replace(/(.)\1{1,}/g, '$1')) {
+				profane = true;
 			}
 		});
-		return message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
+		return profane || message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
 	}
 
 	function postNotEmpty(message) {
