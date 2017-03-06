@@ -65,6 +65,7 @@ $( document ).ready(function() {
 					},
 					dataType : 'json',
 					success: function(response) {
+						console.log(response);
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							$.each(JSON.parse(response), function(i, obj) {
 								var date = obj.created_at;
@@ -81,40 +82,22 @@ $( document ).ready(function() {
 		});
 	}
 
-	function test (response) {
+	function getPosts (response) {
 		if (response && !response.error && response.data != '') {
-			// var arrayLength = (response.data.length - 1);
-
 			response.data.forEach(function(data) {
-				var iso = data.created_time;
-				var id = data.id;
-				
-				var url = getFaceBookPostUrl(id);
 				var post = data.message;
-				var date = convertIso(iso);
+				var url = getFaceBookPostUrl(data.id);
+				var date = convertIso(data.created_time);
 				displayPost(post, date, url, 'facebook');
 			});
-
-			// for (var i = 1; i < arrayLength; i++) {
-			// 	var iso = response.data[i].created_time;
-			// 	var id = response.data[i].id;
-				
-			// 	var url = getFaceBookPostUrl(id);
-			// 	var post = response.data[i].message;
-			// 	var date = convertIso(iso);
-			// 	displayPost(post, date, url, 'facebook');
-			// }
-	       
-	    	FB.api(response.paging.next, test);
+	    	FB.api(response.paging.next, getPosts);
 		}
 	}
 
 	function getFacebookPosts(token) {
-		var responseReceived = true;
-		// var offset = 0;
 		FB.api('me/feed', {
 	        'access_token' : token
-     	}, test);
+     	}, getPosts);
 		getTwitterPosts();
 	}
 
