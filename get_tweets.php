@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 require_once('TwitterAPIExchange.php');
 
 $settings = array(
-    'oauth_access_token' => $_POST['token'].
+    'oauth_access_token' => $_POST['token'],
     'oauth_access_token_secret' => $_POST['secret'],
     'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
