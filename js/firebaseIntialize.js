@@ -63,13 +63,20 @@ $( document ).ready(function() {
 					page: page
 				},
 				dataType : 'json',
-				success: doStuff
-			});
-			
+				success: getTweets
+			}).done( $('.postButton').on('click', function(){
+					var reasons = $(this).find('.reasons');
+					if(reasons.is(":visible")) {
+						reasons.slideUp("slow");
+					} else {
+						reasons.slideDown("slow");
+					}
+				});
+			);
 		});
 	}
 
-	function doStuff (response) {
+	function getTweets (response) {
 		if(response != '[]'){
 			if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
 				var page = 1;
@@ -267,15 +274,6 @@ $( document ).ready(function() {
 	 *************************************************
 	 *************************************************
 	 *************************************************/
-
-	$('.postButton').on('click', function(){
-		var reasons = $(this).find('.reasons');
-		if(reasons.is(":visible")) {
-			reasons.slideUp("slow");
-		} else {
-			reasons.slideDown("slow");
-		}
-	});
 
 	$('#signUp').click(function() {
 		var registerEmailText = $('#registerEmail').val();
