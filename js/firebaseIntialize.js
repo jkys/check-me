@@ -168,7 +168,7 @@ $( document ).ready(function() {
 					var word = profaceInnerJson.Word;
 					var scale = profaceInnerJson.scale;
 
-					if(message.includes(' ' + word + ' ') || message.endWith(word) || message.startsWith(word)) {
+					if(message.includes(' ' + word + ' ') || message.match('^' + word) ||message.match(word + '$')) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
 					}
