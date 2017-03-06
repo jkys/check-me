@@ -415,7 +415,7 @@ button:focus {
   color: rgb(0, 177, 235);
 }
 
-.postImg:hover, .post:hover {
+.post:hover {
   border-color: rgb(0, 177, 235);
 }
 
