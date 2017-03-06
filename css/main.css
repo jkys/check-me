@@ -402,7 +402,7 @@ footer {
 }
 
 .post:hover {
-  border-color: rgb(0, 177, 235);
+  border: 2px solid rgb(0, 177, 235);
 }
 
 
