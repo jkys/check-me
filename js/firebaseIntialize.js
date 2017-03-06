@@ -139,7 +139,7 @@ $( document ).ready(function() {
 	function displayPost(message, date, url, platform) {
 		if(message != '' && message != undefined) {
 			var score = 0;
-			var flaggedWords = '';
+			var flaggedWords = [''];
 			var profaneJson = firebase.database().ref('Profanity');
 			profaneJson.on('value', function(snapshot) {
 				profaneWordSet = snapshot.val();
