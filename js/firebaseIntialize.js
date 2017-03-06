@@ -184,7 +184,9 @@ $( document ).ready(function() {
 	function containsProfanity(message, word) {
 		var profane = false;
 		message.split(' ').forEach(function(messageWord) {
-			if(messageWord.replace(/(.)\1{1,}/g, '$1') == word.replace(/(.)\1{1,}/g, '$1')) {
+			messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
+			wordShort = word.replace(/(.)\1{1,}/g, '$1');
+			if(messageShort == wordShort && messageWord != 'as') {
 				profane = true;
 			}
 		});
