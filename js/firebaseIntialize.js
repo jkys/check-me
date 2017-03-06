@@ -135,7 +135,7 @@ $( document ).ready(function() {
 	function displayPost(message, date, url, platform) {
 		if(message != '' && message != undefined) {
 			var score = 0;
-			var words = '';
+			var flaggedWords = '';
 			var profaneJson = firebase.database().ref('Profanity');
 			profaneJson.on('value', function(snapshot) {
 				profaneWordSet = snapshot.val();
@@ -144,7 +144,7 @@ $( document ).ready(function() {
 					var scale = profaceInnerJson.scale;
 
 					if(message.includes(word)) {
-						words = words.concat(word + ', ');
+						flaggedWords = flaggedWords.concat(word + ', ');
 						score += scale;
 					}
 				});
