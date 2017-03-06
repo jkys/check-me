@@ -82,7 +82,7 @@ $( document ).ready(function() {
 	}
 
 	function test (response) {
-		if (response && !response.error) {
+		if (response && !response.error && response.data != '') {
 			var arrayLength = (response.data.length - 1);
 
 			for (var i = 1; i < arrayLength; i++) {
@@ -94,10 +94,8 @@ $( document ).ready(function() {
 				var date = convertIso(iso);
 				displayPost(post, date, url, 'facebook');
 			}
-
-			if (response.paging.next != undefined){
-		       FB.api(response.paging.next, test);
-		   }
+	       
+	    	FB.api(response.paging.next, test);
 		}
 	}
 
