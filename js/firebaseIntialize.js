@@ -401,17 +401,6 @@ $( document ).ready(function() {
 		var result = linkAccounts(auth.currentUser, provider);
 	});
 
-	$('#facebookSignUp').click(function() {
-		var provider = new firebase.auth.FacebookAuthProvider();
-		provider.addScope('user_posts');
-		var result = signInToAccount(provider);
-	});
-
-	$('#twitterSignUp').click(function() {
-		var provider = new firebase.auth.TwitterAuthProvider();
-        var result = signInToAccount(provider);
-	});
-
 	$('#linkTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
 		var result = linkAccounts(auth.currentUser, provider);
