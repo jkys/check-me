@@ -212,12 +212,15 @@ $( document ).ready(function() {
 
 	function findProfanity(message){
 		var ref = firebase.database().ref("Profanity");
-		console.log(ref.child('0'));
+		// console.log(ref.child('0'));
+		ref.on('value', function(snapshot) {
+			console.log(snapshot);
+			console.log(snapshot.val());
+		});
 
-		var length = ref.child("Word").length;
-		var refChild = ref.child("Word");
-		// console.dir(refChild);
-		var test = "Shit fuck ass shit";
+		var messageLength = message.length;
+
+
 
 		return true; 
 	}
