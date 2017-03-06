@@ -63,24 +63,10 @@ body {
   margin: 3%;
 }
 
-.time {
-  color: #A7A7A7;
-  margin: 0;
-  font-size: .8em;
-  font-weight: normal;
-  display: inline-block;
-}
-
 hr {
   height: 1px;
   border: none;
   background-color: #DCDCDC;
-}
-
-.postImg {
-  height: 50px;
-  width: 50px;
-  display: inline-block;
 }
 
 .post {
@@ -437,4 +423,18 @@ button:focus {
 .postLink {
   text-decoration: none;
   color: #A7A7A7;
+}
+
+.postImg {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.time {
+  color: #A7A7A7;
+  margin: 0;
+  font-size: .8em;
+  font-weight: normal;
+  display: inline-block;
 }
