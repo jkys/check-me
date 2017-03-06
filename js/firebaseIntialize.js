@@ -212,25 +212,14 @@ $( document ).ready(function() {
 
 	function findProfanity(message){
 		var ref = firebase.database().ref("Profanity");
-		console.dir(ref);
+		console.log(ref);
 
 		var length = ref.child("Word").length;
 		var refChild = ref.child("Word");
-		console.dir(refChild);
+		// console.dir(refChild);
 		var test = "Shit fuck ass shit";
 
-		//for each(var word in refChild){
-
-		//	if(test.includes(word.toString())){
-//
-			//	alert("contains word");
-
-			//	return true; 
-		//	}
-
-	//	}
-
-		return false; 
+		return true; 
 	}
 
 	function getFacebookPosts(token) {
