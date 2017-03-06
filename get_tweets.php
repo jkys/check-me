@@ -31,5 +31,8 @@ $tweets =
     ->setGetfield($getfield)
     ->buildOauth($url, 'GET')
     ->performRequest();
-echo json_encode($tweets);
+
+if($tweets != '[]') {
+    echo json_encode($tweets);
+}
 ?>
