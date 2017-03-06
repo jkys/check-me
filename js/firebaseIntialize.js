@@ -62,7 +62,7 @@ $( document ).ready(function() {
 							userID: user,
 							token: accessToken, 
 							secret: secret,
-							page: 0;
+							page: 0
 					},
 					dataType : 'json',
 					success: doStuff
