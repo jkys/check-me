@@ -135,6 +135,7 @@ $( document ).ready(function() {
 	function displayPost(message, date, url, platform) {
 		if(message != '' && message != undefined) {
 			var score = 0;
+			var words = '';
 			var profaneJson = firebase.database().ref('Profanity');
 			profaneJson.on('value', function(snapshot) {
 				profaneWordSet = snapshot.val();
@@ -143,12 +144,13 @@ $( document ).ready(function() {
 					var scale = profaceInnerJson.scale;
 
 					if(message.includes(word)) {
+						words = words.concat(word + ', ');
 						score += scale;
 					}
 				});
 
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(-1); + '<br>Score: ' + score + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 				}
 			});
 		}
@@ -336,6 +338,14 @@ $( document ).ready(function() {
 			}).catch(function(error) {
 				outPutMessage('login', false, error.message);
 			});
+		}
+	});
+
+	$('.postButton').click(function() {
+		if($(this).find('.reasons').is(":visible")) {
+			$(this).find('.reasons').slideUp("slow");
+		} else {
+			$(this).find('.reasons').slideDown("slow");
 		}
 	});
 

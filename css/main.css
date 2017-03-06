@@ -68,15 +68,24 @@ body {
 }
 
 .time {
-  color: #3B7FFF;
+  color: #A7A7A7;
+  margin: 0;
+  font-size: .8em;
+  font-weight: normal;
+}
+
+hr {
+  height: 1px;
+  border: none;
+  background-color: #DCDCDC;
 }
 
 .post {
   margin: 3%;
-  border: 3px solid #3B7FFF;
-  border-radius: 15px;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
   height: auto;
-  padding: 3%;
+  padding: 2%;
 }
 
 .thirdPartySignUpContainer, .thirdPartyLinkContainer {
@@ -215,10 +224,6 @@ body {
 
 .avatar-container {
   float: left;
-}
-
-.avatar-container h2 {
-  /*color: rgb(0, 177, 235);*/
 }
 
 .information-container {
@@ -389,4 +394,32 @@ footer {
 
 .containerDivScan {
   width: 100%;
+}
+
+.postButton {
+  background-color: #fff;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+
+.reasons {
+  display: none;
+  font-size: .8em;
+  line-height: 2;
+}
+
+button:active {
+  color: black;
+}
+
+.time:hover, .postLink:hover {
+  color: rgb(0, 177, 235);
+}
+
+.postLink {
+  text-decoration: none;
+  color: #A7A7A7;
 }
