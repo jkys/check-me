@@ -100,7 +100,7 @@ $( document ).ready(function() {
 				displayPost(post, date, url, 'facebook');
 			}
 
-			if (response.paging.next != "undefined"){
+			if (response.paging.next != undefined){
 		       FB.api(response.paging.next, doSomething);
 		   }
 		}
