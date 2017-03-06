@@ -21,9 +21,8 @@ $user =
 $json_user = json_decode($user, true);
 $screen_name = $json_user[0]['screen_name'];
 
-
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true';
+$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=199&exclude_replies=true&page=4';
 $tweets = 
     $twitter
     ->setGetfield($getfield)
