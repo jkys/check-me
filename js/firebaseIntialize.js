@@ -69,6 +69,8 @@ $( document ).ready(function() {
 							$.each(JSON.parse(response), function(i, obj) {
 								var date = obj.created_at;
 								var tweet = obj.text;
+								console.log(obj);
+								console.log(date);
 								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
 
 								displayPost(tweet, date, url, 'twitter');
@@ -95,6 +97,8 @@ $( document ).ready(function() {
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
+					console.log(response);
+					console.log(iso);
 					
 					var url = getFaceBookPostUrl(id);
 					var post = response.feed.data[i].message;
@@ -155,7 +159,7 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+					$('#' + platform + 'Results').append('<a href="#"><button class="postButton"><div class="post' + platform + '"><a href="' + url + '" class="postLink"><p class="time' + platform + '">' + date + '</p></a><p class="message' + platform + '">' + message + '</p></div></button></a>');
 				}
 			});
 		}
