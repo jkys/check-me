@@ -199,7 +199,9 @@ $( document ).ready(function() {
 								var tweet = obj.text;
 								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
 
-								if(displayPost(tweet) && profanityFound(tweet)) {
+								displayPost(tweet, date, url, 'twitter');
+
+								if(postNotEmpty(tweet) && profanityFound(tweet)) {
 									$('#twitterResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
 								}
 							});
@@ -212,27 +214,25 @@ $( document ).ready(function() {
 		});
 	}
 
-	function profanityFound(message) {
-		var score = 0;
-		var profaneJson = firebase.database().ref('Profanity');
-		console.log('test1');
-		profaneJson.on('value', function(snapshot) {
-			profaneWordSet = snapshot.val();
-			console.log('test2');
-			profaneWordSet.forEach(function(profaceInnerJson) {
-				var word = profaceInnerJson.Word;
-				var scale = profaceInnerJson.scale;
+	// function profanityFound(message) {
+	// 	var score = 0;
+	// 	var profaneJson = firebase.database().ref('Profanity');
+	// 	profaneJson.on('value', function(snapshot) {
+	// 		profaneWordSet = snapshot.val();
+	// 		profaneWordSet.forEach(function(profaceInnerJson) {
+	// 			var word = profaceInnerJson.Word;
+	// 			var scale = profaceInnerJson.scale;
 
-				if(message.includes(word)) {
-					score += scale;
-					console.log('Message, "' + message + '", contains the profane word "' + word + '", which has a profane level of ' + scale + '. Message is now at score ' + score + '.');
-				}
-			});
-		});
-		console.log('Profanity Found (score = ' + score + '): ' + (score > 0));
+	// 			if(message.includes(word)) {
+	// 				score += scale;
+	// 				console.log('Message, "' + message + '", contains the profane word "' + word + '", which has a profane level of ' + scale + '. Message is now at score ' + score + '.');
+	// 			}
+	// 		});
+	// 	});
+	// 	console.log('Profanity Found (score = ' + score + '): ' + (score > 0));
 
-		return (score > 0);
-	}
+	// 	return (score > 0);
+	// }
 
 	function getFacebookPosts(token) {
 		FB.api('/me', {
@@ -251,9 +251,7 @@ $( document ).ready(function() {
 
 					console.log(post);
 
-					if(displayPost(post) && profanityFound(post)) {
-						$('#facebookResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + post + '</p><p><a href="' + url + '">Link</a></p></div>');
-					}
+					displayPost(post, date, url, 'facebook');
 				}
 				return response;
 			}
@@ -279,7 +277,30 @@ $( document ).ready(function() {
 		return dateString;
 	}
 
-	function displayPost(message) {
+	function displayPost(message, date, url, platform) {
+		if(message != '' && message != undefined) {
+			var score = 0;
+			var profaneJson = firebase.database().ref('Profanity');
+			profaneJson.on('value', function(snapshot) {
+				profaneWordSet = snapshot.val();
+				profaneWordSet.forEach(function(profaceInnerJson) {
+					var word = profaceInnerJson.Word;
+					var scale = profaceInnerJson.scale;
+
+					if(message.includes(word)) {
+						score += scale;
+						// console.log('Message, "' + message + '", contains the profane word "' + word + '", which has a profane level of ' + scale + '. Message is now at score ' + score + '.');
+					}
+				});
+
+				if(score > 0) {
+					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + post + '</p><p><a href="' + url + '">Link</a></p></div>');
+				}
+			});
+		}
+	}
+
+	function postNotEmpty(message) {
 		return (message != '') && (message != undefined);
 	}
 
