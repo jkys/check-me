@@ -61,25 +61,46 @@ $( document ).ready(function() {
 					data: {
 							userID: user,
 							token: accessToken, 
-							secret: secret
+							secret: secret,
+							page: 0;
 					},
 					dataType : 'json',
-					success: function(response) {
-						console.log(response);
-						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-							$.each(JSON.parse(response), function(i, obj) {
-								var date = obj.created_at;
-								var tweet = obj.text;
-								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
-
-								displayPost(tweet, date, url, 'twitter');
-							});
-						}
-					}, error: function(errors) {
-					}
+					success: doStuff
 				});
 			});
 		});
+	}
+
+	function doStuff (response) {
+		console.log(response);
+		if(response != '[]'){
+			if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
+				var page = 1;
+				$.each(JSON.parse(response), function(i, obj) {
+					var date = obj.created_at;
+					var tweet = obj.text;
+					var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
+
+					displayPost(tweet, date, url, 'twitter');
+				});
+
+				$.ajax({
+					type: 'POST',
+					url: 'get_tweets.php',
+					data: {
+							userID: user,
+							token: accessToken, 
+							secret: secret,
+							page: page
+					},
+					dataType : 'json',
+					success: doStuff
+				});
+
+				page +=;
+
+			}
+		}
 	}
 
 	function getPosts (response) {
@@ -151,6 +172,14 @@ $( document ).ready(function() {
 
 				if(score > 0) {
 					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(-1) + '<br>Score: ' + score + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
+					$('.postButton').click(function() {
+						var reasons = $(this).find('.reasons');
+						if(reasons.is(":visible")) {
+							reasons.slideUp("slow");
+						} else {
+							reasons.slideDown("slow");
+						}
+					});
 				}
 			});
 		}
@@ -338,16 +367,6 @@ $( document ).ready(function() {
 			}).catch(function(error) {
 				outPutMessage('login', false, error.message);
 			});
-		}
-	});
-
-	$('.postButton').click(function() {
-		console.log('Click!');
-		var reasons = $(this).find('.reasons');
-		if(reasons.is(":visible")) {
-			reasons.slideUp("slow");
-		} else {
-			reasons.slideDown("slow");
 		}
 	});
 
