@@ -107,11 +107,7 @@ $( document ).ready(function() {
 
 				console.log(response);
 
-				if(response.) {
-
-				} else {
-					offset += 100;
-				}
+				offset += 100;
 
 				if(offset > 300) {
 					responseReceived = false;
