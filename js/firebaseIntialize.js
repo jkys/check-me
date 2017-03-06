@@ -199,7 +199,13 @@ $( document ).ready(function() {
 					success: function(response) {
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							$.each(JSON.parse(response), function(i, obj) {
-								$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
+								var date = obj.created_at;
+								var message = obj.text;
+								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
+
+								if(displayPost(message) && profanityFound(message)) {
+									$("#twitterResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+								}
 							});
 						}
 					}, error: function(errors) {
@@ -225,8 +231,9 @@ $( document ).ready(function() {
 				}
 			});
 		});
+		console.log('Profanity Found: ' + score > 0);
 
-		return score > 0;
+		return (score > 0);
 	}
 
 	function getFacebookPosts(token) {
@@ -244,7 +251,7 @@ $( document ).ready(function() {
 					var message = response.feed.data[i].message;
 					var date = convertIso(iso);
 
-					if(displayPost(message) && profanityFound(message)){
+					if(displayPost(message) && profanityFound(message)) {
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
@@ -277,6 +284,7 @@ $( document ).ready(function() {
 	}
 
 	function displayPost(message) {
+		console.log('Display Post: ' + ((message != '') && (message != undefined)));
 		return (message != '') && (message != undefined);
 	}
 
