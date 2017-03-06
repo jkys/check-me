@@ -359,10 +359,15 @@ footer {
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
-  padding-top: 45%;
+  vertical-align: middle;
+  margin: 0;
 }
 
-#scanButton, #scanningButton {
+#elipses {
+  position: absolute;
+}
+
+#scanButton {
     width: 500px;
     height: 100px;
     transition: width 1s, height 1s, border 1s;
@@ -372,16 +377,16 @@ footer {
     display:flex;
     justify-content:center;
     align-items:center;
-}
-
-#scanningButton:hover, #scanButton:hover {
     cursor: pointer;
-    border: 2px solid rgb(0, 127, 185);
-    /*background: rgba(19, 35, 47, 0.94);*/
 }
 
 #scanButton h1 {
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
+  text-align: center;
+}
+
+.containerDivScan {
+  width: 100%;
 }

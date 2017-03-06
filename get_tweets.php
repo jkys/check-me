@@ -8,6 +8,7 @@ $settings = array(
     'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
     'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
 );
+
 $twitter = new TwitterAPIExchange($settings);
 
 $url = 'https://api.twitter.com/1.1/users/lookup.json';
