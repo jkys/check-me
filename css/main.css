@@ -68,12 +68,19 @@ body {
   margin: 0;
   font-size: .8em;
   font-weight: normal;
+  display: inline-block;
 }
 
 hr {
   height: 1px;
   border: none;
   background-color: #DCDCDC;
+}
+
+.postImg {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
 }
 
 .post {

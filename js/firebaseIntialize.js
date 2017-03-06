@@ -160,6 +160,7 @@ $( document ).ready(function() {
 
 	function displayPost(message, date, url, platform) {
 		if(message != '' && message != undefined) {
+			var imgUrl = 'images/logo.png';
 			var score = 0;
 			var flaggedWords = '';
 			var profaneJson = firebase.database().ref('Profanity');
@@ -176,7 +177,13 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
+					console.log(user);
+					user.providerData.forEach(function(array) {
+						if(array.providerId.includes(platform)){
+							imgUrl = array.providerId.photoURL;
+						}
+					});
+					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 				}
 			});
 		}
