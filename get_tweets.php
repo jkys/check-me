@@ -23,16 +23,13 @@ $json_user = json_decode($user, true);
 $screen_name = $json_user[0]['screen_name'];
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$page = 0;
+$page = $_POST['page'];
 
-do {
-    $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=200&exclude_replies=true&page=' . $page;
-    $tweets = 
-        $twitter
-        ->setGetfield($getfield)
-        ->buildOauth($url, 'GET')
-        ->performRequest();
-    ++$page;
-    echo json_encode($tweets);
-} while($tweets != '[]' & $page < 17);
+$getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=200&exclude_replies=true&page=' . $page;
+$tweets = 
+    $twitter
+    ->setGetfield($getfield)
+    ->buildOauth($url, 'GET')
+    ->performRequest();
+echo json_encode($tweets);
 ?>
