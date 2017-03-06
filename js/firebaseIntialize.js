@@ -212,7 +212,7 @@ $( document ).ready(function() {
 
 	function findProfanity(message){
 		var ref = firebase.database().ref("Profanity");
-		console.log(ref);
+		console.log(ref.child('0'));
 
 		var length = ref.child("Word").length;
 		var refChild = ref.child("Word");
