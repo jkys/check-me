@@ -231,7 +231,7 @@ $( document ).ready(function() {
 				}
 			});
 		});
-		console.log('Profanity Found: ' + score > 0);
+		console.log('Profanity Found (score = ' + score + '): ' + (score > 0));
 
 		return (score > 0);
 	}
