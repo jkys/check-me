@@ -64,7 +64,8 @@ $( document ).ready(function() {
 				},
 				dataType : 'json',
 				success: getTweets
-			}).done( $('.postButton').on('click', function(){
+			}).done(function() {
+				$('.postButton').on('click', function(){
 					var reasons = $(this).find('.reasons');
 					if(reasons.is(":visible")) {
 						reasons.slideUp("slow");
@@ -72,7 +73,8 @@ $( document ).ready(function() {
 						reasons.slideDown("slow");
 					}
 				});
-			);
+			});
+			
 		});
 	}
 
