@@ -171,9 +171,6 @@ $( document ).ready(function() {
 					if(containsProfanity(message, word)) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
-					} else if(message.replace(/(.)\1{1,}/g, '$1') == word.replace(/(.)\1{1,}/g, '$1')) {
-						flaggedWords = flaggedWords + word + ', ';
-						score += scale;
 					}
 				});
 
@@ -185,6 +182,11 @@ $( document ).ready(function() {
 	}
 
 	function containsProfanity(message, word) {
+		message.split(' ').forEach(messageWord) {
+			if(messageWord.replace(/(.)\1{1,}/g, '$1') == word.replace(/(.)\1{1,}/g, '$1')){
+				return true;
+			}
+		}
 		return message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
 	}
 
