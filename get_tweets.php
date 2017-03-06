@@ -25,7 +25,9 @@ $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=200&exclude_replies=true&page=4';
 $page = 1;
 
-while($tweet != '' | $page > 5) {
+$tweets = '';
+
+do {
     $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=200&exclude_replies=true&page=' . $page;
     $tweet = 
         $twitter
@@ -34,7 +36,7 @@ while($tweet != '' | $page > 5) {
         ->performRequest();
     ++$page;
     $tweets += $tweet;
-}
+} while($tweet != '' | $page > 5);
 
 echo json_encode($tweets);
 ?>
