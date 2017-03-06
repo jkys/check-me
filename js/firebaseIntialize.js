@@ -168,7 +168,7 @@ $( document ).ready(function() {
 					var word = profaceInnerJson.Word;
 					var scale = profaceInnerJson.scale;
 
-					if(message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word) {
+					if(containsProfanity(message)) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
 					}
@@ -179,6 +179,10 @@ $( document ).ready(function() {
 				}
 			});
 		}
+	}
+
+	function containsProfanity(message) {
+		return message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
 	}
 
 	function postNotEmpty(message) {
