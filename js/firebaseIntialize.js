@@ -200,11 +200,11 @@ $( document ).ready(function() {
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
 							$.each(JSON.parse(response), function(i, obj) {
 								var date = obj.created_at;
-								var message = obj.text;
+								var tweet = obj.text;
 								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
 
-								if(displayPost(message) && profanityFound(message)) {
-									$("#twitterResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+								if(displayPost(tweet) && profanityFound(tweet)) {
+									$("#twitterResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
 								}
 							});
 						}
@@ -248,13 +248,13 @@ $( document ).ready(function() {
 					var id = response.feed.data[i].id;
 					
 					var url = getFaceBookPostUrl(id);
-					var message = response.feed.data[i].message;
+					var post = response.feed.data[i].message;
 					var date = convertIso(iso);
 
-					console.log(message);
+					console.log(post);
 
-					if(displayPost(message) && profanityFound(message)) {
-						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+					if(displayPost(post) && profanityFound(post)) {
+						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + post + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
 				return response;
@@ -262,7 +262,7 @@ $( document ).ready(function() {
 				return response;
 			}
 		});
-		getTwitterPosts();
+		// getTwitterPosts();
 	}
 
 	function getTwitterUser(accessToken) {
