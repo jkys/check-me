@@ -47,32 +47,29 @@ $( document ).ready(function() {
 
 	
 
-	function getTwitterPosts() {
+	function getTwitterPosts(page = 0) {
 		var provider = new firebase.auth.TwitterAuthProvider();
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			var secret = result.credential.secret;
 			var user = getTwitterUser(accessToken);
-
-			$(function() {
-				$.ajax({
-					type: 'POST',
-					url: 'get_tweets.php',
-					data: {
-							userID: user,
-							token: accessToken, 
-							secret: secret,
-							page: 0
-					},
-					dataType : 'json',
-					success: doStuff
-				});
+			$.ajax({
+				type: 'POST',
+				url: 'get_tweets.php',
+				data: {
+					userID: user,
+					token: accessToken, 
+					secret: secret,
+					page: page
+				},
+				dataType : 'json',
+				success: doStuff
 			});
+			
 		});
 	}
 
 	function doStuff (response) {
-		console.log(response);
 		if(response != '[]'){
 			if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
 				var page = 1;
@@ -83,22 +80,8 @@ $( document ).ready(function() {
 
 					displayPost(tweet, date, url, 'twitter');
 				});
-
-				$.ajax({
-					type: 'POST',
-					url: 'get_tweets.php',
-					data: {
-							userID: user,
-							token: accessToken, 
-							secret: secret,
-							page: page
-					},
-					dataType : 'json',
-					success: doStuff
-				});
-
 				page += 1;
-
+				getTwitterPosts(page);
 			}
 		}
 	}
