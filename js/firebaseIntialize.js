@@ -214,14 +214,11 @@ $( document ).ready(function() {
 		var ref = firebase.database().ref("Profanity");
 		// console.log(ref.child('0'));
 		ref.on('value', function(snapshot) {
-			console.log(snapshot);
-			console.log(snapshot.val());
+			db = snapshot.val();
+			console.log(db[0].Word);
+			console.log(db[0].scale);
 		});
-
 		var messageLength = message.length;
-
-
-
 		return true; 
 	}
 
