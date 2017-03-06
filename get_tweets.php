@@ -33,6 +33,6 @@ do {
         ->buildOauth($url, 'GET')
         ->performRequest();
     ++$page;
-    echo json_encode($tweets)
-} while($tweets != '[]' & $page < 5);
+    echo json_encode($tweets);
+} while($tweets != '[]' & $page < 17);
 ?>
