@@ -55,10 +55,6 @@ body {
 
 .results {
   display: inline-block;
-  margin-top: 100px;
-  width: 35%;
-  margin-left: 7%;
-  height: 800px;
   overflow: scroll;
 }
 
@@ -86,6 +82,7 @@ hr {
   border-radius: 3px;
   height: auto;
   padding: 2%;
+  background-color: #fff;
 }
 
 .thirdPartySignUpContainer, .thirdPartyLinkContainer {
@@ -397,7 +394,7 @@ footer {
 }
 
 .postButton {
-  background-color: #fff;
+  background-color: rgba(19, 35, 47, 0.9);
   border: none;
   width: 100%;
   cursor: pointer;
