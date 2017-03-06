@@ -342,10 +342,12 @@ $( document ).ready(function() {
 	});
 
 	$('.postButton').click(function() {
-		if($(this).find('.reasons').is(":visible")) {
-			$(this).find('.reasons').slideUp("slow");
+		console.log('Click!');
+		var reasons = $(this).find('.reasons');
+		if(reasons.is(":visible")) {
+			reasons.slideUp("slow");
 		} else {
-			$(this).find('.reasons').slideDown("slow");
+			reasons.slideDown("slow");
 		}
 	});
 

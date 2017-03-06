@@ -24,20 +24,15 @@ $screen_name = $json_user[0]['screen_name'];
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 $page = 0;
-$tweets = '';
 
 do {
     $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=200&exclude_replies=true&page=' . $page;
-    $tweet = 
+    $tweets = 
         $twitter
         ->setGetfield($getfield)
         ->buildOauth($url, 'GET')
         ->performRequest();
     ++$page;
-    echo ' | ' . $page . ' | ';
-    echo $tweet;
-    $tweets += $tweet;
-} while($tweet != '' & $page < 5);
-
-echo json_encode($tweets);
+    echo json_encode($tweets)
+} while($tweets != '[]' & $page < 5);
 ?>
