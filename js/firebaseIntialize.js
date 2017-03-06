@@ -140,7 +140,17 @@ $( document ).ready(function() {
 		var day = date.getDate();
 		var year = date.getFullYear();
 		var month = date.getMonth();
-		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
+		var hour = date.getHours();
+		var minute = date.getMinutes();
+		var postfix = 'am';
+
+		if(hour > 12) {
+			hour -= 12;
+			postfix = 'pm';
+		} else if (hour == 0) {
+			hour = 12;
+		}
+		var dateString = monthNames[month] + ' ' + day + ', ' + year + ' at ' + hour + ':' + minute + postfix + '.';
 		return dateString;
 	}
 
