@@ -82,7 +82,9 @@ $( document ).ready(function() {
 	}
 
 	function getFacebookPosts(token) {
-		FB.api('/me/feed?limit=100', {
+		FB.api('/me?limit=100', {
+	        'fields'       : 'feed',
+	        'lmit'       : '100',
 	        'access_token' : token
      	}, function (response) {
 			if (response && !response.error) {
