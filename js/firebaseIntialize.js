@@ -201,9 +201,9 @@ $( document ).ready(function() {
 
 								displayPost(tweet, date, url, 'twitter');
 
-								if(postNotEmpty(tweet) && profanityFound(tweet)) {
-									$('#twitterResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
-								}
+								// if(postNotEmpty(tweet) && profanityFound(tweet)) {
+								// 	$('#twitterResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
+								// }
 							});
 						}
 					}, error: function(errors) {
@@ -249,8 +249,6 @@ $( document ).ready(function() {
 					var post = response.feed.data[i].message;
 					var date = convertIso(iso);
 
-					console.log(post);
-
 					displayPost(post, date, url, 'facebook');
 				}
 				return response;
@@ -294,7 +292,7 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + post + '</p><p><a href="' + url + '">Link</a></p></div>');
+					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 				}
 			});
 		}
