@@ -210,16 +210,24 @@ $( document ).ready(function() {
 		});
 	}
 
-	function findProfanity(message){
-		var ref = firebase.database().ref("Profanity");
-		// console.log(ref.child('0'));
-		ref.on('value', function(snapshot) {
+	function profanityFound(message){
+		var score = 0;
+		var profaneWord = firebase.database().ref("Profanity");
+		profaneWord.on('value', function(snapshot) {
 			db = snapshot.val();
-			console.log(db[0].Word);
-			console.log(db[0].scale);
+			db.forEach(function(entry) {
+				var word = entry.Word;
+				var scale = entry.scale;
+
+				console.log(word + ' has a profane level of ' + scale);
+
+				if(message.includes(word)) {
+					score += scale;
+				}
+			});
 		});
-		var messageLength = message.length;
-		return true; 
+
+		return score > 0;
 	}
 
 	function getFacebookPosts(token) {
@@ -237,7 +245,7 @@ $( document ).ready(function() {
 					var message = response.feed.data[i].message;
 					var date = convertIso(iso);
 
-					if(displayPost(message) && findProfanity(message)){
+					if(displayPost(message) && profanityFound(message)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
