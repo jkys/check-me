@@ -40,7 +40,6 @@ $( document ).ready(function() {
         	if (~currentPage.indexOf('index.html')) {
         		window.location = 'home.html';
         	}
-        	console.log(user);
         } else {
         	$('#loggedInBar').hide();
         }
@@ -177,8 +176,8 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					console.log(auth);
-					auth.user.providerData.forEach(function(array) {
+					console.log(auth.currentUser.providerData);
+					auth.currentUser.providerData.forEach(function(array) {
 						if(array.providerId.includes(platform)){
 							imgUrl = array.providerId.photoURL;
 						}
