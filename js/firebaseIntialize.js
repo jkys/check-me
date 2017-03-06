@@ -171,6 +171,9 @@ $( document ).ready(function() {
 					if(containsProfanity(message, word)) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
+					} else if(message.replace(/(.)\1{2,}/g, '$1') == word.replace(/(.)\1{2,}/g, '$1')) {
+						flaggedWords = flaggedWords + word + ', ';
+						score += scale;
 					}
 				});
 
