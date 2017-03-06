@@ -83,17 +83,27 @@ $( document ).ready(function() {
 
 	function test (response) {
 		if (response && !response.error && response.data != '') {
-			var arrayLength = (response.data.length - 1);
+			// var arrayLength = (response.data.length - 1);
 
-			for (var i = 1; i < arrayLength; i++) {
-				var iso = response.data[i].created_time;
-				var id = response.data[i].id;
+			response.data.forEach(function(data) {
+				var iso = data.created_time;
+				var id = data.id;
 				
 				var url = getFaceBookPostUrl(id);
-				var post = response.data[i].message;
+				var post = data.message;
 				var date = convertIso(iso);
 				displayPost(post, date, url, 'facebook');
-			}
+			});
+
+			// for (var i = 1; i < arrayLength; i++) {
+			// 	var iso = response.data[i].created_time;
+			// 	var id = response.data[i].id;
+				
+			// 	var url = getFaceBookPostUrl(id);
+			// 	var post = response.data[i].message;
+			// 	var date = convertIso(iso);
+			// 	displayPost(post, date, url, 'facebook');
+			// }
 	       
 	    	FB.api(response.paging.next, test);
 		}
