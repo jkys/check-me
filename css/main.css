@@ -78,7 +78,7 @@ hr {
 
 .post {
   margin: 3%;
-  border: 1px solid #DCDCDC;
+  border: 3px solid #DCDCDC;
   border-radius: 3px;
   height: auto;
   padding: 2%;
@@ -402,7 +402,7 @@ footer {
 }
 
 .post:hover {
-  border: 2px solid rgb(0, 177, 235);
+  border: 3px solid rgb(0, 177, 235);
 }
 
 
