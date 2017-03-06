@@ -210,14 +210,13 @@ $( document ).ready(function() {
 		});
 	}
 
-	function findProfanity(ref, message){
+	function findProfanity(message){
+		var ref = firebase.database().ref("Profanity");
+		console.dir(ref);
 
 		var length = ref.child("Word").length;
-
 		var refChild = ref.child("Word");
-
 		console.dir(refChild);
-
 		var test = "Shit fuck ass shit";
 
 		//for each(var word in refChild){
@@ -241,10 +240,6 @@ $( document ).ready(function() {
      	}, function (response) {
 			if (response && !response.error) {
 				var arrayLength = (response.feed.data.length - 1);
-				// var rootRef = firebase.database().ref("Profanity");
-
-
-				// console.dir(rootRef);
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
@@ -253,9 +248,9 @@ $( document ).ready(function() {
 					var message = response.feed.data[i].message;
 					var date = convertIso(iso);
 
-					//if(displayPost(message) && findProfanity(rootRef, message)){
+					if(displayPost(message) && findProfanity(message)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
-					//}
+					}
 				}
 				return response;
 			} else {
@@ -286,11 +281,7 @@ $( document ).ready(function() {
 	}
 
 	function displayPost(message) {
-		if(message == '' || message == undefined){
-			return false;
-		} else {
-			return true;
-		}
+		return message != '' && message != undefined
 	}
 
 	function getFaceBookPostUrl(id) {
