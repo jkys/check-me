@@ -394,11 +394,15 @@ footer {
 }
 
 .postButton {
-  background-color: rgba(19, 35, 47, 0.9);
+  background: inherit;
   border: none;
   width: 100%;
   cursor: pointer;
   text-align: left;
+}
+
+.post:hover {
+  border-color: rgb(0, 177, 235);
 }
 
 
