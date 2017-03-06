@@ -82,7 +82,8 @@ $( document ).ready(function() {
 			if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
 				var page = 1;
 				$.each(JSON.parse(response), function(i, obj) {
-					var date = obj.created_at;
+					var date = Date.parse(obj.created_at.replace(/( +)/, ' UTC$1'));
+					var date = convertIso(date);
 					var tweet = obj.text;
 					var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
 
@@ -136,7 +137,9 @@ $( document ).ready(function() {
 			['January', 'February', 'March', 'April', 
 			'May', 'June', 'July', 'August', 'September', 
 			'October', 'November', 'December'];
-		var date = new Date(iso);
+
+
+		var date = new Date(iso);	
 		var day = date.getDate();
 		var year = date.getFullYear();
 		var month = date.getMonth();
