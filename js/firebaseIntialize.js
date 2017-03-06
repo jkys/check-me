@@ -161,8 +161,10 @@ $( document ).ready(function() {
 					}
 				});
 
+				console.log(flaggedWords);
+
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(-1) + '<br>Score: ' + score + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
+					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -1) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 				}
 			});
 		}
