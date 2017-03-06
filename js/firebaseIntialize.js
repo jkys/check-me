@@ -182,11 +182,11 @@ $( document ).ready(function() {
 	}
 
 	function containsProfanity(message, word) {
-		message.split(' ').forEach(messageWord) {
+		message.split(' ').forEach(function(profaceInnerJson) {
 			if(messageWord.replace(/(.)\1{1,}/g, '$1') == word.replace(/(.)\1{1,}/g, '$1')){
 				return true;
 			}
-		}
+		});
 		return message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
 	}
 
