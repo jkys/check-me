@@ -83,20 +83,20 @@ $( document ).ready(function() {
 
 	function test (response) {
 		if (response && !response.error) {
-			var arrayLength = (response.feed.data.length - 1);
+			var arrayLength = (response.data.length - 1);
 
 			for (var i = 1; i < arrayLength; i++) {
-				var iso = response.feed.data[i].created_time;
-				var id = response.feed.data[i].id;
+				var iso = response.data[i].created_time;
+				var id = response.data[i].id;
 				
 				var url = getFaceBookPostUrl(id);
-				var post = response.feed.data[i].message;
+				var post = response.data[i].message;
 				var date = convertIso(iso);
 				displayPost(post, date, url, 'facebook');
 			}
 
-			if (response.feed.paging.next != undefined){
-		       FB.api(response.feed.paging.next, test);
+			if (response.paging.next != undefined){
+		       FB.api(response.paging.next, test);
 		   }
 		}
 	}
@@ -104,9 +104,7 @@ $( document ).ready(function() {
 	function getFacebookPosts(token) {
 		var responseReceived = true;
 		// var offset = 0;
-		FB.api('/me', {
-	        'fields'       : 'feed',
-	        'limit'       : '100',
+		FB.api('me/feed', {
 	        'access_token' : token
      	}, test);
 		getTwitterPosts();
