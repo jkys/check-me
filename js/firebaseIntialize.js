@@ -45,6 +45,225 @@ $( document ).ready(function() {
         }
     });
 
+	
+
+	function getTwitterPosts() {
+		var provider = new firebase.auth.TwitterAuthProvider();
+		auth.signInWithPopup(provider).then(function(result) {
+			var accessToken = result.credential.accessToken;
+			var secret = result.credential.secret;
+			var user = getTwitterUser(accessToken);
+
+			$(function() {
+				$.ajax({
+					type: 'POST',
+					url: 'get_tweets.php',
+					data: {
+							userID: user,
+							token: accessToken, 
+							secret: secret
+					},
+					dataType : 'json',
+					success: function(response) {
+						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+							$.each(JSON.parse(response), function(i, obj) {
+								var date = obj.created_at;
+								var tweet = obj.text;
+								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
+
+								displayPost(tweet, date, url, 'twitter');
+							});
+						}
+					}, error: function(errors) {
+					}
+				});
+			});
+		});
+	}
+
+	function getFacebookPosts(token) {
+		FB.api('/me/feed?limit=100', {
+	        'access_token' : token
+     	}, function (response) {
+			if (response && !response.error) {
+				var arrayLength = (response.feed.data.length - 1);
+				for (var i = 1; i < arrayLength; i++) {
+					var iso = response.feed.data[i].created_time;
+					var id = response.feed.data[i].id;
+					
+					var url = getFaceBookPostUrl(id);
+					var post = response.feed.data[i].message;
+					var date = convertIso(iso);
+
+					displayPost(post, date, url, 'facebook');
+				}
+				return response;
+			}
+		});
+		getTwitterPosts();
+	}
+
+	function getTwitterUser(accessToken) {
+		var index = accessToken.indexOf('-');
+		return accessToken.substring(0, index);
+	}
+
+
+	/*************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 ****************FUNCTION METHODS*****************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************/
+
+	function convertIso(iso) {
+		var monthNames = 
+			['January', 'February', 'March', 'April', 
+			'May', 'June', 'July', 'August', 'September', 
+			'October', 'November', 'December'];
+		var date = new Date(iso);
+		var day = date.getDate();
+		var year = date.getFullYear();
+		var month = date.getMonth();
+		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
+		return dateString;
+	}
+
+	function displayPost(message, date, url, platform) {
+		if(message != '' && message != undefined) {
+			var score = 0;
+			var profaneJson = firebase.database().ref('Profanity');
+			profaneJson.on('value', function(snapshot) {
+				profaneWordSet = snapshot.val();
+				profaneWordSet.forEach(function(profaceInnerJson) {
+					var word = profaceInnerJson.Word;
+					var scale = profaceInnerJson.scale;
+
+					if(message.includes(word)) {
+						score += scale;
+					}
+				});
+
+				if(score > 0) {
+					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
+				}
+			});
+		}
+	}
+
+	function postNotEmpty(message) {
+		return (message != '') && (message != undefined);
+	}
+
+	function getFaceBookPostUrl(id) {
+		var index = id.indexOf('_');
+		var prefix = id.substring(0, index);
+		var postfix = id.substring((index + 1));
+
+		var urlPrefix = 'http://www.facebook.com/';
+		var urlPostfix = '/posts/';
+		var url = urlPrefix + prefix + urlPostfix + postfix;
+		return url;
+	}
+
+	function signOutAndRedirect() {
+		auth.signOut();
+		window.location = 'index.html';
+	}
+
+	function redirectUser() {
+		if(auth.currentUser) {
+			window.location = 'home.html';
+		} else {
+			window.location = 'index.html';
+		}
+	}
+
+	function signInToAccount(provider) {
+        auth.signInWithPopup(provider).then(function(result) {
+        	window.location = 'home.html';
+        	return result;
+        }).catch(function(error) {
+			outPutMessage('register', false, error.message);
+			return error;
+		});
+	}
+
+	function linkAccounts(user, provider) {
+		user.linkWithPopup(provider).then(function(result) {
+			outPutMessage('linkAccount', true, 'Account Linked!');
+			return result;
+		}).catch(function(error) {
+			outPutMessage('linkAccount', false, error.message);
+			return error;
+		});
+	}
+
+	function unlinkAccounts(user, provider) {
+		user.unlink(provider).then(function() {
+			outPutMessage('linkAccount', true, 'Account Unlinked!');
+		}).catch(function(error) {
+			outPutMessage('linkAccount', false, error.message);
+			return error;
+		});
+	}
+
+	function intializeScan() {
+		var scanText = $('#scanText');
+		var elipsesText = $('#elipses');
+
+		scanText.html('Scanning');
+
+		interval = 0;
+		maxInterval = 12;
+
+		var loop = setInterval(function() {
+	    	if(elipsesText.text() != '...') {
+	    		elipsesText.append('.');
+	    	} else {
+	    		elipsesText.html('');
+	    	}
+
+	    	if (interval >= maxInterval) {
+				clearInterval(loop);
+				$('#scanningDiv').hide();
+				$('#scanResults').show();
+			}
+
+			interval += 1;
+		}, 500);
+	}
+
+	function outPutMessage(object, success, errorMessage) {
+		var object = $('#' + object + 'Message');
+		if(success) {
+			object.removeClass('errorMessage');
+			object.addClass('successMessage');
+		} else {
+			object.removeClass('successMessage');
+			object.addClass('errorMessage');
+		}
+		object.html(errorMessage);
+	}
+
+
+	/*************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 ****************LISTENER METHODS*****************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************
+	 *************************************************/
+
 	$('#signUp').click(function() {
 		var registerEmailText = $('#registerEmail').val();
 		var setPasswordText = $('#setPassword').val();
@@ -174,222 +393,4 @@ $( document ).ready(function() {
 			getFacebookPosts(accessToken);
 		});
 	});
-
-	function getTwitterPosts() {
-		var provider = new firebase.auth.TwitterAuthProvider();
-		auth.signInWithPopup(provider).then(function(result) {
-			var accessToken = result.credential.accessToken;
-			var secret = result.credential.secret;
-			var user = getTwitterUser(accessToken);
-
-			$(function() {
-				$.ajax({
-					type: 'POST',
-					url: 'get_tweets.php',
-					data: {
-							userID: user,
-							token: accessToken, 
-							secret: secret
-					},
-					dataType : 'json',
-					success: function(response) {
-						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-							$.each(JSON.parse(response), function(i, obj) {
-								var date = obj.created_at;
-								var tweet = obj.text;
-								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
-
-								displayPost(tweet, date, url, 'twitter');
-
-								// if(postNotEmpty(tweet) && profanityFound(tweet)) {
-								// 	$('#twitterResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
-								// }
-							});
-						}
-					}, error: function(errors) {
-						// console.log(errors);
-					}
-				});
-			});
-		});
-	}
-
-	// function profanityFound(message) {
-	// 	var score = 0;
-	// 	var profaneJson = firebase.database().ref('Profanity');
-	// 	profaneJson.on('value', function(snapshot) {
-	// 		profaneWordSet = snapshot.val();
-	// 		profaneWordSet.forEach(function(profaceInnerJson) {
-	// 			var word = profaceInnerJson.Word;
-	// 			var scale = profaceInnerJson.scale;
-
-	// 			if(message.includes(word)) {
-	// 				score += scale;
-	// 				console.log('Message, "' + message + '", contains the profane word "' + word + '", which has a profane level of ' + scale + '. Message is now at score ' + score + '.');
-	// 			}
-	// 		});
-	// 	});
-	// 	console.log('Profanity Found (score = ' + score + '): ' + (score > 0));
-
-	// 	return (score > 0);
-	// }
-
-	function getFacebookPosts(token) {
-		FB.api('/me', {
-	        'fields'       : 'feed',
-	        'access_token' : token
-     	}, function (response) {
-			if (response && !response.error) {
-				var arrayLength = (response.feed.data.length - 1);
-				for (var i = 1; i < arrayLength; i++) {
-					var iso = response.feed.data[i].created_time;
-					var id = response.feed.data[i].id;
-					
-					var url = getFaceBookPostUrl(id);
-					var post = response.feed.data[i].message;
-					var date = convertIso(iso);
-
-					displayPost(post, date, url, 'facebook');
-				}
-				return response;
-			}
-		});
-		getTwitterPosts();
-	}
-
-	function getTwitterUser(accessToken) {
-		var index = accessToken.indexOf('-');
-		return accessToken.substring(0, index);
-	}
-
-	function convertIso(iso) {
-		var monthNames = 
-			['January', 'February', 'March', 'April', 
-			'May', 'June', 'July', 'August', 'September', 
-			'October', 'November', 'December'];
-		var date = new Date(iso);
-		var day = date.getDate();
-		var year = date.getFullYear();
-		var month = date.getMonth();
-		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
-		return dateString;
-	}
-
-	function displayPost(message, date, url, platform) {
-		if(message != '' && message != undefined) {
-			var score = 0;
-			var profaneJson = firebase.database().ref('Profanity');
-			profaneJson.on('value', function(snapshot) {
-				profaneWordSet = snapshot.val();
-				profaneWordSet.forEach(function(profaceInnerJson) {
-					var word = profaceInnerJson.Word;
-					var scale = profaceInnerJson.scale;
-
-					if(message.includes(word)) {
-						score += scale;
-						// console.log('Message, "' + message + '", contains the profane word "' + word + '", which has a profane level of ' + scale + '. Message is now at score ' + score + '.');
-					}
-				});
-
-				if(score > 0) {
-					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
-				}
-			});
-		}
-	}
-
-	function postNotEmpty(message) {
-		return (message != '') && (message != undefined);
-	}
-
-	function getFaceBookPostUrl(id) {
-		var index = id.indexOf('_');
-		var prefix = id.substring(0, index);
-		var postfix = id.substring((index + 1));
-
-		var urlPrefix = 'http://www.facebook.com/';
-		var urlPostfix = '/posts/';
-		var url = urlPrefix + prefix + urlPostfix + postfix;
-		return url;
-	}
-
-	function signOutAndRedirect() {
-		auth.signOut();
-		window.location = 'index.html';
-	}
-
-	function redirectUser() {
-		if(auth.currentUser) {
-			window.location = 'home.html';
-		} else {
-			window.location = 'index.html';
-		}
-	}
-
-	function signInToAccount(provider) {
-        auth.signInWithPopup(provider).then(function(result) {
-        	window.location = 'home.html';
-        	return result;
-        }).catch(function(error) {
-			outPutMessage('register', false, error.message);
-			return error;
-		});
-	}
-
-	function linkAccounts(user, provider) {
-		user.linkWithPopup(provider).then(function(result) {
-			outPutMessage('linkAccount', true, 'Account Linked!');
-			return result;
-		}).catch(function(error) {
-			outPutMessage('linkAccount', false, error.message);
-			return error;
-		});
-	}
-
-	function unlinkAccounts(user, provider) {
-		user.unlink(provider).then(function() {
-			outPutMessage('linkAccount', true, 'Account Unlinked!');
-		}).catch(function(error) {
-			outPutMessage('linkAccount', false, error.message);
-			return error;
-		});
-	}
-
-	function intializeScan() {
-		var scanText = $('#scanText');
-		var elipsesText = $('#elipses');
-
-		scanText.html('Scanning');
-
-		interval = 0;
-		maxInterval = 12;
-
-		var loop = setInterval(function() {
-	    	if(elipsesText.text() != '...') {
-	    		elipsesText.append('.');
-	    	} else {
-	    		elipsesText.html('');
-	    	}
-
-	    	if (interval >= maxInterval) {
-				clearInterval(loop);
-				$('#scanningDiv').hide();
-				$('#scanResults').show();
-			}
-
-			interval += 1;
-		}, 500);
-	}
-
-	function outPutMessage(object, success, errorMessage) {
-		var object = $('#' + object + 'Message');
-		if(success) {
-			object.removeClass('errorMessage');
-			object.addClass('successMessage');
-		} else {
-			object.removeClass('successMessage');
-			object.addClass('errorMessage');
-		}
-		object.html(errorMessage);
-	}
 });
