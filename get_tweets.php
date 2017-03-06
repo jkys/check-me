@@ -36,7 +36,7 @@ do {
         ->performRequest();
     ++$page;
     $tweets += $tweet;
-} while($tweet != '' | $page > 5);
+} while($tweet != '' | $page < 5);
 
 echo json_encode($tweets);
 ?>
