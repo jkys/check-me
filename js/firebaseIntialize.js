@@ -69,8 +69,6 @@ $( document ).ready(function() {
 							$.each(JSON.parse(response), function(i, obj) {
 								var date = obj.created_at;
 								var tweet = obj.text;
-								console.log(obj);
-								console.log(date);
 								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
 
 								displayPost(tweet, date, url, 'twitter');
@@ -115,6 +113,7 @@ $( document ).ready(function() {
 		return accessToken.substring(0, index);
 	}
 
+
 	/*************************************************
 	 *************************************************
 	 *************************************************
@@ -136,19 +135,7 @@ $( document ).ready(function() {
 		var day = date.getDate();
 		var year = date.getFullYear();
 		var month = date.getMonth();
-		var hour = date.getHours();
-		var minutes = date.getMinutes();
-		var ext = 'am'
-
-		if(hour > 12) {
-			hour = hour - 12;
-			ext = 'pm';
-		} else if (hour == 0) {
-			hour = 12;
-		}
-
-
-		var dateString = monthNames[month] + ' ' + day + ', ' + year + ' at ' + hour + ':' + minutes + ext;
+		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
 		return dateString;
 	}
 
@@ -168,7 +155,7 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<a href="' + url + '"><button class="postButton"><div class="post' + platform + '"><a href="' + url + '" class="postLink"><p class="time' + platform + '">' + date + '</p></a><p class="message' + platform + '">' + message + '</p></div></button></a>');
+					$('#' + platform + 'Results').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 				}
 			});
 		}
