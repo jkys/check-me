@@ -215,12 +215,13 @@ $( document ).ready(function() {
 	function profanityFound(message) {
 		var score = 0;
 		var profaneJson = firebase.database().ref('Profanity');
+		console.log('test1');
 		profaneJson.on('value', function(snapshot) {
 			profaneWordSet = snapshot.val();
+			console.log('test2');
 			profaneWordSet.forEach(function(profaceInnerJson) {
 				var word = profaceInnerJson.Word;
 				var scale = profaceInnerJson.scale;
-				console.log('test')
 
 				if(message.includes(word)) {
 					score += scale;
