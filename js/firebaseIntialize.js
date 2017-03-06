@@ -99,6 +99,7 @@ $( document ).ready(function() {
 					var url = getFaceBookPostUrl(id);
 					var post = response.feed.data[i].message;
 					var date = convertIso(iso);
+					console.log(response);
 
 					displayPost(post, date, url, 'facebook');
 				}
