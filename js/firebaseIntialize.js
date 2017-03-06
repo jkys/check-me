@@ -171,17 +171,8 @@ $( document ).ready(function() {
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
-			console.log('Facebook Sign-In Result: ');
-			console.log(result);
 			getFacebookPosts(accessToken);
 		});
-
-		// var provider = new firebase.auth.TwitterAuthProvider();
-		// auth.signInWithPopup(provider).then(function(result) {
-		// 	var accessToken = result.credential.accessToken;
-		// 	console.log(result);
-		// 	getTwitterPosts(accessToken);
-		// });
 	});
 
 	function checkPosts(posts) {
@@ -193,7 +184,6 @@ $( document ).ready(function() {
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			var secret = result.credential.secret;
-			var token = getTwitterToken(accessToken);
 			var user = getTwitterUser(accessToken);
 
 			$(function(){
@@ -202,56 +192,22 @@ $( document ).ready(function() {
 					url: 'get_tweets.php',
 					data: {
 							userID: user,
-							token: token, 
+							token: accessToken, 
 							secret: secret
 					},
 					dataType : 'json',
 					success: function(response) {
 						if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-							console.log(response);
-
 							$.each(JSON.parse(response), function(i, obj) {
 								$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
 							});
-
 						}
 					}, error: function(errors) {
-						console.log(errors);
+						// console.log(errors);
 					}
 				});
 			});
 		});
-
-		// $(function(){
-		// 	$.ajax({
-		// 		dataType: 'json',
-		// 		type: 'GET',
-		// 		url: 'get_tweets.php',
-		// 		success: function(response) {
-
-		// 			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-						
-		// 				var $tweets = $('<ul></ul>');
-		// 				console.log('Response 2: ');
-		// 				console.log(response);
-		// 				$.each(JSON.parse(response), function(i, obj) {
-		// 					// $tweets.append('<li>' + "Created at: " + obj.created_at + " Message: " + obj.text + " ID: " + obj.id + '</li>');
-		// 					// //https://twitter.com/ColbyDaly/status/617291552436715520
-							
-		// 					$("#twitterResults").append('<div class="post"><h3 class="time">' + obj.created_at + '</h3><p class="text">' + obj.text + '</p><p><a href="' + 'https://twitter.com/ColbyDaly/status/' + obj.id + '">Link</a></p></div>');
-		// 				});
-
-		// 				$('.tweets-container').html($tweets);
-
-		// 			} else {
-		// 				$('.tweets-container p:first').text('Response error');
-		// 			}
-		// 		}, error: function(errors) {
-		// 			console.log(errors);
-		// 			$('.tweets-container p:first').text('Request error');
-		// 		}
-		// 	});
-		// });
 	}
 
 	function findProfanity(ref, message){
@@ -284,14 +240,11 @@ $( document ).ready(function() {
 	        'access_token' : token
      	}, function (response) {
 			if (response && !response.error) {
-				console.log(response);
 				var arrayLength = (response.feed.data.length - 1);
 				// var rootRef = firebase.database().ref("Profanity");
 
 
 				// console.dir(rootRef);
-				
-
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
@@ -300,9 +253,6 @@ $( document ).ready(function() {
 					var message = response.feed.data[i].message;
 					var date = convertIso(iso);
 
-					console.log(url);
-					console.log(message);
-					console.log(date);
 					//if(displayPost(message) && findProfanity(rootRef, message)){
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
 					//}
@@ -320,13 +270,6 @@ $( document ).ready(function() {
 		var user = accessToken.substring(0, index);
 
 		return user;
-	}
-
-	function getTwitterToken(accessToken) {
-		var index = accessToken.indexOf('-');
-		var token = accessToken.substring((index + 1));
-
-		return token;
 	}
 
 	function convertIso(iso) {
