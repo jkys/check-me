@@ -168,7 +168,7 @@ $( document ).ready(function() {
 					var word = profaceInnerJson.Word;
 					var scale = profaceInnerJson.scale;
 
-					if(containsProfanity(message)) {
+					if(containsProfanity(message, word)) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
 					}
@@ -181,7 +181,7 @@ $( document ).ready(function() {
 		}
 	}
 
-	function containsProfanity(message) {
+	function containsProfanity(message, word) {
 		return message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
 	}
 
