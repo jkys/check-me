@@ -219,10 +219,9 @@ $( document ).ready(function() {
 				var word = entry.Word;
 				var scale = entry.scale;
 
-				console.log(word + ' has a profane level of ' + scale);
-
 				if(message.includes(word)) {
 					score += scale;
+					console.log('Message, "' + message + '", contains the profane word "' + word + '", which has a profane level of ' + scale '. Message is now at score ' + score + '.');
 				}
 			});
 		});
