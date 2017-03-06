@@ -394,11 +394,6 @@ footer {
   text-align: left;
 }
 
-.post:hover {
-  border: 3px solid rgb(0, 177, 235);
-}
-
-
 .reasons {
   display: none;
   font-size: .8em;
@@ -420,6 +415,10 @@ button:focus {
   color: rgb(0, 177, 235);
 }
 
+.postImg:hover, .post:hover {
+  border-color: rgb(0, 177, 235);
+}
+
 .postLink {
   text-decoration: none;
   color: #A7A7A7;
@@ -429,11 +428,12 @@ button:focus {
   height: 50px;
   width: 50px;
   display: inline-block;
+  border: 1px solid #DCDCDC;
 }
 
 .time {
   color: #A7A7A7;
-  margin: 0;
+  margin: 0 0 0 3%;
   font-size: .8em;
   font-weight: normal;
   display: inline-block;
