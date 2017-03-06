@@ -103,14 +103,6 @@ $( document ).ready(function() {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
-		$('.postButton').click(function() {
-			var reasons = $(this).find('.reasons');
-			if(reasons.is(":visible")) {
-				reasons.slideUp("slow");
-			} else {
-				reasons.slideDown("slow");
-			}
-		});
 	}
 
 	function getTwitterUser(accessToken) {
@@ -275,6 +267,15 @@ $( document ).ready(function() {
 	 *************************************************
 	 *************************************************
 	 *************************************************/
+
+	$('.postButton').live('click', function(){
+		var reasons = $(this).find('.reasons');
+		if(reasons.is(":visible")) {
+			reasons.slideUp("slow");
+		} else {
+			reasons.slideDown("slow");
+		}
+	});
 
 	$('#signUp').click(function() {
 		var registerEmailText = $('#registerEmail').val();
