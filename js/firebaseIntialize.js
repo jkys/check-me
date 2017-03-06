@@ -218,12 +218,12 @@ $( document ).ready(function() {
 
 	function profanityFound(message){
 		var score = 0;
-		var profaneWord = firebase.database().ref("Profanity");
-		profaneWord.on('value', function(snapshot) {
-			db = snapshot.val();
-			db.forEach(function(entry) {
-				var word = entry.Word;
-				var scale = entry.scale;
+		var profaneJson = firebase.database().ref("Profanity");
+		profaneJson.on('value', function(snapshot) {
+			profaneWordSet = snapshot.val();
+			profaneWordSet.forEach(function(profaceInnerJson) {
+				var word = profaceInnerJson.Word;
+				var scale = profaceInnerJson.scale;
 
 				if(message.includes(word)) {
 					score += scale;
@@ -250,6 +250,8 @@ $( document ).ready(function() {
 					var url = getFaceBookPostUrl(id);
 					var message = response.feed.data[i].message;
 					var date = convertIso(iso);
+
+					console.log(message);
 
 					if(displayPost(message) && profanityFound(message)) {
 						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><p><a href="' + url + '">Link</a></p></div>');
