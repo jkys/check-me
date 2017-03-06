@@ -96,7 +96,7 @@ $( document ).ready(function() {
 			}
 
 			if (response.feed.paging.next != undefined){
-		       FB.api(response.feed.paging.next, doSomething);
+		       FB.api(response.feed.paging.next, test);
 		   }
 		}
 	}
