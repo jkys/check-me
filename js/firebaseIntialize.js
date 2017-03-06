@@ -82,26 +82,42 @@ $( document ).ready(function() {
 	}
 
 	function getFacebookPosts(token) {
-		FB.api('/me', {
-	        'fields'       : 'feed',
-	        'limit'       : '100',
-	        'access_token' : token
-     	}, function (response) {
-			if (response && !response.error) {
-				var arrayLength = (response.feed.data.length - 1);
-				for (var i = 1; i < arrayLength; i++) {
-					var iso = response.feed.data[i].created_time;
-					var id = response.feed.data[i].id;
-					
-					var url = getFaceBookPostUrl(id);
-					var post = response.feed.data[i].message;
-					var date = convertIso(iso);
+		var responseReceived = true;
+		var offset = 0;
+		do {
+			FB.api('/me', {
+		        'fields'       : 'feed',
+		        'limit'       : '100',
+		        'offset'       : offset,
+		        'access_token' : token
+	     	}, function (response) {
+				if (response && !response.error) {
+					var arrayLength = (response.feed.data.length - 1);
+					for (var i = 1; i < arrayLength; i++) {
+						var iso = response.feed.data[i].created_time;
+						var id = response.feed.data[i].id;
+						
+						var url = getFaceBookPostUrl(id);
+						var post = response.feed.data[i].message;
+						var date = convertIso(iso);
 
-					displayPost(post, date, url, 'facebook');
+						displayPost(post, date, url, 'facebook');
+					}
 				}
-				return response;
-			}
-		});
+
+				console.log(response);
+
+				if(response.) {
+
+				} else {
+					offset += 100;
+				}
+
+				if(offset > 300) {
+					responseReceived = false;
+				}
+			});
+		} while (responseReceived);
 		getTwitterPosts();
 	}
 
