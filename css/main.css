@@ -416,6 +416,13 @@ button:active {
   color: black;
 }
 
+button:focus {
+  outline: none;
+  outline-color: none;
+  outline-style: none;
+  outline-width: none;
+}
+
 .time:hover, .postLink:hover {
   color: rgb(0, 177, 235);
 }
