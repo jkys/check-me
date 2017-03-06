@@ -40,6 +40,7 @@ $( document ).ready(function() {
         	if (~currentPage.indexOf('index.html')) {
         		window.location = 'home.html';
         	}
+        	console.log(user);
         } else {
         	$('#loggedInBar').hide();
         }
@@ -186,7 +187,7 @@ $( document ).ready(function() {
 		message.split(' ').forEach(function(messageWord) {
 			messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
 			wordShort = word.replace(/(.)\1{1,}/g, '$1');
-			if(messageShort == wordShort && messageWord != 'as') {
+			if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con') {
 				profane = true;
 			}
 		});
