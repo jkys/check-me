@@ -22,7 +22,7 @@ $json_user = json_decode($user, true);
 $screen_name = $json_user[0]['screen_name'];
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$page = 1;
+$page = 0;
 $tweets = '';
 
 do {
@@ -33,6 +33,8 @@ do {
         ->buildOauth($url, 'GET')
         ->performRequest();
     ++$page;
+    echo ' | ' . $page . ' | ';
+    echo $tweet;
     $tweets += $tweet;
 } while($tweet != '' & $page < 5);
 
