@@ -277,7 +277,7 @@ $( document ).ready(function() {
 	}
 
 	function displayPost(message) {
-		return message != '' && message != undefined
+		return (message != '') && (message != undefined);
 	}
 
 	function getFaceBookPostUrl(id) {
