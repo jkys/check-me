@@ -97,8 +97,6 @@ $( document ).ready(function() {
 				for (var i = 1; i < arrayLength; i++) {
 					var iso = response.feed.data[i].created_time;
 					var id = response.feed.data[i].id;
-					console.log(response);
-					console.log(iso);
 					
 					var url = getFaceBookPostUrl(id);
 					var post = response.feed.data[i].message;
@@ -116,7 +114,6 @@ $( document ).ready(function() {
 		var index = accessToken.indexOf('-');
 		return accessToken.substring(0, index);
 	}
-
 
 	/*************************************************
 	 *************************************************
@@ -139,7 +136,19 @@ $( document ).ready(function() {
 		var day = date.getDate();
 		var year = date.getFullYear();
 		var month = date.getMonth();
-		var dateString = monthNames[month] + ' ' + day + ', ' + year + '.';
+		var hour = date.getHours();
+		var minutes = date.getMinutes();
+		var ext = 'am'
+
+		if(hour > 12) {
+			hour = hour - 12;
+			ext = 'pm';
+		} else if (hour == 0) {
+			hour = 12;
+		}
+
+
+		var dateString = monthNames[month] + ' ' + day + ', ' + year + ' at ' + hour + ':' + minutes + ext;
 		return dateString;
 	}
 
@@ -159,7 +168,7 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-					$('#' + platform + 'Results').append('<a href="#"><button class="postButton"><div class="post' + platform + '"><a href="' + url + '" class="postLink"><p class="time' + platform + '">' + date + '</p></a><p class="message' + platform + '">' + message + '</p></div></button></a>');
+					$('#' + platform + 'Results').append('<a href="' + url + '"><button class="postButton"><div class="post' + platform + '"><a href="' + url + '" class="postLink"><p class="time' + platform + '">' + date + '</p></a><p class="message' + platform + '">' + message + '</p></div></button></a>');
 				}
 			});
 		}
