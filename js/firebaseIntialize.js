@@ -268,7 +268,7 @@ $( document ).ready(function() {
 	 *************************************************
 	 *************************************************/
 
-	$('.postButton').live('click', function(){
+	$('.postButton').on('click', function(){
 		var reasons = $(this).find('.reasons');
 		if(reasons.is(":visible")) {
 			reasons.slideUp("slow");
