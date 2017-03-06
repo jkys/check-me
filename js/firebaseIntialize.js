@@ -9,11 +9,11 @@ $( document ).ready(function() {
 		FB.AppEvents.logPageView();
 	};
 
-	(function(d, s, id){
+	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) {return;}
 		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js";
+		js.src = '//connect.facebook.net/en_US/sdk.js';
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 
@@ -21,11 +21,11 @@ $( document ).ready(function() {
 	$('#loggedInBar').hide();
 	
 	var config = {
-		apiKey: "AIzaSyBXpn2g6SLj4CB_4hkvLs4N4P4D7yTZf_k",
-	    authDomain: "checkme-8f276.firebaseapp.com",
-	    databaseURL: "https://checkme-8f276.firebaseio.com",
-	    storageBucket: "checkme-8f276.appspot.com",
-	    messagingSenderId: "410954694898"
+		apiKey: 'AIzaSyBXpn2g6SLj4CB_4hkvLs4N4P4D7yTZf_k',
+	    authDomain: 'checkme-8f276.firebaseapp.com',
+	    databaseURL: 'https://checkme-8f276.firebaseio.com',
+	    storageBucket: 'checkme-8f276.appspot.com',
+	    messagingSenderId: '410954694898'
 	};
 
 	firebase.initializeApp(config); // Intialize firebase
@@ -37,8 +37,8 @@ $( document ).ready(function() {
         if (user) {
         	$('#loggedInBar').show();
         	var currentPage = window.location.pathname;
-        	if (~currentPage.indexOf("index.html")) {
-        		window.location = "home.html";
+        	if (~currentPage.indexOf('index.html')) {
+        		window.location = 'home.html';
         	}
         } else {
         	$('#loggedInBar').hide();
@@ -53,7 +53,7 @@ $( document ).ready(function() {
 		signUpPromise.then(function(user) {
 			user.sendEmailVerification().then(function() {
 			 	outPutMessage('register', true, 'Verification Email Sent.');
-			 	window.location = "home.html";
+			 	window.location = 'home.html';
 			}).catch(function(error) {
 				outPutMessage('register', true, 'Account created, however verification email not sent.');
 			});
@@ -68,7 +68,7 @@ $( document ).ready(function() {
 		
 		const signInPromise = auth.signInWithEmailAndPassword(emailText, passwordText);
 		signInPromise.then(function() {
-			window.location = "home.html";
+			window.location = 'home.html';
 		}).catch(function(error) {
 			outPutMessage('login', false, error.message);
 		});
@@ -175,10 +175,6 @@ $( document ).ready(function() {
 		});
 	});
 
-	function checkPosts(posts) {
-		var postCount = posts.length;
-	}
-
 	function getTwitterPosts() {
 		var provider = new firebase.auth.TwitterAuthProvider();
 		auth.signInWithPopup(provider).then(function(result) {
@@ -186,7 +182,7 @@ $( document ).ready(function() {
 			var secret = result.credential.secret;
 			var user = getTwitterUser(accessToken);
 
-			$(function(){
+			$(function() {
 				$.ajax({
 					type: 'POST',
 					url: 'get_tweets.php',
@@ -204,7 +200,7 @@ $( document ).ready(function() {
 								var url = 'https://twitter.com/ColbyDaly/status/' + obj.id;
 
 								if(displayPost(tweet) && profanityFound(tweet)) {
-									$("#twitterResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
+									$('#twitterResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + tweet + '</p><p><a href="' + url + '">Link</a></p></div>');
 								}
 							});
 						}
@@ -216,14 +212,15 @@ $( document ).ready(function() {
 		});
 	}
 
-	function profanityFound(message){
+	function profanityFound(message) {
 		var score = 0;
-		var profaneJson = firebase.database().ref("Profanity");
+		var profaneJson = firebase.database().ref('Profanity');
 		profaneJson.on('value', function(snapshot) {
 			profaneWordSet = snapshot.val();
 			profaneWordSet.forEach(function(profaceInnerJson) {
 				var word = profaceInnerJson.Word;
 				var scale = profaceInnerJson.scale;
+				console.log('test')
 
 				if(message.includes(word)) {
 					score += scale;
@@ -237,7 +234,7 @@ $( document ).ready(function() {
 	}
 
 	function getFacebookPosts(token) {
-		FB.api("/me", {
+		FB.api('/me', {
 	        'fields'       : 'feed',
 	        'access_token' : token
      	}, function (response) {
@@ -254,29 +251,25 @@ $( document ).ready(function() {
 					console.log(post);
 
 					if(displayPost(post) && profanityFound(post)) {
-						$("#facebookResults").append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + post + '</p><p><a href="' + url + '">Link</a></p></div>');
+						$('#facebookResults').append('<div class="post"><h3 class="time">' + date + '</h3><p class="text">' + post + '</p><p><a href="' + url + '">Link</a></p></div>');
 					}
 				}
 				return response;
-			} else {
-				return response;
 			}
 		});
-		// getTwitterPosts();
+		getTwitterPosts();
 	}
 
 	function getTwitterUser(accessToken) {
 		var index = accessToken.indexOf('-');
-		var user = accessToken.substring(0, index);
-
-		return user;
+		return accessToken.substring(0, index);
 	}
 
 	function convertIso(iso) {
 		var monthNames = 
-			["January", "February", "March", "April", 
-			"May", "June", "July", "August", "September", 
-			"October", "November", "December"];
+			['January', 'February', 'March', 'April', 
+			'May', 'June', 'July', 'August', 'September', 
+			'October', 'November', 'December'];
 		var date = new Date(iso);
 		var day = date.getDate();
 		var year = date.getFullYear();
@@ -286,7 +279,6 @@ $( document ).ready(function() {
 	}
 
 	function displayPost(message) {
-		console.log('Display Post: ' + ((message != '') && (message != undefined)));
 		return (message != '') && (message != undefined);
 	}
 
@@ -303,20 +295,20 @@ $( document ).ready(function() {
 
 	function signOutAndRedirect() {
 		auth.signOut();
-		window.location = "index.html";
+		window.location = 'index.html';
 	}
 
 	function redirectUser() {
 		if(auth.currentUser) {
-			window.location = "home.html";
+			window.location = 'home.html';
 		} else {
-			window.location = "index.html";
+			window.location = 'index.html';
 		}
 	}
 
 	function signInToAccount(provider) {
         auth.signInWithPopup(provider).then(function(result) {
-        	window.location = "home.html";
+        	window.location = 'home.html';
         	return result;
         }).catch(function(error) {
 			outPutMessage('register', false, error.message);
@@ -352,8 +344,8 @@ $( document ).ready(function() {
 		interval = 0;
 		maxInterval = 12;
 
-		var loop = setInterval(function(){
-	    	if(elipsesText.text() != '...'){
+		var loop = setInterval(function() {
+	    	if(elipsesText.text() != '...') {
 	    		elipsesText.append('.');
 	    	} else {
 	    		elipsesText.html('');
