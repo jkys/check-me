@@ -85,11 +85,6 @@ $( document ).ready(function() {
 		if (response && !response.error) {
 			var arrayLength = (response.feed.data.length - 1);
 
-			if(response.data == ''){
-					console.log('Woah no response!');
-			} else {
-				var next = response.paging.next;
-			}
 			for (var i = 1; i < arrayLength; i++) {
 				var iso = response.feed.data[i].created_time;
 				var id = response.feed.data[i].id;
