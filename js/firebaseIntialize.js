@@ -85,7 +85,7 @@ $( document ).ready(function() {
 					var date = Date.parse(obj.created_at.replace(/( +)/, ' UTC$1'));
 					var date = convertIso(date);
 					var tweet = obj.text;
-					var url = 'https://twitter.com/' + obj.user.id_str + '/status/' + obj.id;
+					var url = 'https://twitter.com/' + obj.user.id_str + '/status/' + obj.id_str;
 
 					displayPost(tweet, date, url, 'twitter');
 				});
