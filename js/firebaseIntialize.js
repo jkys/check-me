@@ -100,8 +100,8 @@ $( document ).ready(function() {
 				displayPost(post, date, url, 'facebook');
 			}
 
-			if (response.paging.next != undefined){
-		       FB.api(response.paging.next, doSomething);
+			if (response.feed.paging.next != undefined){
+		       FB.api(response.feed.paging.next, doSomething);
 		   }
 		}
 	}
