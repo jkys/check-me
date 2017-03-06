@@ -155,14 +155,6 @@ $( document ).ready(function() {
 
 				if(score > 0) {
 					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(-1) + '<br>Score: ' + score + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
-					$('.postButton').click(function() {
-						var reasons = $(this).find('.reasons');
-						if(reasons.is(":visible")) {
-							reasons.slideUp("slow");
-						} else {
-							reasons.slideDown("slow");
-						}
-					});
 				}
 			});
 		}
@@ -249,6 +241,15 @@ $( document ).ready(function() {
 
 			interval += 1;
 		}, 500);
+
+		$('.postButton').click(function() {
+			var reasons = $(this).find('.reasons');
+			if(reasons.is(":visible")) {
+				reasons.slideUp("slow");
+			} else {
+				reasons.slideDown("slow");
+			}
+		});
 	}
 
 	function outPutMessage(object, success, errorMessage) {
