@@ -101,6 +101,11 @@ $( document ).ready(function() {
 				var post = data.message;
 				var url = getFaceBookPostUrl(data.id);
 				var date = convertIso(data.created_time);
+				console.log(data.created_time);
+				console.log(date);
+
+				console.log(data.id);
+				console.log(url);
 				displayPost(post, date, url, 'facebook');
 			});
 	    	FB.api(response.paging.next, getPosts);
@@ -177,6 +182,8 @@ $( document ).ready(function() {
 				if(score > 0) {
 					auth.currentUser.providerData.forEach(function(array) {
 						if(array.providerId.includes(platform)){
+
+							console.log(array);
 							imgUrl = array.photoURL;
 						}
 					});
