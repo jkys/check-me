@@ -421,9 +421,10 @@ $( document ).ready(function() {
 		var fbProvider = new firebase.auth.FacebookAuthProvider();
 		fbProvider.addScope('user_posts');
 		auth.signInWithPopup(fbProvider).then(function(result) {
-			console.log(result);
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
+		}, function(error){
+			console.log(error);
 		});
 	});
 });
