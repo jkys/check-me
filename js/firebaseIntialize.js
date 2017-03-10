@@ -111,7 +111,6 @@ $( document ).ready(function() {
 		FB.api('me/feed', {
 	        'access_token' : token
      	}, getPosts);
-		getTwitterPosts();
 	}
 
 	function getTwitterUser(accessToken) {
