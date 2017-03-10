@@ -318,7 +318,7 @@ footer {
 }
 
 .successMessage {
-  margin-top: 20px;
+  margin-top: 40px;
   color: #5CDC48;
 }
 
@@ -347,7 +347,8 @@ footer.login {
 }
 
 .settingsPageMessage {
-  margin-left: 15%;
+  width: 100%;
+  text-align: center;
 }
 
 .settingsPageButton {
