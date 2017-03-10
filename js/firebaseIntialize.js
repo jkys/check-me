@@ -45,36 +45,55 @@ $( document ).ready(function() {
         }
     });
 
-    function getTwitterTweets(user, accessToken, secret, page = 0) {
-    	$.ajax({
-			type: 'POST',
-			url: 'get_tweets.php',
-			data: {
-				userID: user,
-				token: accessToken, 
-				secret: secret,
-				page: page
-			},
-			dataType : 'json',
-			success: function(user, accessToken, secret, response) {
-                if(response != '[]'){
-					if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
-						var page = 1;
-						$.each(JSON.parse(response), function(i, obj) {
-							var date = Date.parse(obj.created_at.replace(/( +)/, ' UTC$1'));
-							var date = convertIso(date);
-							var tweet = obj.text;
-							var url = 'https://twitter.com/' + obj.user.id_str + '/status/' + obj.id_str;
+	
 
-							displayPost(tweet, date, url, 'twitter');
-						});
-						page += 1;
-						getTwitterTweets(user, accessToken, secret, page);
+	function getTwitterPosts(page = 0) {
+		var provider = new firebase.auth.TwitterAuthProvider();
+		auth.signInWithPopup(provider).then(function(result) {
+			var accessToken = result.credential.accessToken;
+			var secret = result.credential.secret;
+			var user = getTwitterUser(accessToken);
+			$.ajax({
+				type: 'POST',
+				url: 'get_tweets.php',
+				data: {
+					userID: user,
+					token: accessToken, 
+					secret: secret,
+					page: page
+				},
+				dataType : 'json',
+				success: getTweets
+			}).done(function() {
+				$('.postButton').on('click', function(){
+					var reasons = $(this).find('.reasons');
+					if(reasons.is(":visible")) {
+						reasons.slideUp("slow");
+					} else {
+						reasons.slideDown("slow");
 					}
-				}
-            }
+				});
+			});
 		});
-    }
+	}
+
+	function getTweets (response) {
+		if(response != '[]'){
+			if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
+				var page = 1;
+				$.each(JSON.parse(response), function(i, obj) {
+					var date = Date.parse(obj.created_at.replace(/( +)/, ' UTC$1'));
+					var date = convertIso(date);
+					var tweet = obj.text;
+					var url = 'https://twitter.com/' + obj.user.id_str + '/status/' + obj.id_str;
+
+					displayPost(tweet, date, url, 'twitter');
+				});
+				page += 1;
+				getTwitterPosts(page);
+			}
+		}
+	}
 
 	function getPosts (response) {
 		if (response && !response.error && response.data != '') {
@@ -414,53 +433,11 @@ $( document ).ready(function() {
 	$('#scanButton').click(function() {
 		intializeScan();
 
-		var fbProvider = new firebase.auth.FacebookAuthProvider();
-		fbProvider.addScope('user_posts');
-		auth.signInWithPopup(fbProvider).then(function(result) {
-			if(result){
-				var fbAccessToken = result.credential.accessToken;
-				getFacebookPosts(fbAccessToken);
-
-				var twProvider = new firebase.auth.TwitterAuthProvider();
-				auth.signInWithPopup(twProvider).then(function(result) {
-					var twAccessToken = result.credential.accessToken;
-					var twSecret = result.credential.secret;
-					var twUser = getTwitterUser(twAccessToken);
-					getTwitterTweets(twAccessToken, twSecret, twUser);
-				}).catch(function(error) {
-					
-				});
-			}
-		}).catch(function(error) {
-			if(error) {
-				var twProvider = new firebase.auth.TwitterAuthProvider();
-				auth.signInWithPopup(twProvider).then(function(result) {
-					var twAccessToken = result.credential.accessToken;
-					var twSecret = result.credential.secret;
-					var twUser = getTwitterUser(twAccessToken);
-					getTwitterTweets(twAccessToken, twSecret, twUser);
-				}).catch(function(error) {
-					
-				});
-			}
-		});
-
-		$('.postButton').on('click', function(){
-			var reasons = $(this).find('.reasons');
-			if(reasons.is(":visible")) {
-				reasons.slideUp("slow");
-			} else {
-				reasons.slideDown("slow");
-			}
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_posts');
+		auth.signInWithPopup(provider).then(function(result) {
+			var accessToken = result.credential.accessToken;
+			getFacebookPosts(accessToken);
 		});
 	});
-
-
-
-
-
-
-
-
-
 });
