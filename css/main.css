@@ -1,5 +1,5 @@
 body {
-  background: #ffffff;
+  background-image: url('../images/ticks.png');
 }
 
 #loginBody {
@@ -12,6 +12,11 @@ body {
 
 * {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.aboutText {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .thirdPartyButton {
