@@ -101,11 +101,6 @@ $( document ).ready(function() {
 				var post = data.message;
 				var url = getFaceBookPostUrl(data.id);
 				var date = convertIso(data.created_time);
-				console.log(data.created_time);
-				console.log(date);
-
-				console.log(data.id);
-				console.log(url);
 				displayPost(post, date, url, 'facebook');
 			});
 	    	FB.api(response.paging.next, getPosts);
@@ -116,6 +111,7 @@ $( document ).ready(function() {
 		FB.api('me/feed', {
 	        'access_token' : token
      	}, getPosts);
+		getTwitterPosts();
 	}
 
 	function getTwitterUser(accessToken) {
@@ -182,8 +178,6 @@ $( document ).ready(function() {
 				if(score > 0) {
 					auth.currentUser.providerData.forEach(function(array) {
 						if(array.providerId.includes(platform)){
-
-							console.log(array);
 							imgUrl = array.photoURL;
 						}
 					});
@@ -243,9 +237,9 @@ $( document ).ready(function() {
 		});
 	}
 
-	function linkAccounts(user, provider, platform) {
+	function linkAccounts(user, provider) {
 		user.linkWithPopup(provider).then(function(result) {
-			outPutMessage('linkAccount', true, platform + ' account linked!');
+			outPutMessage('linkAccount', true, 'Account Linked!');
 			return result;
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
@@ -337,6 +331,14 @@ $( document ).ready(function() {
 		});
 	});
 
+	$('#unlinkFacebook').click(function() {
+		var result = unlinkAccounts(auth.currentUser, 'facebook');
+	});
+
+	$('#unlinkTwitter').click(function() {
+		var result = unlinkAccounts(auth.currentUser, 'twitter');
+	});
+
 	$('#signIn').click(function() {
 		var emailText = $('#email').val();
 		var passwordText = $('#password').val();
@@ -416,20 +418,12 @@ $( document ).ready(function() {
 	$('#linkFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		var result = linkAccounts(auth.currentUser, provider, 'Facebook');
+		var result = linkAccounts(auth.currentUser, provider);
 	});
 
 	$('#linkTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = linkAccounts(auth.currentUser, provider, 'Twitter');
-	});
-
-	$('#unlinkFacebook').click(function() {
-		var result = unlinkAccounts(auth.currentUser, 'facebook');
-	});
-
-	$('#unlinkTwitter').click(function() {
-		var result = unlinkAccounts(auth.currentUser, 'twitter');
+		var result = linkAccounts(auth.currentUser, provider);
 	});
 
 	$('#logOut').click(function() { signOutAndRedirect(); });
@@ -444,8 +438,6 @@ $( document ).ready(function() {
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
-
-			getTwitterPosts();
 		});
 	});
 });
