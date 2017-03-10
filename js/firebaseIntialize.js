@@ -247,8 +247,9 @@ $( document ).ready(function() {
 		});
 	}
 
-	function unlinkAccounts(user, provider) {
-		user.unlink(provider).then(function() {
+	function unlinkAccounts(user, providerid) {
+
+		user.unlink(providerid).then(function() {
 			outPutMessage('linkAccount', true, 'Account Unlinked!');
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
@@ -408,18 +409,15 @@ $( document ).ready(function() {
 
 	$('#linkTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = linkAccounts(auth.currentUser, provider);
+		var result = linkAccounts(auth.currentUser, 'provider');
 	});
 
 	$('#unlinkFacebook').click(function() {
-		var provider = new firebase.auth.FacebookAuthProvider();
-		provider.addScope('user_posts');
-		var result = unlinkAccounts(auth.currentUser, provider);
+		var result = unlinkAccounts(auth.currentUser, 'www.facebook.com');
 	});
 
 	$('#unlinkTwitter').click(function() {
-		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = unlinkAccounts(auth.currentUser, provider);
+		var result = unlinkAccounts(auth.currentUser, 'www.twitter.com');
 	});
 
 	$('#logOut').click(function() { signOutAndRedirect(); });
