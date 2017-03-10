@@ -237,9 +237,9 @@ $( document ).ready(function() {
 		});
 	}
 
-	function linkAccounts(user, provider) {
+	function linkAccounts(user, provider, platform) {
 		user.linkWithPopup(provider).then(function(result) {
-			outPutMessage('linkAccount', true, 'Account Linked!');
+			outPutMessage('linkAccount', true, platform + ' account linked!');
 			return result;
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
@@ -418,12 +418,12 @@ $( document ).ready(function() {
 	$('#linkFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		var result = linkAccounts(auth.currentUser, provider);
+		var result = linkAccounts(auth.currentUser, provider, 'Facebook');
 	});
 
 	$('#linkTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = linkAccounts(auth.currentUser, provider);
+		var result = linkAccounts(auth.currentUser, provider, 'Twitter');
 	});
 
 	$('#logOut').click(function() { signOutAndRedirect(); });
