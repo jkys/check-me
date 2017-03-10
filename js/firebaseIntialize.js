@@ -434,7 +434,7 @@ $( document ).ready(function() {
 			} else {
 				reasons.slideDown("slow");
 			}
-		}
+		});
 
 
 	});
