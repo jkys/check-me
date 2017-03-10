@@ -425,9 +425,5 @@ $( document ).ready(function() {
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
 		});
-
-		if() {
-
-		}
 	});
 });
