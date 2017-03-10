@@ -237,9 +237,9 @@ $( document ).ready(function() {
 		});
 	}
 
-	function linkAccounts(user, provider) {
+	function linkAccounts(user, provider, platofmr) {
 		user.linkWithPopup(provider).then(function(result) {
-			outPutMessage('linkAccount', true, 'Account Linked!');
+			outPutMessage('linkAccount', true, platform + ' account Linked!');
 			return result;
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
@@ -256,7 +256,7 @@ $( document ).ready(function() {
 		});
 
 		user.unlink(providerid).then(function() {
-			outPutMessage('linkAccount', true, 'Account Unlinked!');
+			outPutMessage('linkAccount', true, (platform.substr(0,1).toUpperCase() + platform.substr(1)) + ' account Unlinked!');
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
 			return error;
@@ -410,12 +410,12 @@ $( document ).ready(function() {
 	$('#linkFacebook').click(function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		var result = linkAccounts(auth.currentUser, provider);
+		var result = linkAccounts(auth.currentUser, provider, 'Facebook');
 	});
 
 	$('#linkTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = linkAccounts(auth.currentUser, provider);
+		var result = linkAccounts(auth.currentUser, provider, 'Twitter');
 	});
 
 	$('#unlinkFacebook').click(function() {
