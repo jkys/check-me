@@ -411,6 +411,17 @@ $( document ).ready(function() {
 		var result = linkAccounts(auth.currentUser, provider);
 	});
 
+	$('#unlinkFacebook').click(function() {
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_posts');
+		var result = unlinkAccounts(auth.currentUser, provider);
+	});
+
+	$('#unlinkTwitter').click(function() {
+		var provider = new  firebase.auth.TwitterAuthProvider();
+		var result = unlinkAccounts(auth.currentUser, provider);
+	});
+
 	$('#logOut').click(function() { signOutAndRedirect(); });
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
