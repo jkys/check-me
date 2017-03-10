@@ -71,6 +71,7 @@ body {
 .results {
   display: inline-block;
   overflow: scroll;
+  max-height: 500px;
 }
 
 .thirdPartyLabel {
