@@ -415,7 +415,7 @@ $( document ).ready(function() {
 
 	$('#linkTwitter').click(function() {
 		var provider = new  firebase.auth.TwitterAuthProvider();
-		var result = linkAccounts(auth.currentUser, 'provider');
+		var result = linkAccounts(auth.currentUser, provider);
 	});
 
 	$('#unlinkFacebook').click(function() {
