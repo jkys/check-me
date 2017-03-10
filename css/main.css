@@ -1,5 +1,13 @@
 body {
-  background: #fff;
+  background: #ffffff;
+}
+
+#loginBody {
+  background: url(../images/mockup0.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 * {
@@ -9,13 +17,11 @@ body {
 .thirdPartyButton {
   width: 250px;
   height: 50px;
-  /*border: 1px solid black;*/
   border-radius: 10px;
   padding: 1%;
   color: white;
   text-align: right;
   line-height: 25px;
-  /*vertical-align: middle;*/
 }
 
 .thirdPartyButtonFacebook {
@@ -242,8 +248,6 @@ hr {
 }
 
 .login .links-footer {
-  padding: 1%;
-  float: right;
   word-spacing: 2em;
 }
 
@@ -336,6 +340,10 @@ footer {
 .settingsPageInput {
   width: 70% !important;
   margin-left: 15% !important;
+}
+
+footer.login {
+  background: rgba(19, 35, 47, 0.97);
 }
 
 .settingsPageMessage {

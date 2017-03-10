@@ -3,5 +3,5 @@ $( document ).ready(function() {
 	var distanceFromTop = $('footer').offset().top;
 	var marginTop = documentHeight - distanceFromTop;
 	$('body').height(documentHeight);
-	$('footer').css('margin-top', marginTop);
+	$('footer').css('margin-top', marginTop + 45);
 });

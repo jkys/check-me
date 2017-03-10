@@ -418,11 +418,16 @@ $( document ).ready(function() {
 	$('#scanButton').click(function() {
 		intializeScan();
 
-		var provider = new firebase.auth.FacebookAuthProvider();
-		provider.addScope('user_posts');
-		auth.signInWithPopup(provider).then(function(result) {
+		var fbProvider = new firebase.auth.FacebookAuthProvider();
+		fbProvider.addScope('user_posts');
+		auth.signInWithPopup(fbProvider).then(function(result) {
+			console.log(result);
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
 		});
+
+		if() {
+
+		}
 	});
 });
