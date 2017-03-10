@@ -237,7 +237,7 @@ $( document ).ready(function() {
 		});
 	}
 
-	function linkAccounts(user, provider, platofmr) {
+	function linkAccounts(user, provider, platform) {
 		user.linkWithPopup(provider).then(function(result) {
 			outPutMessage('linkAccount', true, platform + ' account Linked!');
 			return result;
