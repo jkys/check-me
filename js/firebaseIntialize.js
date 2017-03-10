@@ -45,29 +45,35 @@ $( document ).ready(function() {
         }
     });
 
-    function twitterCall(user, accessToken, secret, page = 0) {
-    	$.ajax({
-			type: 'POST',
-			url: 'get_tweets.php',
-			data: {
-				userID: user,
-				token: accessToken, 
-				secret: secret,
-				page: page
-			},
-			dataType : 'json',
-			success: getTweets
-		});
-    }
-
 	
 
-	function getTwitterPosts(twProvider) {
-		auth.signInWithPopup(twProvider).then(function(result) {
+	function getTwitterPosts(page = 0) {
+		var provider = new firebase.auth.TwitterAuthProvider();
+		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			var secret = result.credential.secret;
 			var user = getTwitterUser(accessToken);
-			twitterCall(user, accessToken, secret);
+			$.ajax({
+				type: 'POST',
+				url: 'get_tweets.php',
+				data: {
+					userID: user,
+					token: accessToken, 
+					secret: secret,
+					page: page
+				},
+				dataType : 'json',
+				success: getTweets
+			}).done(function() {
+				$('.postButton').on('click', function(){
+					var reasons = $(this).find('.reasons');
+					if(reasons.is(":visible")) {
+						reasons.slideUp("slow");
+					} else {
+						reasons.slideDown("slow");
+					}
+				});
+			});
 		});
 	}
 
@@ -84,7 +90,7 @@ $( document ).ready(function() {
 					displayPost(tweet, date, url, 'twitter');
 				});
 				page += 1;
-				twitterCall(page);
+				getTwitterPosts(page);
 			}
 		}
 	}
@@ -101,16 +107,11 @@ $( document ).ready(function() {
 		}
 	}
 
-	function getFacebookPosts(fbProvider) {
-		auth.signInWithPopup(fbProvider).then(function(result) {
-			var accessToken = result.credential.accessToken;
-			FB.api('me/feed', {
-	        	'access_token' : accessToken
-     		}, getPosts);
-		}, function(error){
-		});
-
-		return true;
+	function getFacebookPosts(token) {
+		FB.api('me/feed', {
+	        'access_token' : token
+     	}, getPosts);
+		getTwitterPosts();
 	}
 
 	function getTwitterUser(accessToken) {
@@ -417,25 +418,11 @@ $( document ).ready(function() {
 	$('#scanButton').click(function() {
 		intializeScan();
 
-		var twProvider = new firebase.auth.TwitterAuthProvider();
-		var fbProvider = new firebase.auth.FacebookAuthProvider();
-		fbProvider.addScope('user_posts');
-		
-		done = getFacebookPosts(fbProvider);
-
-		if(done){
-			getTwitterPosts(twProvider);
-		}
-		
-		$('.postButton').on('click', function(){
-			var reasons = $(this).find('.reasons');
-			if(reasons.is(":visible")) {
-				reasons.slideUp("slow");
-			} else {
-				reasons.slideDown("slow");
-			}
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_posts');
+		auth.signInWithPopup(provider).then(function(result) {
+			var accessToken = result.credential.accessToken;
+			getFacebookPosts(accessToken);
 		});
-
-
 	});
 });
