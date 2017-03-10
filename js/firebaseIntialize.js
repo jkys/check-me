@@ -438,6 +438,8 @@ $( document ).ready(function() {
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
+
+			getTwitterPosts();
 		});
 	});
 });
