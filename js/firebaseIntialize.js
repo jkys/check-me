@@ -247,7 +247,13 @@ $( document ).ready(function() {
 		});
 	}
 
-	function unlinkAccounts(user, providerid) {
+	function unlinkAccounts(user, platform) {
+		providerid = null;
+		user.providerData.forEach(function(array) {
+			if(array.providerId.includes(platform)){
+				providerid = array.providerId;
+			}
+		});
 
 		user.unlink(providerid).then(function() {
 			outPutMessage('linkAccount', true, 'Account Unlinked!');
@@ -413,11 +419,11 @@ $( document ).ready(function() {
 	});
 
 	$('#unlinkFacebook').click(function() {
-		var result = unlinkAccounts(auth.currentUser, 'www.facebook.com');
+		var result = unlinkAccounts(auth.currentUser, 'facebook');
 	});
 
 	$('#unlinkTwitter').click(function() {
-		var result = unlinkAccounts(auth.currentUser, 'www.twitter.com');
+		var result = unlinkAccounts(auth.currentUser, 'twitter');
 	});
 
 	$('#logOut').click(function() { signOutAndRedirect(); });
