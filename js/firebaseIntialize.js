@@ -130,6 +130,7 @@ $( document ).ready(function() {
 				var url = getFaceBookPostUrl(data.id);
 				var date = convertIso(data.created_time);
 				displayPost(post, date, url, 'facebook');
+				console.log(data);
 			});
 	    	FB.api(response.paging.next, getPosts);
 		}
