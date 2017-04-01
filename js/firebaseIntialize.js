@@ -127,7 +127,7 @@ $( document ).ready(function() {
 
 	function getPosts (response) {
 		console.log("test");
-		//console.log(response);
+		console.log(response);
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
 				console.log(data);
