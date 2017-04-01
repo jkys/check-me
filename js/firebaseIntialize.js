@@ -135,13 +135,14 @@ $( document ).ready(function() {
 					var url = getFaceBookPostUrl(data.id);
 					var date = convertIso(data.created_time);
 					displayPost(post, date, url, 'facebook');
-				data.comments.data.forEach(function(data) {
-					var post = data.message;
-					var url = getFaceBookPostUrl(data.id);
-					var date = convertIso(data.created_time);
-					displayPost(post, date, url, 'facebook');
-				})
-				
+				if(data.comments.data != null && data.comments.data != ''){
+					data.comments.data.forEach(function(data) {
+						var post = data.message;
+						var url = getFaceBookPostUrl(data.id);
+						var date = convertIso(data.created_time);
+						displayPost(post, date, url, 'facebook');
+					})
+				}
 			})
 	    	//FB.api(response.paging.next, getPosts);
 		}
