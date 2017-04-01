@@ -102,9 +102,6 @@ $( document ).ready(function() {
 			});
 
 		}
-
-		//console.log(result);
-		console.log(accessToken);
 		
 	}
 
