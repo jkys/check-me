@@ -77,7 +77,7 @@ $( document ).ready(function() {
 				});
 			});
 		});
-		} else if(user != null){
+		} else if(user != ''){
 
 			$.ajax({
 				type: 'POST',
