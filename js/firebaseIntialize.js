@@ -131,16 +131,18 @@ $( document ).ready(function() {
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
 				console.log(data);
+					var from = data.from.name;
 					var post = data.message;
 					var url = getFaceBookPostUrl(data.id);
 					var date = convertIso(data.created_time);
-					displayPost(post, date, url, 'facebook');
+					displayPost(post, date, url, 'facebook', from);
 				if(data.comments != null && data.comments != ''){
 					data.comments.data.forEach(function(data) {
+						var from = "Comment by: " + data.from.name;
 						var post = data.message;
 						var url = getFaceBookPostUrl(data.id);
 						var date = convertIso(data.created_time);
-						displayPost(post, date, url, 'facebook');
+						displayPost(post, date, url, 'facebook', from);
 					})
 				}
 			})
@@ -199,7 +201,7 @@ $( document ).ready(function() {
 		return dateString;
 	}
 
-	function displayPost(message, date, url, platform) {
+	function displayPost(message, date, url, platform, from) {
 		if(message != '' && message != undefined) {
 			var imgUrl = 'images/logo.png';
 			var score = 0;
@@ -223,7 +225,7 @@ $( document ).ready(function() {
 							imgUrl = array.photoURL;
 						}
 					});
-					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
+					$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + from + '</h3><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 				}
 			});
 		}
