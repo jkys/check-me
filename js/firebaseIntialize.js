@@ -134,9 +134,8 @@ $( document ).ready(function() {
 				var url = getFaceBookPostUrl(data.id);
 				var date = convertIso(data.created_time);
 				displayPost(post, date, url, 'facebook');
-				console.log(data);
-			});
-	    	FB.api(response.paging.next, getPosts);
+			})
+	    	//FB.api(response.paging.next, getPosts);
 		}
 		if (response && !response.error && response.data != '') {
 			response.posts.data.comments.data.forEach(function(data) {
@@ -146,7 +145,7 @@ $( document ).ready(function() {
 				displayPost(post, date, url, 'facebook');
 				console.log(data);
 			});
-	    	FB.api(response.paging.next, getPosts);
+	    	//FB.api(response.paging.next, getPosts);
 		}
 	}
 
