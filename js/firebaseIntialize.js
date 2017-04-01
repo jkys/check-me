@@ -49,12 +49,15 @@ $( document ).ready(function() {
 
 	function getTwitterPosts(page = 0) {
 		console.log(page);
+		var user;
+		var accessToken;
+		var secret;
 		if(page == 0){
 			var provider = new firebase.auth.TwitterAuthProvider();
 			auth.signInWithPopup(provider).then(function(result) {
-			var accessToken = result.credential.accessToken;
-			var secret = result.credential.secret;
-			var user = getTwitterUser(accessToken);
+			accessToken = result.credential.accessToken;
+			secret = result.credential.secret;
+			user = getTwitterUser(accessToken);
 			$.ajax({
 				type: 'POST',
 				url: 'get_tweets.php',
@@ -77,7 +80,7 @@ $( document ).ready(function() {
 				});
 			});
 		});
-		} else if(user != ''){
+		} else if(user != '' && user !=null){
 
 			$.ajax({
 				type: 'POST',
