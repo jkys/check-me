@@ -107,6 +107,7 @@ $( document ).ready(function() {
 	}
 
 	function getTweets (response) {
+		var postID = [];
 		if(response != '[]'){
 			if (typeof response.errors === 'undefined' || response.errors.length < 1 ) {
 				var page = 1;
@@ -138,7 +139,7 @@ $( document ).ready(function() {
 	}
 
 	function getFacebookPosts(token) {
-		FB.api('me/feed/comments', {
+		FB.api('me?fields=posts.limit(10000){created_time,permalink_url,from,comments{message,from,created_time,permalink_url},message}', {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
