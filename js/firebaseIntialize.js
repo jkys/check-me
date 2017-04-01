@@ -77,7 +77,7 @@ $( document ).ready(function() {
 				});
 			});
 		});
-		} else{
+		} else if(user != null){
 
 			$.ajax({
 				type: 'POST',
@@ -102,6 +102,7 @@ $( document ).ready(function() {
 			});
 
 		}
+		else{}
 		
 	}
 
@@ -137,7 +138,7 @@ $( document ).ready(function() {
 	}
 
 	function getFacebookPosts(token) {
-		FB.api('me/feed', {
+		FB.api('me/feed/comments', {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
