@@ -139,7 +139,7 @@ $( document ).ready(function() {
 	}
 
 	function getFacebookPosts(token) {
-		FB.api('me?fields=posts.limit(10000){created_time,permalink_url,from,comments{message,from,created_time,permalink_url},message}', {
+		FB.api('/me?fields=posts.limit(10000){created_time,permalink_url,from,comments{message,from,created_time,permalink_url},message}', {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
