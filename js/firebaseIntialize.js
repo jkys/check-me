@@ -126,6 +126,8 @@ $( document ).ready(function() {
 	}
 
 	function getPosts (response) {
+		console.log("test");
+		console.log(response);
 		if (response && !response.error && response.data != '') {
 			response.data.forEach(function(data) {
 				var post = data.message;
