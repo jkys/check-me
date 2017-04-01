@@ -129,7 +129,7 @@ $( document ).ready(function() {
 		console.log("test");
 		console.log(response);
 		if (response && !response.error && response.data != '') {
-			response.data.forEach(function(data) {
+			response.posts.data.forEach(function(data) {
 				var post = data.message;
 				var url = getFaceBookPostUrl(data.id);
 				var date = convertIso(data.created_time);
