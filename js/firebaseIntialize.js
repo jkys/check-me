@@ -135,7 +135,7 @@ $( document ).ready(function() {
 					var url = getFaceBookPostUrl(data.id);
 					var date = convertIso(data.created_time);
 					displayPost(post, date, url, 'facebook');
-				if(data.comments.data != null && data.comments.data != ''){
+				if(data.comments != null && data.comments != ''){
 					data.comments.data.forEach(function(data) {
 						var post = data.message;
 						var url = getFaceBookPostUrl(data.id);
