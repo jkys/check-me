@@ -127,9 +127,10 @@ $( document ).ready(function() {
 
 	function getPosts (response) {
 		console.log("test");
-		console.log(response);
+		//console.log(response);
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
+				console.log(data);
 					var post = data.message;
 					var url = getFaceBookPostUrl(data.id);
 					var date = convertIso(data.created_time);
