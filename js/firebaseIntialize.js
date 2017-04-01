@@ -48,8 +48,10 @@ $( document ).ready(function() {
 	
 
 	function getTwitterPosts(page = 0) {
-		var provider = new firebase.auth.TwitterAuthProvider();
-		auth.signInWithPopup(provider).then(function(result) {
+		console.log(page);
+		if(page == 0){
+			var provider = new firebase.auth.TwitterAuthProvider();
+			auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			var secret = result.credential.secret;
 			var user = getTwitterUser(accessToken);
@@ -75,6 +77,35 @@ $( document ).ready(function() {
 				});
 			});
 		});
+		} else{
+
+			$.ajax({
+				type: 'POST',
+				url: 'get_tweets.php',
+				data: {
+					userID: user,
+					token: accessToken, 
+					secret: secret,
+					page: page
+				},
+				dataType : 'json',
+				success: getTweets
+			}).done(function() {
+				$('.postButton').on('click', function(){
+					var reasons = $(this).find('.reasons');
+					if(reasons.is(":visible")) {
+						reasons.slideUp("slow");
+					} else {
+						reasons.slideDown("slow");
+					}
+				});
+			});
+
+		}
+
+		console.log(result);
+		console.log(accessToken);
+		
 	}
 
 	function getTweets (response) {
