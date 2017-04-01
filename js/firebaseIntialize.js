@@ -130,7 +130,11 @@ $( document ).ready(function() {
 		console.log(response);
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
-				response.posts.data.comments.data.forEach(function(data) {
+					var post = data.message;
+					var url = getFaceBookPostUrl(data.id);
+					var date = convertIso(data.created_time);
+					displayPost(post, date, url, 'facebook');
+				data.comments.forEach(function(data) {
 					var post = data.message;
 					var url = getFaceBookPostUrl(data.id);
 					var date = convertIso(data.created_time);
