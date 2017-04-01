@@ -138,6 +138,16 @@ $( document ).ready(function() {
 			});
 	    	FB.api(response.paging.next, getPosts);
 		}
+		if (response && !response.error && response.data != '') {
+			response.posts.data.comments.data.forEach(function(data) {
+				var post = data.message;
+				var url = getFaceBookPostUrl(data.id);
+				var date = convertIso(data.created_time);
+				displayPost(post, date, url, 'facebook');
+				console.log(data);
+			});
+	    	FB.api(response.paging.next, getPosts);
+		}
 	}
 
 	function getFacebookPosts(token) {
