@@ -136,14 +136,15 @@ $( document ).ready(function() {
 				console.log(data);
 					var from = data.from.name;
 					var post = data.message;
-					var url = getFaceBookPostUrl(data.id);
+					//var url = getFaceBookPostUrl(data.id);
+					var url = data.permalink_url;
 					var date = convertIso(data.created_time);
 					displayPost(post, date, url, 'facebook', from);
 				if(data.comments != null && data.comments != ''){
 					data.comments.data.forEach(function(data) {
 						var from = "Comment by: " + data.from.name;
 						var post = data.message;
-						var url = getFaceBookPostUrl(data.id);
+						var url = data.permalink_url;
 						var date = convertIso(data.created_time);
 						displayPost(post, date, url, 'facebook', from);
 					})
@@ -222,16 +223,24 @@ $( document ).ready(function() {
 					}
 				});
 
-				if(score > 0) {
+
+					if(platform == 'facebook'){
+										if(score > 0) {
 					auth.currentUser.providerData.forEach(function(array) {
 						if(array.providerId.includes(platform)){
 							imgUrl = array.photoURL;
 						}
 					});
-					if(platform == 'facebook'){
+
 						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + from + '</h3><br><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 					}
 					else{
+										if(score > 0) {
+					auth.currentUser.providerData.forEach(function(array) {
+						if(array.providerId.includes(platform)){
+							imgUrl = array.photoURL;
+						}
+					});
 						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '<h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 					}
 				}
