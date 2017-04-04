@@ -392,6 +392,7 @@ $( document ).ready(function() {
 			outPutMessage('register', false, error.message);
 		});
 		window.location = 'settings.html';
+		$("#tab-content" ).tabs( { active: 1 } );
 	});
 
 	$('#unlinkFacebook').click(function() {
