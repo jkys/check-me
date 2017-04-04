@@ -391,6 +391,7 @@ $( document ).ready(function() {
 		}).catch(function(error) {
 			outPutMessage('register', false, error.message);
 		});
+		window.location = 'settings.html';
 	});
 
 	$('#unlinkFacebook').click(function() {
