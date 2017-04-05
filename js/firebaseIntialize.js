@@ -391,13 +391,7 @@ $( document ).ready(function() {
 		}).catch(function(error) {
 			outPutMessage('register', false, error.message);
 		});
-		/*
-		window.location = 'settings.html';
-		$("#tab-content" ).tabs( { 
-			active: 1 
-		} );
-		alert("Please authorize at least 1 social media platform");
-		*/
+	});
 
 	$('#unlinkFacebook').click(function() {
 		var result = unlinkAccounts(auth.currentUser, 'facebook');
