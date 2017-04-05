@@ -233,7 +233,7 @@ $( document ).ready(function() {
 							imgUrl = array.photoURL;
 						}
 					});
-						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + from + '</h3><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
+						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><div class="timename"><h3 class="time">' + from + '</h3><h3 class="time">' + date + '</h3></div><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><a href="' + url + '" class="postLink">Click here to navigate to post.</a></div></div></button>');
 					}
 					else{
 											auth.currentUser.providerData.forEach(function(array) {

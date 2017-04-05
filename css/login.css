@@ -119,6 +119,10 @@ input:focus, textarea:focus {
   border-color: rgb(0, 127, 185);
 }
 
+.timename {
+  display: inline-block;
+}
+
 textarea {
   border: 2px solid #a0b3b0;
   resize: vertical;
