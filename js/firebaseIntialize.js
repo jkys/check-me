@@ -202,7 +202,7 @@ $( document ).ready(function() {
 		} else if (hour == 0) {
 			hour = 12;
 		}
-		var dateString = monthNames[month] + ' ' + day + ', ' + year + ' at ' + hour + ':' + minute + postfix + '.';
+		var dateString = monthNames[month] + ' ' + day + ', ' + year + ' at ' + hour + ':' + minute + postfix;
 		return dateString;
 	}
 
