@@ -9,6 +9,8 @@ $( document ).ready(function() {
 		FB.AppEvents.logPageView();
 	};
 
+	var globalProfanityFlag = 0;
+
 	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) {return;}
@@ -157,6 +159,10 @@ $( document ).ready(function() {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
+		if(globalProfanityFlag == 0){
+
+			alert("No profanity found!!!!"); 
+		}
 	}
 
 	function getTwitterUser(accessToken) {
@@ -217,6 +223,7 @@ $( document ).ready(function() {
 					if(containsProfanity(message, word)) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
+						globalProfanityFlag = 1;
 					}
 				});
 
@@ -521,6 +528,7 @@ $( document ).ready(function() {
 		});
 
 		} else {
+
 			alert("link your account");
 		}
 
