@@ -48,7 +48,6 @@ $( document ).ready(function() {
 	
 
 	function getTwitterPosts(page = 0) {
-		console.log(page);
 		var user;
 		var accessToken;
 		var secret;
@@ -129,11 +128,8 @@ $( document ).ready(function() {
 	}
 
 	function getPosts (response) {
-		console.log("test");
-		console.log(response);
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
-				console.log(data);
 					var from = data.from.name;
 					var post = data.message;
 					//var url = getFaceBookPostUrl(data.id);
