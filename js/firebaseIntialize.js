@@ -255,7 +255,7 @@ $( document ).ready(function() {
 				messageWord = messageWord.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 				messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
 				wordShort = word.replace(/(.)\1{1,}/g, '$1');
-				if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con' && messageShort.includes(wordShort)) {
+				if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con' || messageShort.includes(wordShort)) {
 					profane = true;
 				}
 			});
