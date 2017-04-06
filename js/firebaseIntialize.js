@@ -246,15 +246,19 @@ $( document ).ready(function() {
 	}
 
 	function containsProfanity(message, word) {
-		message = message.toLowerCase();
-		word = word.toLowerCase();
 		var profane = false;
-		message.split(' ').forEach(function(messageWord) {
-			messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
-			wordShort = word.replace(/(.)\1{1,}/g, '$1');
-			if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con') {
-				profane = true;
-			}
+		var prefix = ['', 'er', 'ing', 's', 'ed', 'in'];
+		prefix.forEach(function(ending) {
+			message = message.toLowerCase() + ending;
+			word = word.toLowerCase() + ending;
+			message.split(' ').forEach(function(messageWord) {
+				messageWord = messages.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+				messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
+				wordShort = word.replace(/(.)\1{1,}/g, '$1');
+				if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con') {
+					profane = true;
+				}
+			});
 		});
 		return profane || message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
 	}
