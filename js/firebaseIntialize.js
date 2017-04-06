@@ -376,7 +376,7 @@ $( document ).ready(function() {
 
 	function getUserLogin(){
 
-		var user = firebase.auth().currentUser;
+		var user = auth.currentUser;
 		var result = user.providerData
 		if(result.length > 1){
 			console.log(result);
