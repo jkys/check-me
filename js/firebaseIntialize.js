@@ -389,22 +389,15 @@ $( document ).ready(function() {
 
 	function checkFacebookLink(){
 
-		var user = firebase.auth().currentUser;
-		var result = user.providerData;
+		var result = auth.currentUser.providerData;
 		var response = false;
 
 		result.forEach(function(provider){
-
 			if(provider.providerId == "facebook.com"){
-
 				alert("facebook is linked");
-
-				return true;
-
-
+				response = true;
 			}
 		});
-
 		return response;
 	}
 
