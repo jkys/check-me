@@ -54,12 +54,9 @@ $( document ).ready(function() {
 		var secret;
 		if(page == 0){
 			var provider = new firebase.auth.TwitterAuthProvider();
-			auth.signInWithRedirect(provider)
-			auth.signInWithRedirect(provider).then(function(result) {
-				if(result.credential){
-					accessToken = result.credential.accessToken;
-					secret = result.credential.secret;
-						}
+			auth.signInWithPopup(provider).then(function(result) {
+			accessToken = result.credential.accessToken;
+			secret = result.credential.secret;
 			user = getTwitterUser(accessToken);
 			$.ajax({
 				type: 'POST',
@@ -497,11 +494,12 @@ $( document ).ready(function() {
 
 	$('#scanButton').click(function() {
 		intializeScan();
-
+		var importantStuff = window.open('', '_blank');
+		importantStuff.document.write('Loading preview...');
+		mportantStuff.location.href = ;
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		auth.signInWithRedirect(provider)
-		auth.signInWithRedirect(provider).then(function(result) {
+		importantStuff.location.href = auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
 		});
