@@ -392,7 +392,7 @@ $( document ).ready(function() {
 
 		result.forEach(function(provider){
 
-			if(providerId == "facebook.com"){
+			if(provider.providerId == "facebook.com"){
 
 				alert("facebook is linked");
 
