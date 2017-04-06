@@ -149,7 +149,7 @@ $( document ).ready(function() {
 					})
 				}
 			})
-	    	//FB.api(response.paging.next, getPosts);
+	    	FB.api(response.paging.next, getPosts);
 		}
 
 	}
