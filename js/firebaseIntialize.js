@@ -365,20 +365,17 @@ $( document ).ready(function() {
 		object.html(errorMessage);
 	}
 
-	function getUserLogin(user){
+	function getUserLogin(){
 
 		var user = firebase.auth().currentUser;
-
-		if (user) {
-			console.log(user);
-		  // User is signed in.
-		} else {
-		  // No user is signed in.
-		}
 		var result = user.providerData
+		if(result.length() > 1){
 			console.log(result);
-		
+			return true;
+		} else {
+			return false;
 
+		}
 	}
 
 
