@@ -360,7 +360,7 @@ $( document ).ready(function() {
 	}
 
 	function getUserLogin(){
-		firebase.auth.currentUser.providerData.then(function(result) {
+		auth.currentUser.providerData.then(function(result) {
 
 			console.log(result);
 		});
