@@ -496,7 +496,6 @@ $( document ).ready(function() {
 		intializeScan();
 		var importantStuff = window.open('', '_blank');
 		importantStuff.document.write('Loading preview...');
-		mportantStuff.location.href = ;
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		importantStuff.location.href = auth.signInWithPopup(provider).then(function(result) {
