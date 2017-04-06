@@ -370,13 +370,13 @@ $( document ).ready(function() {
 		var user = firebase.auth().currentUser;
 
 		if (user) {
-			console.log("user object: " + user);
+			console.log(user);
 		  // User is signed in.
 		} else {
 		  // No user is signed in.
 		}
 		var result = user.providerData
-			console.log("user provider data: " + result);
+			console.log(result);
 		
 
 	}
