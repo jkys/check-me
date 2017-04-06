@@ -363,6 +363,14 @@ $( document ).ready(function() {
 		object.html(errorMessage);
 	}
 
+	function getUserLogin(){
+		firebase.auth.currentUser.providerData.then(function(result) {
+
+			console.log(result);
+		}
+
+	}
+
 
 	/*************************************************
 	 *************************************************
@@ -494,6 +502,7 @@ $( document ).ready(function() {
 
 	$('#scanButton').click(function() {
 		intializeScan();
+		getUserLogin();
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
