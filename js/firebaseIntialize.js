@@ -407,7 +407,9 @@ $( document ).ready(function() {
 
 		prefix.forEach(function(ending) {
 
+	});
 	}
+
 
 
 
