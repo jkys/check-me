@@ -509,13 +509,21 @@ $( document ).ready(function() {
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
 	$('#scanButton').click(function() {
+		if(getUserLogin()){
+
+				
 		intializeScan();
-		getUserLogin();
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
 		});
+
+		} else {
+			alert("link your account");
+		}
+
+
 	});
 });
