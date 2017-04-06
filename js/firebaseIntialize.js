@@ -362,7 +362,8 @@ $( document ).ready(function() {
 	}
 
 	function getUserLogin(){
-		firebase.auth.currentUser.providerData.then(function(result) {
+		const auth = firebase.auth(); // Create constant on firebase authenticated
+		auth.currentUser.providerData.then(function(result) {
 
 			console.log(result);
 		});
