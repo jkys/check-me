@@ -35,7 +35,7 @@ $( document ).ready(function() {
 	const database = firebase.database(); // Create constant on firebase database
 
 
-	auth.onAuthStateChanged(function(user) {
+	auth.onAuthStateChanged(function (user) {
         if (user) {
         	$('#loggedInBar').show();
         	var currentPage = window.location.pathname;
@@ -106,11 +106,7 @@ $( document ).ready(function() {
 			});
 
 		}
-
-		if(globalProfanityFlag == 0){
-
-			alert("No profanity found!!!!"); 
-		}
+		else{}
 		
 	}
 
@@ -163,6 +159,10 @@ $( document ).ready(function() {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
+		if(globalProfanityFlag == 0){
+
+			alert("No profanity found!!!!"); 
+		}
 	}
 
 	function getTwitterUser(accessToken) {
@@ -546,7 +546,9 @@ $( document ).ready(function() {
 				});
 
 			} else{
-
+				$('#fb_tab').hide();
+				$('#signup').hide();
+				$('#tw_tab').addClass('.active')
 				getTwitterPosts();
 			}
 
