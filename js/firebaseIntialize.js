@@ -54,7 +54,7 @@ $( document ).ready(function() {
 		var secret;
 		if(page == 0){
 			var provider = new firebase.auth.TwitterAuthProvider();
-			auth.signInWithPopup(provider).then(function(result) {
+			auth.signInWithRedirect(provider).then(function(result) {
 			accessToken = result.credential.accessToken;
 			secret = result.credential.secret;
 			user = getTwitterUser(accessToken);
@@ -497,7 +497,7 @@ $( document ).ready(function() {
 
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
-		auth.signInWithPopup(provider).then(function(result) {
+		auth.signInWithRedirect(provider).then(function(result) {
 			var accessToken = result.credential.accessToken;
 			getFacebookPosts(accessToken);
 		});
