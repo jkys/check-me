@@ -371,11 +371,10 @@ $( document ).ready(function() {
 		} else {
 		  // No user is signed in.
 		}
-/*		auth.currentUser.providerData.then(function(result) {
-
+		var result = user.providerData
 			console.log(result);
-		});
-*/
+		
+
 	}
 
 
