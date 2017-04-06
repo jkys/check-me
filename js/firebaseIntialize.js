@@ -252,7 +252,7 @@ $( document ).ready(function() {
 			message = message.toLowerCase() + ending;
 			word = word.toLowerCase() + ending;
 			message.split(' ').forEach(function(messageWord) {
-				messageWord = messages.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+				messageWord = messageWord.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 				messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
 				wordShort = word.replace(/(.)\1{1,}/g, '$1');
 				if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con') {
