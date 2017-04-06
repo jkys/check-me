@@ -385,6 +385,30 @@ $( document ).ready(function() {
 		}
 	}
 
+	function checkFacebookLink(){
+
+		var user = firebase.auth().currentUser;
+		var result = user.providerData;
+
+		result.forEach(function(provider){
+
+			if(providerId == "facebook.com"){
+
+				alert("facebook is linked");
+
+				return true;
+
+
+			} else{
+
+				return false; 
+			}
+		});
+
+		prefix.forEach(function(ending) {
+
+	}
+
 
 
 	/*************************************************
@@ -518,14 +542,20 @@ $( document ).ready(function() {
 	$('#scanButton').click(function() {
 		if(getUserLogin()){
 
-				
-		intializeScan();
-		var provider = new firebase.auth.FacebookAuthProvider();
-		provider.addScope('user_posts');
-		auth.signInWithPopup(provider).then(function(result) {
-			var accessToken = result.credential.accessToken;
-			getFacebookPosts(accessToken);
-		});
+			intializeScan();
+			
+			if(checkFacebookLink()){
+				var provider = new firebase.auth.FacebookAuthProvider();
+				provider.addScope('user_posts');
+				auth.signInWithPopup(provider).then(function(result) {
+					var accessToken = result.credential.accessToken;
+					getFacebookPosts(accessToken);
+				});
+
+			} else{
+
+				getTwitterPosts();
+			}
 
 		} else {
 
