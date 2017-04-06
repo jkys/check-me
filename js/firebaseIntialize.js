@@ -369,7 +369,7 @@ $( document ).ready(function() {
 
 		var user = firebase.auth().currentUser;
 		var result = user.providerData
-		if(result.length() > 1){
+		if(result.length > 1){
 			console.log(result);
 			return true;
 		} else {
