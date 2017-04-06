@@ -548,7 +548,8 @@ $( document ).ready(function() {
 			} else{
 				$('#fb_tab').hide();
 				$('#signup').hide();
-				$('#tw_tab').addClass('.active')
+				$('#fb_tab').removeClass('active');
+				$('#tw_tab').addClass('active');
 				getTwitterPosts();
 			}
 
