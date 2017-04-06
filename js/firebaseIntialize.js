@@ -361,13 +361,21 @@ $( document ).ready(function() {
 		object.html(errorMessage);
 	}
 
-	function getUserLogin(){
-		const auth = firebase.auth(); // Create constant on firebase authenticated
-		auth.currentUser.providerData.then(function(result) {
+	function getUserLogin(user){
+
+		var user = firebase.auth().currentUser;
+
+		if (user) {
+			console.log("test");
+		  // User is signed in.
+		} else {
+		  // No user is signed in.
+		}
+/*		auth.currentUser.providerData.then(function(result) {
 
 			console.log(result);
 		});
-
+*/
 	}
 
 
@@ -501,7 +509,7 @@ $( document ).ready(function() {
 
 	$('#scanButton').click(function() {
 		intializeScan();
-		// getUserLogin();
+		getUserLogin();
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
