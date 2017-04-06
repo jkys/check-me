@@ -494,7 +494,6 @@ $( document ).ready(function() {
 
 	$('#scanButton').click(function() {
 		intializeScan();
-
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('user_posts');
 		auth.signInWithPopup(provider).then(function(result) {
