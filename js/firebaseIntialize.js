@@ -106,8 +106,6 @@ $( document ).ready(function() {
 			});
 
 		}
-		else{}
-		
 	}
 
 	function getTweets (response) {
@@ -158,7 +156,14 @@ $( document ).ready(function() {
 		FB.api('/me?fields=posts.limit(10000){created_time,permalink_url,from,comments{message,from,created_time,permalink_url},message}', {
 	        'access_token' : token
      	}, getPosts);
-		getTwitterPosts();
+     	
+     	if (checkTwitterLink()) {
+     		getTwitterPosts();
+     	} else {
+ 			$('#tw_tab').hide();
+			$('#login').hide();
+     	}
+
 		if(globalProfanityFlag == 0){
 
 			alert("No profanity found!!!!"); 
