@@ -401,6 +401,20 @@ $( document ).ready(function() {
 		return response;
 	}
 
+	function checkTwitterLink(){
+
+		var result = auth.currentUser.providerData;
+		var response = false;
+
+		result.forEach(function(provider){
+			if(provider.providerId == "twitter.com"){
+				alert("twitter is linked");
+				response = true;
+			}
+		});
+		return response;
+	}
+
 
 
 
