@@ -363,7 +363,7 @@ $( document ).ready(function() {
 		firebase.auth.currentUser.providerData.then(function(result) {
 
 			console.log(result);
-		}
+		});
 
 	}
 
