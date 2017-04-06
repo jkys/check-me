@@ -246,6 +246,8 @@ $( document ).ready(function() {
 	}
 
 	function containsProfanity(message, word) {
+		message = message.toLowerCase();
+		word = word.toLowerCase();
 		var profane = false;
 		message.split(' ').forEach(function(messageWord) {
 			messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
