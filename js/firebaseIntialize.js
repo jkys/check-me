@@ -391,6 +391,7 @@ $( document ).ready(function() {
 
 		var user = firebase.auth().currentUser;
 		var result = user.providerData;
+		var response = false;
 
 		result.forEach(function(provider){
 
@@ -401,11 +402,10 @@ $( document ).ready(function() {
 				return true;
 
 
-			} else{
-
-				return false; 
 			}
 		});
+
+		return response;
 	}
 
 
