@@ -106,7 +106,11 @@ $( document ).ready(function() {
 			});
 
 		}
-		else{}
+
+		if(globalProfanityFlag == 0){
+
+			alert("No profanity found!!!!"); 
+		}
 		
 	}
 
@@ -159,10 +163,6 @@ $( document ).ready(function() {
 	        'access_token' : token
      	}, getPosts);
 		getTwitterPosts();
-		if(globalProfanityFlag == 0){
-
-			alert("No profanity found!!!!"); 
-		}
 	}
 
 	function getTwitterUser(accessToken) {
