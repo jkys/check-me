@@ -94,15 +94,6 @@ $( document ).ready(function() {
 					},
 					dataType : 'json',
 					success: getTweets
-				}).done(function() {
-					$('.postButton').on('click', function(){
-						var reasons = $(this).find('.reasons');
-						if(reasons.is(":visible")) {
-							reasons.slideUp("slow");
-						} else {
-							reasons.slideDown("slow");
-						}
-					});
 				});
 			});
 		} else if(user != '' && user !=null){
@@ -569,6 +560,14 @@ $( document ).ready(function() {
 	$('#logOut').click(function() { signOutAndRedirect(); });
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
+
+	$('.postButton').click(function(){
+		if($(this).is(":visible")) {
+			$(this).slideUp("slow");
+		} else {
+			$(this).slideDown("slow");
+		}
+	});
 
 	$('#scanButton').click(function() {
 		// if(getUserLogin()){
