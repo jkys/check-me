@@ -333,7 +333,7 @@ footer {
   color: #5CDC48;
 }
 
-#scanDiv, #scanningDiv {
+#scanDiv, #scanningDiv, #noSMPDiv{
   margin-top: 10%;
   display:flex;
   justify-content:center;
@@ -383,7 +383,7 @@ footer.login {
   position: absolute;
 }
 
-#scanButton {
+#scanButton, #NoSMP {
     width: 500px;
     height: 100px;
     transition: width 1s, height 1s, border 1s;
@@ -396,14 +396,20 @@ footer.login {
     cursor: pointer;
 }
 
-#scanButton h1 {
+#scanButton h1, #NoSMP h1, {
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
   text-align: center;
 }
 
-.containerDivScan {
+#NoSMP p {
+  color: #ffffff;
+  font-weight: 300;
+  text-align: center;
+}
+
+.containerDivScan, .ContainerNoSMP {
   width: 100%;
 }
 
