@@ -132,16 +132,16 @@ $( document ).ready(function() {
 			response.posts.data.forEach(function(data) {
 					var from = data.from.name;
 					var post = data.message;
-					var url = getFaceBookPostUrl(data.id);
-					//var url = data.permalink_url;
+					//var url = getFaceBookPostUrl(data.id);
+					var url = data.permalink_url;
 					var date = convertIso(data.created_time);
 					displayPost(post, date, url, 'facebook', from);
 				if(data.comments != null && data.comments != ''){
 					data.comments.data.forEach(function(data) {
 						var from = "Comment by: " + data.from.name;
 						var post = data.message;
-						var url = getFaceBookPostUrl(data.id);
-						//var url = data.permalink_url;
+						//var url = getFaceBookPostUrl(data.id);
+						var url = data.permalink_url;
 						var date = convertIso(data.created_time);
 						displayPost(post, date, url, 'facebook', from);
 					})
