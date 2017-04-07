@@ -150,22 +150,22 @@ $( document ).ready(function() {
 
 	function getPosts (response) {
 		if (response && !response.error && response.data != '') {
-			response.posts.data.forEach(function(data) {
-					console.log(data.created_time);
-					var from = data.from.name;
-					var post = data.message;
-					//var url = getFaceBookPostUrl(data.id);
-					var url = data.permalink_url;
-					var time = data.created_time;
-					var date = convertIso(time);
-					displayPost(post, date, url, 'facebook', from);
-				if(data.comments != null && data.comments != ''){
-					data.comments.data.forEach(function(data) {
-						var from = "Comment by: " + data.from.name;
-						var post = data.message;
-						//var url = getFaceBookPostUrl(data.id);
-						var url = data.permalink_url;
-						var date = convertIso(data.created_time);
+			var res = response.posts.data;
+			res.forEach(function(postInfo) {
+				var from = postInfo.from.name;
+				var post = postInfo.message;
+				//var url = getFaceBookPostUrl(postInfo.id);
+				var url = postInfo.permalink_url;
+				var time = postInfo.created_time;
+				var date = convertIso(time);
+				displayPost(post, date, url, 'facebook', from);
+				if(postInfo.comments != null && postInfo.comments != ''){
+					postInfo.comments.data.forEach(function(commentInfo) {
+						var from = "Comment by: " + commentInfo.from.name;
+						var post = commentInfo.message;
+						//var url = getFaceBookPostUrl(commentInfo.id);
+						var url = commentInfo.permalink_url;
+						var date = convertIso(commentInfo.created_time);
 						displayPost(post, date, url, 'facebook', from);
 					})
 				}
