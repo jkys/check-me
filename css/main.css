@@ -429,11 +429,11 @@ footer.login {
   line-height: 2;
 }
 
-button:active {
+.postButton:active {
   color: black;
 }
 
-button:focus {
+.postButton:focus {
   outline: none;
   outline-color: none;
   outline-style: none;
