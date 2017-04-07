@@ -385,19 +385,6 @@ $( document ).ready(function() {
 		object.html(errorMessage);
 	}
 
-	// function getUserLogin(){
-
-	// 	var user = auth.currentUser;
-	// 	var result = user.providerData
-	// 	if(result.length > 1){
-	// 		console.log(result);
-	// 		return true;
-	// 	} else {
-	// 		return false;
-
-	// 	}
-	// }
-
 	function checkFacebookLink(){
 
 		var result = auth.currentUser.providerData;
@@ -553,8 +540,6 @@ $( document ).ready(function() {
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
 	$('#scanButton').click(function() {
-		// if(getUserLogin()){
-
 			intializeScan();
 			
 			if(checkFacebookLink()){
@@ -574,7 +559,5 @@ $( document ).ready(function() {
 				$('#tw_tab').hide();
 				getTwitterPosts();
 			}
-
-		// }
 	});
 });
