@@ -151,6 +151,7 @@ $( document ).ready(function() {
 	function getPosts (response) {
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
+					console.log(data);
 					var from = data.from.name;
 					var post = data.message;
 					//var url = getFaceBookPostUrl(data.id);
