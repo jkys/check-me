@@ -30,6 +30,8 @@ $( document ).ready(function() {
 
 	firebase.initializeApp(config); // Intialize firebase
 	const auth = firebase.auth(); // Create constant on firebase authenticated
+	const twitterLinked;
+	const facebookLinked;
 	const database = firebase.database(); // Create constant on firebase database
 
 	auth.onAuthStateChanged(function (user) {
@@ -39,6 +41,26 @@ $( document ).ready(function() {
         	if (~currentPage.indexOf('index.html')) {
         		window.location = 'home.html';
         	}
+        		if (checkTwitterLink()) {
+					$('#linkTwitter').hide();
+					$('#unlinkTwitter').show();
+				} else {
+					$('#unlinkTwitter').hide();
+					$('#linkTwitter').show();
+				}
+
+				if (checkFacebookLink()) {
+					$('#linkFacebook').hide();
+					$('#unlinkFacebook').show();
+				} else {
+					$('#unlinkFacebook').hide();
+					$('#linkFacebook').show();
+				}
+
+				if (checkFacebookLink() && checkTwitterLink()) {
+					$('#scanningDiv').hide();
+					$('#linkAccountsNote').show();
+				}
         } else {
         	$('#loggedInBar').hide();
         }
@@ -157,8 +179,9 @@ $( document ).ready(function() {
      	if (checkTwitterLink()) {
      		getTwitterPosts();
      	} else {
- 			$('#tw_tab').hide();
+			$('#tw_tab').hide();
 			$('#login').hide();
+			$('#signup').hide();
      	}
 	}
 
@@ -250,11 +273,12 @@ $( document ).ready(function() {
 
 	function containsProfanity(message, word) {
 		message = message.toLowerCase();
+		word = word.toLowerCase()
 		var profane = false;
 		var prefix = ['', 'er', 'ing', 's', 'ed', 'in'];
 		prefix.forEach(function(ending) {
 			message = message + ending;
-			word = word.toLowerCase() + ending;
+			word = word + ending;
 			message.split(' ').forEach(function(messageWord) {
 				messageWord = messageWord.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 				messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
@@ -566,28 +590,4 @@ $( document ).ready(function() {
 
 
 	});
-
-	if (checkTwitterLink()) {
-		$('#linkTwitter').hide();
-		$('#unlinkTwitter').show();
-	} else {
-		$('#unlinkTwitter').hide();
-		$('#linkTwitter').show();
-	}
-
-	if (checkFacebookLink()) {
-		$('#linkFacebook').hide();
-		$('#unlinkFacebook').show();
-	} else {
-		$('#unlinkFacebook').hide();
-		$('#linkFacebook').show();
-	}
-
-	if (checkFacebookLink() && checkTwitterLink()) {
-		$('#scanningDiv').hide();
-		$('#linkAccountsNote').show();
-	}
-
-
-
 });
