@@ -589,7 +589,7 @@ $( document ).ready(function() {
 	});
 
 	$('.post').click(function() {
-		var reasons = $(this).next('div');
+		var reasons = $(this).next('.reasons');
 		if(reasons.is(":visible")) {
 			reasons.slideUp("slow");
 		} else {
@@ -597,6 +597,9 @@ $( document ).ready(function() {
 		}
 	});
 
+	$('.postButton').click(function() {
+		$(this).find('.reasons').toggle();
+	});
 
 
 	$('#scanButton').click(function() {
