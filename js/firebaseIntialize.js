@@ -151,7 +151,7 @@ $( document ).ready(function() {
 	function getPosts (response) {
 		if (response && !response.error && response.data != '') {
 			response.posts.data.forEach(function(data) {
-					console.log(data);
+					console.log(data.created_time);
 					var from = data.from.name;
 					var post = data.message;
 					//var url = getFaceBookPostUrl(data.id);
@@ -212,6 +212,11 @@ $( document ).ready(function() {
 			'May', 'June', 'July', 'August', 'September', 
 			'October', 'November', 'December'];
 
+		console.log(iso);
+		console.log(date);
+		console.log(day);
+		console.log(year);
+		console.log(month);
 
 		var date = new Date(iso);	
 		var day = date.getDate();
