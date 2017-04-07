@@ -30,37 +30,39 @@ $( document ).ready(function() {
 
 	firebase.initializeApp(config); // Intialize firebase
 	const auth = firebase.auth(); // Create constant on firebase authenticated
-	const twitterLinked;
-	const facebookLinked;
 	const database = firebase.database(); // Create constant on firebase database
 
 	auth.onAuthStateChanged(function (user) {
         if (user) {
+        	var twitterLinked = checkTwitterLink();
+			var facebookLinked = checkFacebookLink();
+
         	$('#loggedInBar').show();
         	var currentPage = window.location.pathname;
         	if (~currentPage.indexOf('index.html')) {
         		window.location = 'home.html';
         	}
-        		if (checkTwitterLink()) {
-					$('#linkTwitter').hide();
-					$('#unlinkTwitter').show();
-				} else {
-					$('#unlinkTwitter').hide();
-					$('#linkTwitter').show();
-				}
+        	
+    		if (twitterLinked) {
+				$('#linkTwitter').hide();
+				$('#unlinkTwitter').show();
+			} else {
+				$('#unlinkTwitter').hide();
+				$('#linkTwitter').show();
+			}
 
-				if (checkFacebookLink()) {
-					$('#linkFacebook').hide();
-					$('#unlinkFacebook').show();
-				} else {
-					$('#unlinkFacebook').hide();
-					$('#linkFacebook').show();
-				}
+			if (facebookLinked) {
+				$('#linkFacebook').hide();
+				$('#unlinkFacebook').show();
+			} else {
+				$('#unlinkFacebook').hide();
+				$('#linkFacebook').show();
+			}
 
-				if (checkFacebookLink() && checkTwitterLink()) {
-					$('#scanningDiv').hide();
-					$('#linkAccountsNote').show();
-				}
+			if (!twitterLinked && !facebookLinked) {
+				$('#scanningDiv').hide();
+				$('#linkAccountsNote').show();
+			}
         } else {
         	$('#loggedInBar').hide();
         }
@@ -75,31 +77,31 @@ $( document ).ready(function() {
 		if(page == 0){
 			var provider = new firebase.auth.TwitterAuthProvider();
 			auth.signInWithPopup(provider).then(function(result) {
-			accessToken = result.credential.accessToken;
-			secret = result.credential.secret;
-			user = getTwitterUser(accessToken);
-			$.ajax({
-				type: 'POST',
-				url: 'get_tweets.php',
-				data: {
-					userID: user,
-					token: accessToken, 
-					secret: secret,
-					page: page
-				},
-				dataType : 'json',
-				success: getTweets
-			}).done(function() {
-				$('.postButton').on('click', function(){
-					var reasons = $(this).find('.reasons');
-					if(reasons.is(":visible")) {
-						reasons.slideUp("slow");
-					} else {
-						reasons.slideDown("slow");
-					}
+				accessToken = result.credential.accessToken;
+				secret = result.credential.secret;
+				user = getTwitterUser(accessToken);
+				$.ajax({
+					type: 'POST',
+					url: 'get_tweets.php',
+					data: {
+						userID: user,
+						token: accessToken, 
+						secret: secret,
+						page: page
+					},
+					dataType : 'json',
+					success: getTweets
+				}).done(function() {
+					$('.postButton').on('click', function(){
+						var reasons = $(this).find('.reasons');
+						if(reasons.is(":visible")) {
+							reasons.slideUp("slow");
+						} else {
+							reasons.slideDown("slow");
+						}
+					});
 				});
 			});
-		});
 		} else if(user != '' && user !=null){
 
 			$.ajax({
