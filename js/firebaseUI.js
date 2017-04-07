@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 	// FirebaseUI config.
 	var uiConfig = {
-		signInSuccessUrl: 'home.html',
+		signInSuccessUrl: 'www.checkyou.me/home.html',
 		signInOptions: [
 			// Leave the lines as is for the providers you want to offer your users.
 			firebase.auth.FacebookAuthProvider.PROVIDER_ID,
