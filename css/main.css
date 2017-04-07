@@ -397,7 +397,7 @@ footer.login {
     padding: 20px;
 }
 
-#scanButton h1, #NoSMP h1, {
+#scanButton h1, #NoSMP h1 {
   color: #ffffff;
   font-weight: 300;
   font-size: 2em;
