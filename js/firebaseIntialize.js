@@ -220,7 +220,7 @@ $( document ).ready(function() {
 			var flaggedWords = '';
 			var profaneJson = firebase.database().ref('Profanity');
 
-			var link = "window.open(url, '_blank', 'toolbar=yes, location=yes, status=yes, menubar=yes, scrollbars=yes');";
+			var link = "window.open(" + url + ", '_blank', 'toolbar=yes, location=yes, status=yes, menubar=yes, scrollbars=yes');";
 			
 			profaneJson.on('value', function(snapshot) {
 				profaneWordSet = snapshot.val();
