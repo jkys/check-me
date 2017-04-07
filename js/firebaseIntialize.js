@@ -94,15 +94,6 @@ $( document ).ready(function() {
 					},
 					dataType : 'json',
 					success: getTweets
-				}).done(function() {
-					$('.postButton').on('click', function(){
-						var reasons = $(this).find('.reasons');
-						if(reasons.is(":visible")) {
-							reasons.slideUp("slow");
-						} else {
-							reasons.slideDown("slow");
-						}
-					});
 				});
 			});
 		} else if(user != '' && user !=null){
@@ -118,15 +109,6 @@ $( document ).ready(function() {
 				},
 				dataType : 'json',
 				success: getTweets
-			}).done(function() {
-				$('.postButton').on('click', function(){
-					var reasons = $(this).find('.reasons');
-					if(reasons.is(":visible")) {
-						reasons.slideUp("slow");
-					} else {
-						reasons.slideDown("slow");
-					}
-				});
 			});
 
 		}
