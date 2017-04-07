@@ -61,7 +61,7 @@ $( document ).ready(function() {
 
 			if (!twitterLinked && !facebookLinked) {
 				$('#scanningDiv').hide();
-				$('#linkAccountsNote').show();
+				$('#noSMPDiv').show();
 			}
         } else {
         	$('#loggedInBar').hide();
