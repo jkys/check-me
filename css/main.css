@@ -385,7 +385,7 @@ footer.login {
 
 #scanButton, #NoSMP {
     width: 500px;
-    height: 100px;
+    height: auto;
     transition: width 1s, height 1s, border 1s;
     background: rgba(19, 35, 47, 0.9);
     border: 5px solid rgb(0, 177, 235);
@@ -394,6 +394,7 @@ footer.login {
     justify-content:center;
     align-items:center;
     cursor: pointer;
+    padding: 20px;
 }
 
 #scanButton h1, #NoSMP h1, {
