@@ -271,7 +271,7 @@ $( document ).ready(function() {
 								imgUrl = array.photoURL;
 							}
 						});
-						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><div class="timename"><h3 class="time">' + from + '</h3><h3 class="time">' + date + '</h3></div><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><p id="pLink" onclick="' + link + '">Click here to navigate to post.</p></div></div></button>');
+						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><div class="timename"><h3 class="time">' + from + '</h3><h3 class="time">' + date + '</h3></div><p class="text">' + message + '</p><div class="reasons" style="display: none;"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><p id="pLink" onclick="' + link + '">Click here to navigate to post.</p></div></div></button>');
 					}
 					else{
 						auth.currentUser.providerData.forEach(function(array) {
@@ -279,7 +279,7 @@ $( document ).ready(function() {
 								imgUrl = array.photoURL;
 							}
 						});
-						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><p id="pLink" onclick="' + link + '">Click here to navigate to post.</p></div></div></button>');
+						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons" style="display: none;"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><p id="pLink" onclick="' + link + '">Click here to navigate to post.</p></div></div></button>');
 					}
 				}
 			});
@@ -587,6 +587,17 @@ $( document ).ready(function() {
 			reasons.slideDown("slow");
 		}
 	});
+
+	$('.post').click(function() {
+		var reasons = $(this).next('div');
+		if(reasons.is(":visible")) {
+			reasons.slideUp("slow");
+		} else {
+			reasons.slideDown("slow");
+		}
+	});
+
+
 
 	$('#scanButton').click(function() {
 		// if(getUserLogin()){
