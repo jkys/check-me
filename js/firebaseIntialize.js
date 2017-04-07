@@ -399,18 +399,18 @@ $( document ).ready(function() {
 		object.html(errorMessage);
 	}
 
-	function getUserLogin(){
+	// function getUserLogin(){
 
-		var user = auth.currentUser;
-		var result = user.providerData
-		if(result.length > 1){
-			console.log(result);
-			return true;
-		} else {
-			return false;
+	// 	var user = auth.currentUser;
+	// 	var result = user.providerData
+	// 	if(result.length > 1){
+	// 		console.log(result);
+	// 		return true;
+	// 	} else {
+	// 		return false;
 
-		}
-	}
+	// 	}
+	// }
 
 	function checkFacebookLink(){
 
@@ -567,7 +567,7 @@ $( document ).ready(function() {
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
 	$('#scanButton').click(function() {
-		if(getUserLogin()){
+		// if(getUserLogin()){
 
 			intializeScan();
 			
@@ -589,11 +589,6 @@ $( document ).ready(function() {
 				getTwitterPosts();
 			}
 
-		} else {
-
-			alert("link your account");
-		}
-
-
+		// }
 	});
 });
