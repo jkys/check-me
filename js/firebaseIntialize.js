@@ -34,7 +34,6 @@ $( document ).ready(function() {
 	const auth = firebase.auth(); // Create constant on firebase authenticated
 	const database = firebase.database(); // Create constant on firebase database
 
-
 	auth.onAuthStateChanged(function (user) {
         if (user) {
         	$('#loggedInBar').show();
@@ -236,26 +235,23 @@ $( document ).ready(function() {
 				});
 
 				if(score > 0) {
-
-
 					if(platform == 'facebook'){
-											auth.currentUser.providerData.forEach(function(array) {
-						if(array.providerId.includes(platform)){
-							imgUrl = array.photoURL;
-						}
-					});
+						auth.currentUser.providerData.forEach(function(array) {
+							if(array.providerId.includes(platform)){
+								imgUrl = array.photoURL;
+							}
+						});
 						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><div class="timename"><h3 class="time">' + from + '</h3><h3 class="time">' + date + '</h3></div><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><p id="pLink" onclick="' + link + '">Click here to navigate to post.</p></div></div></button>');
 					}
 					else{
-											auth.currentUser.providerData.forEach(function(array) {
-						if(array.providerId.includes(platform)){
-							imgUrl = array.photoURL;
-						}
-					});
+						auth.currentUser.providerData.forEach(function(array) {
+							if(array.providerId.includes(platform)){
+								imgUrl = array.photoURL;
+							}
+						});
 						$('#' + platform + 'Results').append('<button class="postButton"><div class="post"><img src="' + imgUrl + '" class="postImg"><h3 class="time">' + date + '</h3><p class="text">' + message + '</p><div class="reasons"><hr>Flagged words in post: ' + flaggedWords.slice(0, -2) + '<br>Flagged words: ' + (score/100) + '.<br><p id="pLink" onclick="' + link + '">Click here to navigate to post.</p></div></div></button>');
 					}
 				}
-
 			});
 		}
 	}
@@ -401,7 +397,6 @@ $( document ).ready(function() {
 
 		result.forEach(function(provider){
 			if(provider.providerId == "facebook.com"){
-				//alert("facebook is linked");
 				response = true;
 			}
 		});
@@ -409,36 +404,16 @@ $( document ).ready(function() {
 	}
 
 	function checkTwitterLink(){
-
 		var result = auth.currentUser.providerData;
 		var response = false;
 
 		result.forEach(function(provider){
 			if(provider.providerId == "twitter.com"){
-				//alert("twitter is linked");
 				response = true;
 			}
 		});
 		return response;
 	}
-
-	if (checkTwitterLink()) {
-		$('#linkTwitter').hide();
-		$('#unlinkTwitter').show();
-	} else {
-		$('#unlinkTwitter').hide();
-		$('#linkTwitter').show();
-	}
-
-	if (checkFacebookLink()) {
-		$('#linkFacebook').hide();
-		$('#unlinkFacebook').show();
-	} else {
-		$('#unlinkFacebook').hide();
-		$('#linkFacebook').show();
-	}
-
-
 
 
 	/*************************************************
@@ -599,4 +574,20 @@ $( document ).ready(function() {
 
 
 	});
+
+	if (checkTwitterLink()) {
+		$('#linkTwitter').hide();
+		$('#unlinkTwitter').show();
+	} else {
+		$('#unlinkTwitter').hide();
+		$('#linkTwitter').show();
+	}
+
+	if (checkFacebookLink()) {
+		$('#linkFacebook').hide();
+		$('#unlinkFacebook').show();
+	} else {
+		$('#unlinkFacebook').hide();
+		$('#linkFacebook').show();
+	}
 });
