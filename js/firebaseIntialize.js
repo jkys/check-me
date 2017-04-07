@@ -42,7 +42,7 @@ $( document ).ready(function() {
         	if (~currentPage.indexOf('index.html')) {
         		window.location = 'home.html';
         	}
-        	
+
     		if (twitterLinked) {
 				$('#linkTwitter').hide();
 				$('#unlinkTwitter').show();
@@ -183,7 +183,7 @@ $( document ).ready(function() {
      	} else {
 			$('#tw_tab').hide();
 			$('#login').hide();
-			$('#signup').hide();
+			$('#fb_tab').hide();
      	}
 	}
 
