@@ -162,8 +162,6 @@ $( document ).ready(function() {
      	} else {
  			$('#tw_tab').hide();
 			$('#login').hide();
-
-			$('#fb_tab').hide();
      	}
 
 		if(globalProfanityFlag == 0){
@@ -402,6 +400,7 @@ $( document ).ready(function() {
 
 		result.forEach(function(provider){
 			if(provider.providerId == "facebook.com"){
+				alert("facebook is linked");
 				response = true;
 			}
 		});
@@ -415,6 +414,7 @@ $( document ).ready(function() {
 
 		result.forEach(function(provider){
 			if(provider.providerId == "twitter.com"){
+				alert("twitter is linked");
 				response = true;
 			}
 		});
