@@ -579,6 +579,15 @@ $( document ).ready(function() {
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
+	$('.postButton')click(function() {
+		var reasons = $(this).find('.reasons');
+		if(reasons.is(":visible")) {
+			reasons.slideUp("slow");
+		} else {
+			reasons.slideDown("slow");
+		}
+	});
+
 	$('#scanButton').click(function() {
 		// if(getUserLogin()){
 
