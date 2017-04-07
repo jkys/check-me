@@ -168,7 +168,7 @@ $( document ).ready(function() {
 
 		if(globalProfanityFlag == 0){
 
-			alert("No profanity found!!!!"); 
+			//alert("No profanity found!!!!"); 
 		}
 	}
 
