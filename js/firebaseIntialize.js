@@ -157,6 +157,7 @@ $( document ).ready(function() {
 					//var url = getFaceBookPostUrl(data.id);
 					var url = data.permalink_url;
 					var date = convertIso(data.created_time);
+					while(date=='undefined NaN, NaN at NaN:NaNam'){}
 					displayPost(post, date, url, 'facebook', from);
 				if(data.comments != null && data.comments != ''){
 					data.comments.data.forEach(function(data) {
