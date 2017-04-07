@@ -1,4 +1,9 @@
 $( document ).ready(function() {
+	console.log(navigator.userAgent.toLowerCase());
+
+	if(navigator.userAgent.toLowerCase().indexOf("iphone") > -1){
+		window.location.href = 'https://itunes.apple.com/us/app/check-me-social-media-checker/id1207914479?mt=8';
+	}
 
 	window.fbAsyncInit = function() {
 		FB.init({
