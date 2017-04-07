@@ -74,6 +74,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 500px;
+  width: 100%;
 }
 
 .thirdPartyLabel {
