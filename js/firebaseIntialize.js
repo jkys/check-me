@@ -212,12 +212,6 @@ $( document ).ready(function() {
 			'May', 'June', 'July', 'August', 'September', 
 			'October', 'November', 'December'];
 
-		console.log(iso);
-		console.log(date);
-		console.log(day);
-		console.log(year);
-		console.log(month);
-
 		var date = new Date(iso);	
 		var day = date.getDate();
 		var year = date.getFullYear();
@@ -225,6 +219,12 @@ $( document ).ready(function() {
 		var hour = date.getHours();
 		var minute = date.getMinutes();
 		var postfix = 'am';
+
+		console.log(iso);
+		console.log(date);
+		console.log(day);
+		console.log(year);
+		console.log(month);
 
 		if(hour > 12) {
 			hour -= 12;
