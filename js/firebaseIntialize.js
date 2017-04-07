@@ -261,10 +261,11 @@ $( document ).ready(function() {
 	}
 
 	function containsProfanity(message, word) {
+		message = message.toLowerCase();
 		var profane = false;
 		var prefix = ['', 'er', 'ing', 's', 'ed', 'in'];
 		prefix.forEach(function(ending) {
-			message = message.toLowerCase() + ending;
+			message = message + ending;
 			word = word.toLowerCase() + ending;
 			message.split(' ').forEach(function(messageWord) {
 				messageWord = messageWord.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
@@ -275,7 +276,7 @@ $( document ).ready(function() {
 				}
 			});
 		});
-		return profane || message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$') || message == word;
+		return profane || message.includes(' ' + word + ' ') || message.match('^' + word + ' ') || message.match(' ' + word + '$');
 	}
 
 	function postNotEmpty(message) {
@@ -419,6 +420,22 @@ $( document ).ready(function() {
 			}
 		});
 		return response;
+	}
+
+	if (checkTwitterLink()) {
+		$('#linkTwitter').hide();
+		$('#unlinkTwitter').show();
+	} else {
+		$('#unlinkTwitter').hide();
+		$('#linkTwitter').show();
+	}
+
+	if (checkFacebookLink()) {
+		$('#linkFacebook').hide();
+		$('#unlinkFacebook').show();
+	} else {
+		$('#unlinkFacebook').hide();
+		$('#linkFacebook').show();
 	}
 
 

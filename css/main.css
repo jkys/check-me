@@ -100,6 +100,10 @@ hr {
   cursor: pointer;
 }
 
+.thirdPartyLinkContainer button {
+  margin-bottom: 50px;
+}
+
 .linkedStatus {
   font-size: 2em;
   margin-left: 20%;
@@ -260,10 +264,6 @@ hr {
 
 .login .links-footer {
   word-spacing: 2em;
-}
-
-.secondLink {
-  float: right;
 }
 
 .login .links-footer a {
