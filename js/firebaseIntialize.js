@@ -9,8 +9,6 @@ $( document ).ready(function() {
 		FB.AppEvents.logPageView();
 	};
 
-	var globalProfanityFlag = 0;
-
 	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) {return;}
@@ -162,11 +160,6 @@ $( document ).ready(function() {
  			$('#tw_tab').hide();
 			$('#login').hide();
      	}
-
-		if(globalProfanityFlag == 0){
-
-			//alert("No profanity found!!!!"); 
-		}
 	}
 
 	function getTwitterUser(accessToken) {
@@ -230,7 +223,6 @@ $( document ).ready(function() {
 					if(containsProfanity(message, word)) {
 						flaggedWords = flaggedWords + word + ', ';
 						score += scale;
-						globalProfanityFlag = 1;
 					}
 				});
 
@@ -267,7 +259,7 @@ $( document ).ready(function() {
 				messageWord = messageWord.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 				messageShort = messageWord.replace(/(.)\1{1,}/g, '$1');
 				wordShort = word.replace(/(.)\1{1,}/g, '$1');
-				if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con' || messageShort.includes(word)) {
+				if(messageShort == wordShort && messageWord != 'as' && messageWord != 'con') {
 					profane = true;
 				}
 			});
@@ -590,4 +582,12 @@ $( document ).ready(function() {
 		$('#unlinkFacebook').hide();
 		$('#linkFacebook').show();
 	}
+
+	if (checkFacebookLink() && checkTwitterLink()) {
+		$('#scanningDiv').hide();
+		$('#linkAccountsNote').show();
+	}
+
+
+
 });
