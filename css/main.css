@@ -217,8 +217,8 @@ hr {
   display:flex;
   justify-content:center;
   align-items:center;
-  height: 400px;
-  padding: 1%;
+  height: auto;
+  padding: 2%;
   border: 3px solid rgb(0, 177, 235);
   width: 70%;
 }
@@ -229,7 +229,6 @@ hr {
 
 .information-container {
   width: 50%;
-  margin-bottom: 15%;
 }
 
 .avatar-container {
