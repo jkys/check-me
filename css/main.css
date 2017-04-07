@@ -433,7 +433,7 @@ button:focus {
   outline-width: none;
 }
 
-.time:hover, .postLink:hover {
+.time:hover, .postLink:hover, #pLink:hover {
   color: rgb(0, 177, 235);
 }
 
