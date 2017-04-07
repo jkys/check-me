@@ -579,7 +579,7 @@ $( document ).ready(function() {
 
 	$('#CheckMeLogo, #homeButton').click(function() { redirectUser(); });
 
-	$('.postButton')click(function() {
+	$('.postButton').click(function() {
 		var reasons = $(this).find('.reasons');
 		if(reasons.is(":visible")) {
 			reasons.slideUp("slow");
