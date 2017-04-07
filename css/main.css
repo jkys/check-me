@@ -361,6 +361,7 @@ footer.login {
 .settingsPageMessage {
   width: 100%;
   text-align: center;
+  margin-top: 0;
 }
 
 .settingsPageButton {

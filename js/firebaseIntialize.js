@@ -334,6 +334,8 @@ $( document ).ready(function() {
 	function linkAccounts(user, provider, platform) {
 		user.linkWithPopup(provider).then(function(result) {
 			outPutMessage('linkAccount', true, platform + ' account linked!');
+			$('#link' + platform).hide();
+			$('#unlink' + platform).show();
 			return result;
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
@@ -350,7 +352,9 @@ $( document ).ready(function() {
 		});
 
 		user.unlink(providerid).then(function() {
-			outPutMessage('linkAccount', true, (platform.substr(0,1).toUpperCase() + platform.substr(1)) + ' account unlinked!');
+			outPutMessage('linkAccount', true, platform + ' account unlinked!');
+			$('#unlink' + platform).hide();
+			$('#link' + platform).show();
 		}).catch(function(error) {
 			outPutMessage('linkAccount', false, error.message);
 			return error;
@@ -464,11 +468,11 @@ $( document ).ready(function() {
 	});
 
 	$('#unlinkFacebook').click(function() {
-		var result = unlinkAccounts(auth.currentUser, 'facebook');
+		var result = unlinkAccounts(auth.currentUser, 'Facebook');
 	});
 
 	$('#unlinkTwitter').click(function() {
-		var result = unlinkAccounts(auth.currentUser, 'twitter');
+		var result = unlinkAccounts(auth.currentUser, 'Twitter');
 	});
 
 	$('#signIn').click(function() {
