@@ -400,7 +400,7 @@ $( document ).ready(function() {
 
 		result.forEach(function(provider){
 			if(provider.providerId == "facebook.com"){
-				alert("facebook is linked");
+				//alert("facebook is linked");
 				response = true;
 			}
 		});
@@ -414,7 +414,7 @@ $( document ).ready(function() {
 
 		result.forEach(function(provider){
 			if(provider.providerId == "twitter.com"){
-				alert("twitter is linked");
+				//alert("twitter is linked");
 				response = true;
 			}
 		});
