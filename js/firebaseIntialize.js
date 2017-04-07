@@ -156,8 +156,8 @@ $( document ).ready(function() {
 					var post = data.message;
 					//var url = getFaceBookPostUrl(data.id);
 					var url = data.permalink_url;
-					var date = convertIso(data.created_time);
-					while(date=='undefined NaN, NaN at NaN:NaNam'){}
+					var time = data.created_time;
+					var date = convertIso(time);
 					displayPost(post, date, url, 'facebook', from);
 				if(data.comments != null && data.comments != ''){
 					data.comments.data.forEach(function(data) {
@@ -220,12 +220,6 @@ $( document ).ready(function() {
 		var hour = date.getHours();
 		var minute = date.getMinutes();
 		var postfix = 'am';
-
-		console.log(iso);
-		console.log(date);
-		console.log(day);
-		console.log(year);
-		console.log(month);
 
 		if(hour > 12) {
 			hour -= 12;
