@@ -346,7 +346,7 @@ $( document ).ready(function() {
 	function unlinkAccounts(user, platform) {
 		providerid = null;
 		user.providerData.forEach(function(array) {
-			if(array.providerId.includes(platform)){
+			if(array.providerId.includes(platform.toLowerCase())){
 				providerid = array.providerId;
 			}
 		});
