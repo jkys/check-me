@@ -1,388 +1,386 @@
 body {
-  background-image: url('../images/ticks.png');
-  padding-bottom: 50px;
+    background-image: url('../images/ticks.png');
+    padding-bottom: 50px;
 }
 
 #loginBody {
-  background: url(../images/mockup0.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(../images/mockup0.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 * {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .termsHeader {
-  color: #000000;
+    color: #000000;
 }
 
 .aboutText {
-  text-align: justify;
-  text-justify: inter-word;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .thirdPartyButton {
-  width: 250px;
-  height: 50px;
-  border-radius: 10px;
-  padding: 1%;
-  color: white;
-  text-align: right;
-  line-height: 25px;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 1%;
+    color: white;
+    text-align: right;
+    line-height: 25px;
 }
 
 .thirdPartyButtonFacebook {
-  background-color: rgb(59, 89, 152);
+    background-color: rgb(59, 89, 152);
 }
 
 .thirdPartyButtonTwitter {
-  background-color: rgb(85, 172, 238);
+    background-color: rgb(85, 172, 238);
 }
 
 #logOut {
-  background: none !important;
-  border: none; 
-  font: inherit;
-  cursor: pointer;
-  color: #A8A6A5;
-  font-size: 1.5em;
+    background: none !important;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: #A8A6A5;
+    font-size: 1.5em;
 }
 
 #forgotPassword {
-  background: none !important;
-  border: none; 
-  font: inherit;
-  cursor: pointer;
-  color: rgb(0, 177, 235);
-  font-size: 1em;
+    background: none !important;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: rgb(0, 177, 235);
+    font-size: 1em;
 }
 
 .resultsContainer {
-  display: inline-block;
+    display: inline-block;
 }
 
 .thirdPartyLink {
-  color: #3B7FFF;
-  text-decoration: none;
+    color: #3B7FFF;
+    text-decoration: none;
 }
 
 .results {
-  display: inline-block;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  max-height: 500px;
-  width: 100%;
+    display: inline-block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 500px;
+    width: 100%;
 }
 
 .thirdPartyLabel {
-  color: black;
-  margin: 3%;
+    color: black;
+    margin: 3%;
 }
 
 hr {
-  height: 1px;
-  border: none;
-  background-color: #DCDCDC;
+    height: 1px;
+    border: none;
+    background-color: #DCDCDC;
 }
 
 .post {
-  margin: 3%;
-  border: 3px solid #DCDCDC;
-  border-radius: 3px;
-  height: auto;
-  padding: 2%;
-  background-color: #fff;
+    margin: 3%;
+    border: 3px solid #DCDCDC;
+    border-radius: 3px;
+    height: auto;
+    padding: 2%;
+    background-color: #fff;
 }
 
 .thirdPartySignUpContainer, .thirdPartyLinkContainer {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .thirdPartyLinkContainer button {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .linkedStatus {
-  font-size: 2em;
-  margin-left: 20%;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  padding-bottom: 20%;
+    font-size: 2em;
+    margin-left: 20%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    padding-bottom: 20%;
 }
 
 .thirdPartySignUpImage {
-  height: 5%;
-  width: 40%;
-  margin-left: 5%;
-  cursor: pointer;
+    height: 5%;
+    width: 40%;
+    margin-left: 5%;
+    cursor: pointer;
 }
 
 .thirdParyContainer {
-  height: auto;
+    height: auto;
 }
 
 .thirdPartyLinkImage {
-  height: 20%;
-  width: 20%;
-  margin-top: 50px;
-  margin-left: 5%;
-  cursor: pointer;
+    height: 20%;
+    width: 20%;
+    margin-top: 50px;
+    margin-left: 5%;
+    cursor: pointer;
 }
 
 #deleteAccount {
-  background: #FC3832;
+    background: #FC3832;
 }
 
 .avatar {
-  height: auto;
-  width: 80%;
-  margin-left: 10%;
-  border: 3px solid rgb(0, 177, 235);
+    height: auto;
+    width: 80%;
+    margin-left: 10%;
+    border: 3px solid rgb(0, 177, 235);
 }
 
 .about-container {
-  margin-top: 4%;
-
+    margin-top: 4%;
 }
 
-#firebaseui-auth-container{
-  margin-top: 30px;
+#firebaseui-auth-container {
+    margin-top: 30px;
 }
 
 .firebaseui-container {
-  margin: 0 !important;
-  max-width: none !important;
+    margin: 0 !important;
+    max-width: none !important;
 }
 
 .firebaseui-card-content {
-  padding: 0 !important;
+    padding: 0 !important;
 }
 
 .firebaseui-list-item {
-  width: 50% !important;
-  display: inline-block;
+    width: 50% !important;
+    display: inline-block;
 }
 
-.avatar-container h2, .avatar-container h4, .media{
-  margin-left: 10%;
+.avatar-container h2, .avatar-container h4, .media {
+    margin-left: 10%;
 }
 
-.media a{
-  display: inline-block;
+.media a {
+    display: inline-block;
 }
 
 .avatar-container a img {
-  height: 20px;
-  width: 20px;
-  margin-right: 15px;
-  background-color: #fff;
-  border-radius: 15%;
+    height: 20px;
+    width: 20px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 15%;
 }
 
 .checkMe-information {
-  margin-top: 1%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-bottom: 2%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
 }
 
-.checkMe-information div{
-  width: 50%;
+.checkMe-information div {
+    width: 50%;
 }
 
 #CheckMeLogo {
-  background: none !important;
-  border: none; 
-  cursor: pointer;
+    background: none !important;
+    border: none;
+    cursor: pointer;
 }
 
 #homeButton {
-  background: none !important;
-  border: none; 
-  cursor: pointer;
-  text-decoration: none;
-  color: #A8A6A5;
-  font-size: 1.5em;
+    background: none !important;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: #A8A6A5;
+    font-size: 1.5em;
 }
 
 .person-container {
-  color: #fff;
-  background: rgba(19, 35, 47, 0.9);
-  border-radius: 20px;
-  margin-top: 1%;
-  margin-left: 15%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height: auto;
-  padding: 2%;
-  border: 3px solid rgb(0, 177, 235);
-  width: 70%;
+    color: #fff;
+    background: rgba(19, 35, 47, 0.9);
+    border-radius: 20px;
+    margin-top: 1%;
+    margin-left: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 2%;
+    border: 3px solid rgb(0, 177, 235);
+    width: 70%;
 }
 
 .avatar-container {
-  width: 40%;
+    width: 40%;
 }
 
 .information-container {
-  width: 50%;
+    width: 50%;
 }
 
 .avatar-container {
-  float: left;
+    float: left;
 }
 
 .information-container {
-  float: right;
+    float: right;
 }
 
 .information-container h4 {
-  color: rgb(0, 177, 235);
+    color: rgb(0, 177, 235);
 }
 
 .login .logo-header #logo-login {
-  height: 10em;
-  width: auto;
-  transition: width 1s, height 1s;
+    height: 10em;
+    width: auto;
+    transition: width 1s, height 1s;
 }
 
 .login .logo-header #logo-login:hover {
-  height: 10.5em;
-  width: auto;
-
+    height: 10.5em;
+    width: auto;
 }
 
 .login .logo-header {
-  margin-top: 2%;
-  text-align: center;
+    margin-top: 2%;
+    text-align: center;
 }
 
 .login .links-footer {
-  word-spacing: 2em;
+    word-spacing: 2em;
 }
 
 .login .links-footer a {
-  text-decoration: none;
-  color: #A8A6A5;
-  font-size: 1.5em;
+    text-decoration: none;
+    color: #A8A6A5;
+    font-size: 1.5em;
 }
 
 .terms-container {
-  padding: 3% 5% 3% 5%;
+    padding: 3% 5% 3% 5%;
 }
 
-.terms-container p, .terms-container li{
-  margin-left: 2%;
+.terms-container p, .terms-container li {
+    margin-left: 2%;
 }
 
 h1 {
-  text-align: center;
-  font-size: 2em;
+    text-align: center;
+    font-size: 2em;
 }
 
 h2 {
-  font-size: 1.75em;
+    font-size: 1.75em;
 }
 
 h3 {
-  font-size: 1.25em;
+    font-size: 1.25em;
 }
 
-li a{
-  text-decoration: none;
-  color: #000;
+li a {
+    text-decoration: none;
+    color: #000;
 }
 
 footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  justify-content:flex-end;
-  align-items:flex-end;
-  padding: 1%;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 1%;
 }
 
 .loggedIn {
-  display:flex;
-  justify-content:flex-end;
-  align-items:flex-end;
-  padding: 0% 1% 0% 0%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0% 1% 0% 0%;
 }
 
 .loggedIn .links-loggedIn {
-  float: right;
-  word-spacing: 2em;
+    float: right;
+    word-spacing: 2em;
 }
 
 .loggedIn .links-loggedIn a {
-  text-decoration: none;
-  color: #A8A6A5;
-  font-size: 1.5em;
+    text-decoration: none;
+    color: #A8A6A5;
+    font-size: 1.5em;
 }
 
 .errorMessage {
-  margin-top: 20px;
-  color: #FC3832;
+    margin-top: 20px;
+    color: #FC3832;
 }
 
 .successMessage {
-  margin-top: 40px;
-  color: #5CDC48;
+    margin-top: 40px;
+    color: #5CDC48;
 }
 
-#scanDiv, #scanningDiv, #noSMPDiv{
-  margin-top: 10%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+#scanDiv, #scanningDiv, #noSMPDiv {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #scanLink {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .settingsPageLabel label {
-  margin-left: 15%;
+    margin-left: 15%;
 }
 
 .settingsPageInput {
-  width: 70% !important;
-  margin-left: 15% !important;
+    width: 70% !important;
+    margin-left: 15% !important;
 }
 
 footer.login {
-  background: rgba(19, 35, 47, 0.97);
+    background: rgba(19, 35, 47, 0.97);
 }
 
 .settingsPageMessage {
-  width: 100%;
-  text-align: center;
-  margin-top: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
 }
 
 .settingsPageButton {
-  font-weight: none !important;
-  font-size: 1.5rem !important;
-  width: 70% !important;
-  margin-left: 15% !important;
-  cursor: pointer !important;
+    font-weight: none !important;
+    font-size: 1.5rem !important;
+    width: 70% !important;
+    margin-left: 15% !important;
+    cursor: pointer !important;
 }
 
 #scanningDiv h1 {
-  color: #ffffff;
-  font-weight: 300;
-  font-size: 2em;
-  vertical-align: middle;
-  margin: 0;
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 2em;
+    vertical-align: middle;
+    margin: 0;
 }
 
 #elipses {
-  position: absolute;
+    position: absolute;
 }
 
 #scanButton, #NoSMP {
@@ -392,79 +390,79 @@ footer.login {
     background: rgba(19, 35, 47, 0.9);
     border: 5px solid rgb(0, 177, 235);
     border-radius: 20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     padding: 20px;
 }
 
 #scanButton h1, #NoSMP h1 {
-  color: #ffffff;
-  font-weight: 300;
-  font-size: 2em;
-  text-align: center;
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 2em;
+    text-align: center;
 }
 
 #NoSMP p {
-  color: #ffffff;
-  font-weight: 300;
-  text-align: center;
+    color: #ffffff;
+    font-weight: 300;
+    text-align: center;
 }
 
 .containerDivScan, .ContainerNoSMP {
-  width: 100%;
+    width: 100%;
 }
 
 .postButton {
-  background: inherit;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  text-align: left;
+    background: inherit;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
 }
 
 .reasons {
-  display: none;
-  font-size: .8em;
-  line-height: 2;
+    display: none;
+    font-size: .8em;
+    line-height: 2;
 }
 
 .postButton:active {
-  color: black;
+    color: black;
 }
 
 .postButton:focus {
-  outline: none;
-  outline-color: none;
-  outline-style: none;
-  outline-width: none;
+    outline: none;
+    outline-color: none;
+    outline-style: none;
+    outline-width: none;
 }
 
 .time:hover, .postLink:hover, #pLink:hover {
-  color: rgb(0, 177, 235);
+    color: rgb(0, 177, 235);
 }
 
 .post:hover {
-  border-color: rgb(0, 177, 235);
+    border-color: rgb(0, 177, 235);
 }
 
 .postLink {
-  text-decoration: none;
-  color: #A7A7A7;
+    text-decoration: none;
+    color: #A7A7A7;
 }
 
 .postImg {
-  height: 50px;
-  width: 50px;
-  display: inline-block;
-  border: 1px solid #DCDCDC;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    border: 1px solid #DCDCDC;
 }
 
 .time {
-  color: #A7A7A7;
-  margin: 0 0 0 3%;
-  font-size: .8em;
-  font-weight: normal;
-  display: inline-block;
+    color: #A7A7A7;
+    margin: 0 0 0 3%;
+    font-size: .8em;
+    font-weight: normal;
+    display: inline-block;
 }
