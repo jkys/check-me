@@ -7,18 +7,18 @@ $settings = array(
     'oauth_access_token_secret' => $_POST['secret'],
     #'consumer_key' => "ifZDKvMyvpP4uzRUPMHACnUwj",
     'consumer_key' => "qZRhHGisBP0vNd5WMdaJCxWSY",
-    
-    
+
+
     #'consumer_secret' => "K1I63Xpp96eruMsVzhk2S4dZ48tAddQe8Vc7exCTzRi2aJaKwM"
     'consumer_secret' => "nRKkTheFXywOgJpmWTFBcqqVNOodEOvDxUl2GON0pUwM1IabrP"
-    
+
 );
 
 $twitter = new TwitterAPIExchange($settings);
 
 $url = 'https://api.twitter.com/1.1/users/lookup.json';
 $getfield = '?user_id=' . $_POST['userID'];
-$user = 
+$user =
     $twitter
     ->setGetfield($getfield)
     ->buildOauth($url, 'GET')
@@ -31,7 +31,7 @@ $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 $page = $_POST['page'];
 
 $getfield = '?screen_name=' . $screen_name . '&trim_user=true&count=200&exclude_replies=true&page=' . $page;
-$tweets = 
+$tweets =
     $twitter
     ->setGetfield($getfield)
     ->buildOauth($url, 'GET')
